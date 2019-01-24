@@ -1,2 +1,1 @@
-# TwitterBots
-Repo containing my twitter bot ideas
+# Twitter Bot -
