@@ -22,9 +22,14 @@ def filter_tweet():
     """
     Filter out tweets that you've tweeted and delete them.
     """
-    new_tweets = api.user_timeline(screen_name=user,
+    try:
+        new_tweets = api.user_timeline(screen_name=user,
                                    count=500, tweet_mode="extended")
-    allTweets = [x for x in new_tweets if "Murakami" in x.full_text]
+    except:
+        print("No tweets matching the search keywords. Exiting...")
+        return
+
+    allTweets = [x for x in new_tweets if "Teststring" in x.full_text]
 
     """
     Print out all the questionable tweets. Wait for user input to destroy all.
