@@ -22,6 +22,9 @@ def filter_tweet():
     """
     Filter out tweets that you've tweeted and delete them.
     """
+    with open('bad_words_list') as f:
+        bad_words = [word.rstrip('\n') for word in f]
+
     try:
         new_tweets = api.user_timeline(screen_name=user,
                                    count=500, tweet_mode="extended")
@@ -29,22 +32,27 @@ def filter_tweet():
         print("No tweets matching the search keywords. Exiting...")
         return
 
-    allTweets = [x for x in new_tweets if "Teststring" in x.full_text]
+    bad_tweets = []
+    for tweet in new_tweets:
+        for word in bad_words:
+            if word in tweet.full_text.lower().split():
+                bad_tweets.append(tweet.full_text)
 
+    bad_tweets = list(set(bad_tweets))
     """
     Print out all the questionable tweets. Wait for user input to destroy all.
     """
-    if len(allTweets) == 0:
+    if len(bad_tweets) == 0:
         print("No problem here!")
         return
 
-    while len(allTweets) != 0:
-        print_flagged(allTweets)
+    while len(bad_tweets) != 0:
+        print_flagged(bad_tweets)
         print("")
 
         delete_prompt = input("Delete all tweets?\nEnter (y/n): ")
         if delete_prompt == "y":
-            delete_tweets(allTweets)
+            delete_tweets(bad_tweets)
             return
 
         exclude = input("\nOkay, do you want to exclude a tweet from the list?\
@@ -56,7 +64,7 @@ def filter_tweet():
             time.sleep(2)
 
             try:
-                del allTweets[int(index)]
+                del bad_tweets[int(index)]
                 print("Removed tweet")
             except:
                 print("\n\n\t##### ERROR! #####")
@@ -68,7 +76,7 @@ def filter_tweet():
             print("Okay, exiting the program...")
             return
 
-    if len(allTweets) == 0:
+    if len(bad_tweets) == 0:
         print("\n\nNothing left in the queue, exiting the program...")
 
 
@@ -80,7 +88,7 @@ def print_flagged(arr):
     print("\n============= List of flagged tweets =============")
     for tweet in arr:
         print("\n########## FLAGGED TWEET ##########")
-        print("Index: {}\nTweet Content: {}".format(idx,tweet.full_text))
+        print("Index: {}\nTweet Content: {}".format(idx,tweet))
         idx += 1
         print("###################################\n")
 
