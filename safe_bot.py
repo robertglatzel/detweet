@@ -27,32 +27,34 @@ def filter_tweet():
 
     try:
         new_tweets = api.user_timeline(screen_name=user,
-                                   count=500, tweet_mode="extended")
+                                       count=40, tweet_mode="extended")
     except:
-        print("No tweets matching the search keywords. Exiting...")
+        print("Try again later")
         return
 
-    bad_tweets = []
+
+    bad_tweet_list = []
     for tweet in new_tweets:
         for word in bad_words:
             if word in tweet.full_text.lower().split():
-                bad_tweets.append(tweet.full_text)
+                tweet_dict = {tweet.id: '"{}"'.format(tweet.full_text)}
+                bad_tweet_list.append(tweet_dict)
 
-    bad_tweets = list(set(bad_tweets))
+    print(bad_tweet_list)
     """
     Print out all the questionable tweets. Wait for user input to destroy all.
     """
-    if len(bad_tweets) == 0:
+    if len(bad_tweet_list) == 0:
         print("No problem here!")
         return
 
-    while len(bad_tweets) != 0:
-        print_flagged(bad_tweets)
-        print("")
+    while len(bad_tweet_list) > 0:
+        print(len(bad_tweet_list))
+        print_flagged(bad_tweet_list)
 
         delete_prompt = input("Delete all tweets?\nEnter (y/n): ")
         if delete_prompt == "y":
-            delete_tweets(bad_tweets)
+            delete_tweets(bad_tweet_list)
             return
 
         exclude = input("\nOkay, do you want to exclude a tweet from the list?\
@@ -64,7 +66,7 @@ def filter_tweet():
             time.sleep(2)
 
             try:
-                del bad_tweets[int(index)]
+                del bad_tweet_list[int(index)]
                 print("Removed tweet")
             except:
                 print("\n\n\t##### ERROR! #####")
@@ -76,9 +78,8 @@ def filter_tweet():
             print("Okay, exiting the program...")
             return
 
-    if len(bad_tweets) == 0:
+    if len(bad_tweet_list) == 0:
         print("\n\nNothing left in the queue, exiting the program...")
-
 
 def print_flagged(arr):
     """
@@ -87,20 +88,23 @@ def print_flagged(arr):
     idx = 0
     print("\n============= List of flagged tweets =============")
     for tweet in arr:
-        print("\n########## FLAGGED TWEET ##########")
-        print("Index: {}\nTweet Content: {}".format(idx,tweet))
-        idx += 1
-        print("###################################\n")
+        for val in tweet.values():
+            print("\n########## FLAGGED TWEET ##########")
+            print("Index: {}\nTweet Content: {}".format(idx,val))
+            idx += 1
+            print("###################################\n")
 
 def delete_tweets(arr):
     """
     Deletes all flagged tweets
     """
     for tweet in arr:
-        try:
-            api.destroy_status(tweet.id_str)
-        except:
-            print("Fail")
+        for tweet_id in tweet.keys():
+            try:
+                api.destroy_status(tweet_id)
+            except:
+                print("Fail")
+                return
     print("All flagged tweets have been deleted.")
 
 if __name__ == "__main__":
