@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>SafeBot</title>
+
+        <!-- Scripts for semantic ui -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Css -->
+        <link type="text/css" rel="stylesheet" href="../static/styles/styles.css">
+
+        <link type="text/css" rel="stylesheet" href="../static/styles/Hover-master/css/hover.css">
+    </head>
+    <body>
+        <h1 id="logo" class="ui center aligned header">DeTweet</h1>
+        <h3 class="ui center aligned header">Flagged Tweets</h3>
+        <div class="remove-button">
+            <button id="remove-all"class="ui black basic button centered">Remove All Flagged Tweets</button>
+        </div>
+        <div class="ui three column doubling stackable grid container">
+
+	  {% for tweet in tweets %}
+	    {% for key, value in tweet.items() %}
+              <div class="column">
+                <div class="tweet ui segment">
+                    <button class="keep-tweet hvr-pulse-grow"><i class="fa fa-check-circle"></i></button>
+                    <h3 class="tweet-text">{{ value }}</h3>
+                </div>
+              </div>
+	      {% endfor %}
+	  {% endfor %}
+
+        </div>
+    </body>
+    <script src="../static/scripts/tweets.js"></script>
+</html>
