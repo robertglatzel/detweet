@@ -39,7 +39,7 @@ body {
 /* Keep Tweet button */
 .keep-tweet {
     float: right;
-
+    margin-top: -24px;
     background: none;
     border: none;
     font-size: 20px;
