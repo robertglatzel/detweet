@@ -29,56 +29,20 @@
             <button id="remove-all"class="ui black basic button centered">Remove All Flagged Tweets</button>
         </div>
         <div id="enclosure" class="ui three column stackable grid container">
-        <!--
+
     	  {% for tweet in tweets %}
     	    {% for key, value in tweet.items() %}
-                  <div class="column">
-                    <div class="tweet ui segment">
-                        <button class="keep-tweet hvr-pulse-grow"><i class="fa fa-check-circle"></i></button>
-                        <p class="tweet-text">{{ value }}</p>
-                    </div>
+            <div class="column">
+              <div id="{{ key }}" class="tweet ui segment">
+                  <div class="top">
+                      <p>You tweeted:</p>
                   </div>
+                  <button class="keep-tweet hvr-pulse-grow"><i class="fa fa-check-circle"></i></button>
+                  <p class="tweet-text"> {{ value }}</p>
+              </div>
+            </div>
     	    {% endfor %}
     	  {% endfor %}
-        -->
-          <div class="column">
-            <div class="tweet ui segment">
-                <div class="top">
-                    <p>You tweeted:</p>
-                    <button class="keep-tweet hvr-pulse-grow"><i class="fa fa-check-circle"></i></button>
-                </div>
-                <p class="tweet-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="tweet ui segment">
-                <div class="top">
-                    You tweeted:
-                    <button class="keep-tweet hvr-pulse-grow"><i class="fa fa-check-circle"></i></button>
-                </div>
-                <p class="tweet-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="tweet ui segment">
-                <div class="top">
-                    You tweeted:
-                    <button class="keep-tweet hvr-pulse-grow"><i class="fa fa-check-circle"></i></button>
-                </div>
-                <p class="tweet-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="tweet ui segment">
-                <div class="top">
-                    You tweeted:
-                    <button class="keep-tweet hvr-pulse-grow"><i class="fa fa-check-circle"></i></button>
-                </div>
-                <p class="tweet-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-            </div>
-          </div>
-
 
       </div>
     </body>
