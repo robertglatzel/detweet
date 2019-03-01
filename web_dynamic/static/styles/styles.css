@@ -4,24 +4,46 @@ body {
     background: linear-gradient(to right, #86fde8, #acb6e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.tweet {
-    background: #c0deed !important;
-    border-color: #0084b4 !important;
-}
-
 #logo {
     margin-top: 30px;
 }
 
+.instructions {
+    text-align: center;
+    border: 1px solid #0084b4;
+    border-radius: 5px;
+    width: 50%;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 5px;
+    font-size: 15px;
+}
+
+/* Tweet Box */
+.tweet {
+    background: #c0deed !important;
+    border-color: #0084b4 !important;
+}
+.top {
+    background-color: #00acee  !important;
+    padding: 3px;
+    color: white;
+    border-radius: 5px;
+}
+.top p {
+    display: inline;
+    margin-left: 8px;
+}
+/* Tweet Box end*/
+
 /* Keep Tweet button */
 .keep-tweet {
     float: right;
-    margin-top: -8px;
-    margin-right: -15px;
+
     background: none;
     border: none;
     font-size: 20px;
-    color: green;
+    color: black;
 }
 
 .keep-tweet:hover {
@@ -36,4 +58,8 @@ body {
 .remove-button {
     text-align: center;
     margin: 20px;
+}
+
+#remove-all:hover {
+    background-color: #00acee !important;
 }
