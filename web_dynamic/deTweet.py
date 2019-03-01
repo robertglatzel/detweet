@@ -28,19 +28,15 @@ def safety():
         bad_words = [word.rstrip('\n') for word in f]
 
     try:
-        new_tweets = api.user_timeline(screen_name=user,
-                                       count=1000, tweet_mode="extended")
-    except:
+        for tweet in tweepy.Cursor(api.user_timeline, tweet_mode="extended").items(3200):
+            for word in bad_words:
+                if word in tweet.full_text.lower().split():
+                    tweet_dict = {tweet.id: '"{}"'.format(tweet.full_text)}
+                    bad_tweet_list.append(tweet_dict)
         return bad_tweet_list
-
-
-    for tweet in new_tweets:
-        for word in bad_words:
-            if word in tweet.full_text.lower().split():
-                tweet_dict = {tweet.id: '"{}"'.format(tweet.full_text)}
-                bad_tweet_list.append(tweet_dict)
-
-    return bad_tweet_list
+    except:
+        print("Try again later")
+        return bad_tweet_list
 
 if __name__ == "__main__":
     safety()
@@ -108,4 +104,3 @@ def delete_tweets(arr):
                 return
     print("All flagged tweets have been deleted.")
 '''
-
