@@ -30,12 +30,13 @@ def safety():
     try:
         for tweet in tweepy.Cursor(api.user_timeline, tweet_mode="extended").items(3200):
             for word in bad_words:
-                tweet_text_list = tweet.full_text.lower().split()
-                if word in tweet_text_list:
-                    strong_word = '<strong>{}</strong>'.format(word)
-                    idx = tweet_text_list.index(word)
-                    tweet_text_list[idx] = strong_word
-                    tweet_dict = {tweet.id: '"{}"'.format(' '.join(tweet_text_list))}
+                tweet_text_lower = tweet.full_text.lower().split()
+                tweet_text_orig = tweet.full_text.split()
+                if word in tweet_text_lower:
+                    idx = tweet_text_lower.index(word)
+                    strong_word = '<strong>{}</strong>'.format(tweet_text_orig[idx])
+                    tweet_text_orig[idx] = strong_word
+                    tweet_dict = {tweet.id: '"{}"'.format(' '.join(tweet_text_orig))}
                     bad_tweet_list.append(tweet_dict)
         return bad_tweet_list
     except:
