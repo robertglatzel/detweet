@@ -2,10 +2,24 @@ body {
     background: #acb6e5;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #86fde8, #acb6e5);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #86fde8, #acb6e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'Quicksand', sans-serif;
 }
 
-#logo {
+#logo-large {
     margin-top: 30px;
+    width: 150px;
+}
+
+.logo {
+    border-radius: 50%;
+}
+
+.logo-div {
+    text-align: center;
+}
+
+.logo-div h1 {
+        font-family: 'Quicksand', sans-serif;
 }
 
 .instructions {
@@ -17,6 +31,23 @@ body {
     background: #ffffff;
     padding: 5px;
     font-size: 15px;
+}
+
+#up-div {
+    position: fixed;
+    bottom: 30px;
+    right: 0;
+    z-index: 3000;
+}
+#up-button {
+    float: right;
+    margin-right: 30px;
+    width: 40px;
+    height: 40px;
+}
+
+#up-button i {
+    margin-top: -6px;
 }
 
 /* Tweet Box */
@@ -62,4 +93,16 @@ body {
 
 #remove-all:hover {
     background-color: #00acee !important;
+}
+
+footer {
+    margin-top: 104px;
+    bottom: 0;
+    width: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,1) 14%, rgba(255,255,255,0) 86%);
+    padding: 10px 0;
+}
+
+#divide {
+    margin: 0;
 }

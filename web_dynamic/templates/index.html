@@ -13,11 +13,27 @@
 
         <!-- Css -->
         <link type="text/css" rel="stylesheet" href="../static/styles/styles.css">
-
         <link type="text/css" rel="stylesheet" href="../static/styles/Hover-master/css/hover.css">
+
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
     </head>
     <body>
-        <h1 id="logo" class="ui center aligned header">detweet</h1>
+        <div class="ui large menu">
+          <a class="item">
+            <img class="logo" src="../static/images/detweet logo_larger_square.png">
+          </a>
+          <div class="right menu">
+            <div class="item">
+                <a href="https://twitter.com/detweet_app?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @detweet_app</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+          </div>
+        </div>
+        <div class="logo-div">
+            <img id="logo-large" class="ui center aligned header logo" src="../static/images/detweet logo_larger_square.png">
+            <h1>detweet</h1>
+        </div>
         <h1 class="ui center aligned header">Flagged Tweets</h1>
 
         <div class="instructions">
@@ -28,6 +44,12 @@
         <div class="remove-button">
             <button id="remove-all"class="ui black basic button centered">Remove All Flagged Tweets</button>
         </div>
+
+        <div id="up-div">
+            <a href="#top"><button id="up-button" class="circular ui icon button inverted hvr-pulse-grow "><i class="fa fa-angle-double-up fa-2x" aria-hidden="true"></i>
+              </button></a>
+        </div>
+
         <div id="enclosure" class="ui three column stackable grid container">
 
     	  {% for tweet in tweets %}
@@ -44,7 +66,24 @@
     	    {% endfor %}
     	  {% endfor %}
 
-      </div>
+        </div>
+        <footer>
+          <div class="ui center aligned container">
+              <div class="follow-div">
+                  <h3 class="ui center aligned header">Follow the developers</h3>
+                  <a href="https://twitter.com/rglatzell?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @rglatzell</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  <a href="https://twitter.com/hemant_heer?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @hemant_heer</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </div>
+            <div id="divide" class="ui inverted section divider"></div>
+            <div class="ui horizontal small divided link list">
+              <a class="item" href="#">Site Map</a>
+              <a class="item" href="#">Contact Us</a>
+              <a class="item" href="#">Terms and Conditions</a>
+              <a class="item" href="#">Privacy Policy</a>
+            </div>
+          </div>
+      </footer>
+
     </body>
     <script src="../static/scripts/tweets.js"></script>
 </html>
