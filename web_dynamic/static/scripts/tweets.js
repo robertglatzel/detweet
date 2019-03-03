@@ -30,6 +30,7 @@ $( document ).ready(function() {
             .modal('show')
         ;
     })
+
     //Actual removal of tweets once the user confrims.
     $('#remove').click(function() {
         $('.ui.basic.modal')
@@ -56,4 +57,11 @@ $( document ).ready(function() {
       $("html, body").animate({ scrollTop: 0 }, "slow");
       return false;
     });
+    // flip tweet into place when it loads from jinja
+    $('.tweet')
+      .transition({
+        animation: 'horizontal flip in',
+        duration: 1000,
+      })
+    ;
 });

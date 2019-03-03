@@ -60,13 +60,13 @@
 
     	  {% for tweet in tweets %}
     	    {% for key, value in tweet.items() %}
-            <div class="column">
+            <div class="column hvr-grow">
               <div id="{{ key }}" class="tweet ui segment">
                   <div class="top">
                       <p>You tweeted:</p>
                   </div>
                   <button class="keep-tweet hvr-pulse-grow"><i class="fa fa-check-circle"></i></button>
-                  <p class="tweet-text"> {{ value|safe}}</p>
+                  <p class="tweet-text"> {{ value|safe }}</p>
               </div>
             </div>
     	    {% endfor %}
