@@ -22,6 +22,18 @@ body {
         font-family: 'Quicksand', sans-serif;
 }
 
+#confirm {
+    text-align: center;
+    border: 1px solid #0084b4;
+    border-radius: 5px;
+    width: 400px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 40px;
+    font-size: 15px;
+    color: black;
+}
+
 .instructions {
     text-align: center;
     border: 1px solid #0084b4;
@@ -91,8 +103,13 @@ body {
     margin: 20px;
 }
 
-#remove-all:hover {
+#remove-all:hover,
+#remove:hover {
     background-color: #00acee !important;
+}
+
+#cancel:hover {
+    background-color: red !important;
 }
 
 footer {
