@@ -23,20 +23,37 @@ $( document ).ready(function() {
             console.log(idList);
         });
     });
-    // This is the delete all flagged tweets function. It removes all remaining
-    // tweets.
+
+    // Triggers the confirmation or cancelation screen to delete tweets
     $('#remove-all').click(function() {
-        $('#enclosure').fadeOut(1000, function() {
+        $('.ui.basic.modal')
+            .modal('show')
+        ;
+    })
+    //Actual removal of tweets once the user confrims.
+    $('#remove').click(function() {
+        $('.ui.basic.modal')
+            .modal('hide')
+        ;
+        $('#enclosure').fadeOut(3000, function() {
             // Send the post request back to python with the remaining id's from
             // this list.
+            $('body').css('background', '#ddd6f3');
+            $('footer').css('position', 'fixed');
         });
-        $('body').css('background', '#ddd6f3');
-        $('footer').css('position', 'fixed');
-    })
+    });
+
+    // cancel button to back out of deleting tweets.
+    $('#cancel').click(function() {
+        $('.ui.basic.modal')
+            .modal('hide')
+        ;
+    });
+    // This is the delete all flagged tweets function. It removes all remaining
+    // tweets.
 
     $("a[href='#top']").click(function() {
       $("html, body").animate({ scrollTop: 0 }, "slow");
       return false;
     });
-
 });
