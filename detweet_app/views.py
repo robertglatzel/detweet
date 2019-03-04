@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Script to start a Flask web application """
 from detweet_app import app
+from flask_dance.contrib.twitter import twitter
 from flask import render_template, url_for, redirect
 from . import deTweet
 
@@ -8,9 +9,9 @@ from . import deTweet
 def serve_login_page():
     return render_template('login.html')
 
-
 @app.route('/login')
 def index():
+    print("alsjdfalisjdfasdf")
     if not twitter.authorized:
         return redirect(url_for('twitter.login'))
 

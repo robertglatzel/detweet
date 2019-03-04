@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from flask import Flask
-from flask_dance.contrib.twitter import make_twitter_blueprint, twitter
+from flask_dance.contrib.twitter import make_twitter_blueprint
 from flask_cors import CORS
 
 app = Flask(__name__, instance_relative_config=True)
