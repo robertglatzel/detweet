@@ -163,7 +163,6 @@ footer {
     width: 100%;
     background: radial-gradient(circle, rgba(255,255,255,1) 14%, rgba(255,255,255,0) 86%);
     padding: 10px 0;
-    position: fixed;
 }
 
 #divide {

@@ -8,7 +8,7 @@ $( document ).ready(function() {
 
 
     $('#start-button').click(function () {
-      
+
       $(this).parent().css('display', 'none');
       $('#main-container').css('display', 'inline');
     });
@@ -70,7 +70,4 @@ $( document ).ready(function() {
     ;
 
     // login-button
-
-
-
 });
