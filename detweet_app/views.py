@@ -30,7 +30,11 @@ def tweet_page(username):
 
 @app.route('/get_tweets')
 def get_tweets():
-    return render_template('index.html', tweets=deTweet.safety())
+    payload = {'screen_name': 'hemant_heer', 'count': 3200}
+    resp = twitter.get('statuses/user_timeline.json', params=payload)
+    print(resp.json())
+    #return render_template('index.html', tweets=deTweet.safety())
+    return "success"
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 5000)
