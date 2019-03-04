@@ -71,4 +71,13 @@ $( document ).ready(function() {
         duration: 1500,
       })
     ;
+
+    // login-button
+    $('#login-button').click(function() {
+      $.ajax({
+        url: 'http://127.0.0.1/login'
+      });
+    });
+
+
 });
