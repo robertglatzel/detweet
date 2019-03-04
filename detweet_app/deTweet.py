@@ -7,15 +7,15 @@ your career.
 
 import tweepy
 import time
-from models.AuthClass import AuthClass
 
 
 """Setup"""
-login = AuthClass()
+"""
 auth = tweepy.OAuthHandler(login.consumer_key, login.consumer_secret)
 auth.set_access_token(login.access_token, login.access_secret)
 api = tweepy.API(auth)
 user = api.me()
+"""
 
 
 def safety():
