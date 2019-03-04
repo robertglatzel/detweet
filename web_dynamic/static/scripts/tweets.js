@@ -8,10 +8,7 @@ $( document ).ready(function() {
 
 
     $('#start-button').click(function () {
-      // get call to the api.
-      $('#progress-modal')
-        .modal('show')
-        ;
+      
       $(this).parent().css('display', 'none');
       $('#main-container').css('display', 'inline');
     });
@@ -73,11 +70,7 @@ $( document ).ready(function() {
     ;
 
     // login-button
-    $('#login-button').click(function() {
-      $.ajax({
-        url: 'http://127.0.0.1/login'
-      });
-    });
+
 
 
 });
