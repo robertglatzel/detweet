@@ -22,7 +22,9 @@ def safety():
     """
     Filter out tweets that you've tweeted and delete them.
     """
+
     bad_tweet_list = []
+    user_id = user.id
 
     with open('bad_words_list') as f:
         bad_words = [word.rstrip('\n') for word in f]
