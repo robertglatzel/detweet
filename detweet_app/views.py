@@ -4,9 +4,6 @@ from flask import Flask, render_template, url_for, redirect
 from flask_dance.contrib.twitter import make_twitter_blueprint, twitter
 from flask_cors import CORS
 from deTweet import safety
-from models.AuthClass import AuthClass
-
-login = AuthClass()
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
