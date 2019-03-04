@@ -11,14 +11,14 @@ body {
 }
 
 #content-wrap {
-  padding-bottom: 2.5rem;    /* Footer height */
+  padding-bottom: 4em;    /* Footer height */
 }
 
 footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding-top: 10px;
+  padding: 2em 0 4em 0;
   background: radial-gradient(circle, rgba(255,255,255,1) 14%, rgba(255,255,255,0) 86%);
 
 }
