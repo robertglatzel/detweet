@@ -75,7 +75,8 @@ $( document ).ready(function() {
     // login-button
     $('#login-button').click(function() {
       $.ajax({
-        url: 'http://127.0.0.1/login'
+        url: 'http://127.0.0.1:5000/login',
+        headers: {'Access-Control-Allow-Origin': "127.0.0.1:5000"},
       });
     });
 
