@@ -15,10 +15,11 @@ body {
 }
 
 footer {
-  position: absolute;
+  margin-top: 40px;
   bottom: 0;
+  position: absolute;
   width: 100%;
-  padding: 2em 0 4em 0;
+  padding: 2em 0 2em 0;
   background: radial-gradient(circle, rgba(255,255,255,1) 14%, rgba(255,255,255,0) 86%);
 
 }
@@ -67,6 +68,7 @@ footer {
     background: #ffffff;
     padding: 5px;
     font-size: 15px;
+    margin-bottom: 30px;
 }
 
 #sign-in {
