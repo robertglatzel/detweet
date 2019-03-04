@@ -7,6 +7,7 @@ your career.
 
 import tweepy
 import time
+from os.path import abspath
 
 
 """Setup"""
@@ -24,7 +25,8 @@ def safety():
     """
     bad_tweet_list = []
 
-    with open('bad_words_list') as f:
+    f_path = abspath("bad_words_list")
+    with open(f_path) as f:
         bad_words = [word.rstrip('\n') for word in f]
 
     try:
