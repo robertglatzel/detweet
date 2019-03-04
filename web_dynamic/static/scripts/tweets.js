@@ -4,10 +4,17 @@ $( document ).ready(function() {
         let id = (this.id);
         idList.push(id);
     });
-    if (idList.length === 0) {
-        $('body').css('background', '#ddd6f3');
-    }
     console.log(idList);
+
+
+    $('#start-button').click(function () {
+      // get call to the api.
+      $('#progress-modal')
+        .modal('show')
+        ;
+      $(this).parent().css('display', 'none');
+      $('#main-container').css('display', 'inline');
+    });
 
     // This function is for removing tweets from the list of all
     // tweets that are to be deleted. The array containing all the Tweets
@@ -50,9 +57,9 @@ $( document ).ready(function() {
             .modal('hide')
         ;
     });
+
     // This is the delete all flagged tweets function. It removes all remaining
     // tweets.
-
     $("a[href='#top']").click(function() {
       $("html, body").animate({ scrollTop: 0 }, "slow");
       return false;
@@ -61,7 +68,7 @@ $( document ).ready(function() {
     $('.tweet')
       .transition({
         animation: 'horizontal flip in',
-        duration: 1000,
+        duration: 1500,
       })
     ;
 });

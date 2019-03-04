@@ -21,8 +21,12 @@ body {
 }
 
 .logo-div h1 {
-        font-family: 'Quicksand', sans-serif;
-        margin-top: -10px;
+    font-family: 'Quicksand', sans-serif;
+    margin-top: -10px;
+}
+
+#main-container {
+  display: none;
 }
 
 #confirm {
@@ -52,24 +56,31 @@ body {
   height: 300px;
 }
 
-#login-button {
+#login-button,
+#start-button {
   font-size: 15px;
   margin-top: 90px;
   color: #0084b4 !important;
 }
 
-#login-button:hover {
+#start-detweet-div {
+  text-align: center;
+  display: ;
+}
+
+#login-button:hover,
+#start-button:hover {
     background-color: #00acee !important;
     color: white !important;
 }
 
-#login-button:active {
+#login-button:active,
+#start-button:active {
     background-color: #0084b4 !important;
     color:white !important;
 }
 
 #login-button i {
-
   font-size: 20px;
 }
 
@@ -131,6 +142,11 @@ body {
     text-align: center;
     margin: 20px;
 }
+
+#welcome {
+  margin: 0 auto;
+}
+
 
 #remove-all:hover,
 #remove:hover {
