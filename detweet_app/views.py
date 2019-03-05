@@ -30,7 +30,7 @@ def tweet_page(username):
 def get_tweets():
     resp = twitter.get("account/verify_credentials.json")
     assert resp.ok
-    payload = {'screen_name': resp.json()['screen_name'], 'count': 3200}
+    payload = {'screen_name': resp.json()['screen_name']}
     resp = twitter.get('statuses/user_timeline.json', params=payload)
     print(type(resp.json()))
     return render_template('index.html', tweets=deTweet.safety(resp.json()))

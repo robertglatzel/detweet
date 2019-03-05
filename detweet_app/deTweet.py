@@ -14,7 +14,7 @@ def safety(tweets):
     """
 
     bad_tweet_list = []
-    user_id = user.id
+    #user_id = user.id
 
     f_path = abspath("bad_words_list")
     with open(f_path) as f:
