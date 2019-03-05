@@ -12,7 +12,9 @@ def safety(tweets):
     """
     Filter out tweets that you've tweeted and delete them.
     """
+
     bad_tweet_list = []
+    user_id = user.id
 
     f_path = abspath("bad_words_list")
     with open(f_path) as f:
