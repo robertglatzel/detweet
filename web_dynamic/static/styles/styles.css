@@ -11,8 +11,8 @@ body {
 }
 
 #content-wrap {
-  padding-bottom: 4em;    /* Footer height */
-}
+  padding-bottom: 15em;    /* Footer height */
+  }
 
 footer {
   bottom: 0;
@@ -188,10 +188,6 @@ footer {
     background-color: red !important;
 }
 
-footer {
-    background: radial-gradient(circle, rgba(255,255,255,1) 14%, rgba(255,255,255,0) 86%);
-
-}
 
 #divide {
     margin: 0;
