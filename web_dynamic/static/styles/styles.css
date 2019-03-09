@@ -20,7 +20,6 @@ footer {
   width: 100%;
   padding: 1em 0 1em 0;
   background: radial-gradient(circle, rgba(255,255,255,1) 14%, rgba(255,255,255,0) 86%);
-
 }
 
 #logo-large {
@@ -162,7 +161,21 @@ footer {
 }
 
 #welcome {
-  margin: 0 auto;
+    margin: 0 auto;
+}
+
+#welcome h3 {
+    padding: 0 20px;
+    margin-top: 16px;
+    margin-left: 100px;
+}
+
+/* Reposition welcome message based on screen size */
+@media (max-width: 700px) {
+    #welcome h3 {
+        margin-left: 0;
+        padding: 0 10px;
+    }
 }
 
 
@@ -182,4 +195,14 @@ footer {
 
 #divide {
     margin: 0;
+}
+
+
+#search-box {
+    display: block;
+    margin: 0 auto;
+}
+/* Toggle button */
+#selection-toggle {
+
 }

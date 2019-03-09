@@ -23,11 +23,13 @@
         <div id="page-container">
             <div id="content-wrap">
                 <div class="ui large menu">
-                  <a class="item">
+                  <a class="item left" href="login.html">
                     <img class="logo" src="../static/images/detweet logo_larger_square.png">
                   </a>
-        	         <h3 id="welcome" class="ui header"> {{ username }}</h3>
-                    <div class="item">
+                  <div id="welcome">
+                    <h3 class="ui header">Welcome, {{ username }}</h3>
+                  </div>
+                    <div class="item right">
                         <a href="https://twitter.com/detweet_app?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @detweet_app</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
                 </div>
@@ -37,8 +39,15 @@
                 </div>
 
                 <div id="start-detweet-div" class="instructions">
-                  <h3>This contains the button to start the detweet service. Please click the button to begin!</h3>
-                    <a href="http://127.0.0.1:5000/get_tweets"><button id="start-button"class="ui black basic button centered"></i>Start</button></a>
+                  <h3>This contains the button to start the detweet service. Please click the button to begin, or enter a search term.</h3>
+                  <div id="selection-toggle" class="ui slider checkbox">
+                    <input type="checkbox" name="newsletter">
+                    <label></label>
+                  </div>
+                  <div id="search-box" class="ui input focus">
+                      <input type="text" placeholder="Search...">
+                  </div>
+                  <a href="http://127.0.0.1:5000/get_tweets"><button id="start-button"class="ui black basic button centered"></i>Start</button></a>
                 </div>
 
                 <div id="main-container">
@@ -80,25 +89,24 @@
 
                   </div>
                 </div>
-                <footer>
-                  <div class="ui center aligned container">
-                      <div class="follow-div">
-                          <h3 class="ui center aligned header">Follow the developers</h3>
-                          <a href="https://twitter.com/rglatzell?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @rglatzell</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                          <a href="https://twitter.com/hemant_heer?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @hemant_heer</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                      </div>
-                    <div id="divide" class="ui inverted section divider"></div>
-                    <div class="ui horizontal small divided link list">
-                      <a class="item" href="#">Site Map</a>
-                      <a class="item" href="#">Contact Us</a>
-                      <a class="item" href="#">Terms and Conditions</a>
-                      <a class="item" href="#">Privacy Policy</a>
-                    </div>
-                  </div>
-                </footer>
             </div>
+            <footer>
+              <div class="ui center aligned container">
+                  <div class="follow-div">
+                      <h3 class="ui center aligned header">Follow the developers</h3>
+                      <a href="https://twitter.com/rglatzell?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @rglatzell</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                      <a href="https://twitter.com/hemant_heer?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @hemant_heer</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  </div>
+                <div id="divide" class="ui inverted section divider"></div>
+                <div class="ui horizontal small divided link list">
+                  <a class="item" href="#">Site Map</a>
+                  <a class="item" href="#">Contact Us</a>
+                  <a class="item" href="#">Terms and Conditions</a>
+                  <a class="item" href="#">Privacy Policy</a>
+                </div>
+              </div>
+            </footer>
         </div>
-
     </body>
     <script src="../static/scripts/tweets.js"></script>
 </html>

@@ -8,8 +8,7 @@ $( document ).ready(function() {
 
 
     $('#start-button').click(function () {
-
-      $(this).parent().css('display', 'none');
+      $('#start-detweet-div').css('display', 'none');
       $('#main-container').css('display', 'inline');
     });
 
@@ -55,12 +54,12 @@ $( document ).ready(function() {
         ;
     });
 
-    // This is the delete all flagged tweets function. It removes all remaining
-    // tweets.
+    // Scroll to the top button animation.
     $("a[href='#top']").click(function() {
       $("html, body").animate({ scrollTop: 0 }, "slow");
       return false;
     });
+
     // flip tweet into place when it loads from jinja
     $('.tweet')
       .transition({
@@ -68,6 +67,10 @@ $( document ).ready(function() {
         duration: 1500,
       })
     ;
+
+    $('#selection-toggle').click(function() {
+        $('#search-box').toggle();
+    });
 
     // login-button
 });
