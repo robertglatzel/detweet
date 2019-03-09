@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>detweet - Cleaning up your twitter</title>
+
+        <!-- Scripts for semantic ui -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Css -->
+        <link type="text/css" rel="stylesheet" href="../static/styles/styles.css">
+        <link type="text/css" rel="stylesheet" href="../static/styles/Hover-master/css/hover.css">
+
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    </head>
+    <body>
+        <div id="page-container">
+            <div id="content-wrap">
+                <div class="ui large menu">
+                  <a class="item">
+                    <img class="logo" src="../static/images/detweet logo_larger_square.png">
+                  </a>
+                  <div class="right menu">
+                    <div class="item">
+                        <a href="https://twitter.com/detweet_app?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @detweet_app</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                  </div>
+                </div>
+                <div class="logo-div">
+                    <img id="logo-large" class="ui center aligned header logo" src="../static/images/detweet logo_larger_square.png">
+                    <h1>detweet</h1>
+                </div>
+                <div id="sign-in" class="instructions">
+                    <h3 class="ui center aligned header">Welcome to detweet! We provide you with a service to clean up your twitter profile by checking your tweets against a database of flagged words.</h3>
+                    <a href="http://127.0.0.1:5000/login"><button  id="login-button"class="ui black basic button centered"><i class="fa fa-twitter"></i> Sign in with Twitter</button></a>
+                </div>
+
+                <footer>
+                  <div class="ui center aligned container">
+                      <div class="follow-div">
+                          <h3 class="ui center aligned header">Follow the developers</h3>
+                          <a href="https://twitter.com/rglatzell?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @rglatzell</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                          <a href="https://twitter.com/hemant_heer?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @hemant_heer</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                      </div>
+                    <div id="divide" class="ui inverted section divider"></div>
+                    <div class="ui horizontal small divided link list">
+                      <a class="item" href="#">Site Map</a>
+                      <a class="item" href="#">Contact Us</a>
+                      <a class="item" href="#">Terms and Conditions</a>
+                      <a class="item" href="#">Privacy Policy</a>
+                    </div>
+                  </div>
+              </footer>
+            </div>
+        </div>
+
+    </body>
+    <script src="../static/scripts/tweets.js"></script>
+</html>

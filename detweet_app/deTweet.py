@@ -5,33 +5,26 @@ that might be considered questionable and lead to complications further in
 your career.
 """
 
-import tweepy
-import time
-from models.AuthClass import AuthClass
+from os.path import abspath
 
 
-"""Setup"""
-login = AuthClass()
-auth = tweepy.OAuthHandler(login.consumer_key, login.consumer_secret)
-auth.set_access_token(login.access_token, login.access_secret)
-api = tweepy.API(auth)
-user = api.me()
-
-
-def safety():
+def safety(tweets):
     """
     Filter out tweets that you've tweeted and delete them.
     """
-    bad_tweet_list = []
 
-    with open('bad_words_list') as f:
+    bad_tweet_list = []
+    #user_id = user.id
+
+    f_path = abspath("bad_words_list")
+    with open(f_path) as f:
         bad_words = [word.rstrip('\n') for word in f]
 
     try:
-        for tweet in tweepy.Cursor(api.user_timeline, tweet_mode="extended").items(3200):
+        for tweet in tweets:
             for word in bad_words:
-                tweet_text_lower = tweet.full_text.lower().split()
-                tweet_text_orig = tweet.full_text.split()
+                tweet_text_lower = tweet['text'].lower().split()
+                tweet_text_orig = tweet['text'].split()
                 if word in tweet_text_lower:
                     idx = tweet_text_lower.index(word)
                     strong_word = '<strong>{}</strong>'.format(tweet_text_orig[idx])
@@ -41,6 +34,7 @@ def safety():
         return bad_tweet_list
     except:
         print("Try again later")
+        print(len(bad_tweet_list))
         return bad_tweet_list
 
 if __name__ == "__main__":

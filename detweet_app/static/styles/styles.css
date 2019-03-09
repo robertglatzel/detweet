@@ -5,6 +5,24 @@ body {
     font-family: 'Quicksand', sans-serif;
 }
 
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 4em;    /* Footer height */
+}
+
+footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  padding: 1em 0 1em 0;
+  background: radial-gradient(circle, rgba(255,255,255,1) 14%, rgba(255,255,255,0) 86%);
+
+}
+
 #logo-large {
     margin-top: 30px;
     width: 150px;
@@ -16,10 +34,16 @@ body {
 
 .logo-div {
     text-align: center;
+    margin-bottom: 50px;
 }
 
 .logo-div h1 {
-        font-family: 'Quicksand', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    margin-top: -10px;
+}
+
+#main-container {
+  display: none;
 }
 
 #confirm {
@@ -38,11 +62,44 @@ body {
     text-align: center;
     border: 1px solid #0084b4;
     border-radius: 5px;
-    width: 50%;
+    max-width: 600px;
     margin: 0 auto;
     background: #ffffff;
     padding: 5px;
     font-size: 15px;
+    margin-bottom: 30px;
+}
+
+#sign-in {
+  height: 200px;
+}
+
+#login-button,
+#start-button {
+  font-size: 15px;
+  margin-top: 30px;
+  color: #0084b4 !important;
+}
+
+#start-detweet-div {
+  text-align: center;
+  display: ;
+}
+
+#login-button:hover,
+#start-button:hover {
+    background-color: #00acee !important;
+    color: white !important;
+}
+
+#login-button:active,
+#start-button:active {
+    background-color: #0084b4 !important;
+    color:white !important;
+}
+
+#login-button i {
+  font-size: 20px;
 }
 
 #up-div {
@@ -51,6 +108,7 @@ body {
     right: 0;
     z-index: 3000;
 }
+
 #up-button {
     float: right;
     margin-right: 30px;
@@ -103,6 +161,11 @@ body {
     margin: 20px;
 }
 
+#welcome {
+  margin: 0 auto;
+}
+
+
 #remove-all:hover,
 #remove:hover {
     background-color: #00acee !important;
@@ -113,11 +176,8 @@ body {
 }
 
 footer {
-    margin-top: 104px;
-    bottom: 0;
-    width: 100%;
     background: radial-gradient(circle, rgba(255,255,255,1) 14%, rgba(255,255,255,0) 86%);
-    padding: 10px 0;
+
 }
 
 #divide {
