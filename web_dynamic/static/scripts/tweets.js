@@ -7,7 +7,11 @@ $( document ).ready(function() {
     console.log(idList);
 
 
+    // Sends out the request with an optional search param.
     $('#start-button').click(function () {
+      let searchTerms = $('#search-box input').val();
+      let searchArr = searchTerms.split(" ");
+      console.log(searchArr);
       $('#start-detweet-div').css('display', 'none');
       $('#main-container').css('display', 'inline');
     });
@@ -68,9 +72,8 @@ $( document ).ready(function() {
       })
     ;
 
+    // Toggles the search bar. When search bar is toggled, it allows user to enter a search paramater. That paramater will be passed to the function, overriding the detweet.
     $('#selection-toggle').click(function() {
-        $('#search-box').toggle();
+        $( "#search-box" ).toggleClass('focus disabled');
     });
-
-    // login-button
 });

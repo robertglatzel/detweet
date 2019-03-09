@@ -80,6 +80,12 @@ footer {
   color: #0084b4 !important;
 }
 
+#start-button {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
 #start-detweet-div {
   text-align: center;
   display: ;
@@ -193,12 +199,8 @@ footer {
     margin: 0;
 }
 
-
 #search-box {
     display: block;
     margin: 0 auto;
-}
-/* Toggle button */
-#selection-toggle {
-
+    margin-bottom: 9px;
 }
