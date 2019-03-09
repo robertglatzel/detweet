@@ -1,0 +1,7 @@
+__pycache__/
+instance/
+*~
+#*#
+detweet_env/
+detweet_creation_log.txt
+install_log.txt
