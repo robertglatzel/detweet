@@ -26,7 +26,7 @@ def tweet_page(username, tweets=None):
     return render_template('index.html', username=username)
 
 @app.route('/get_tweets/user_filter')
-def get_tweets(user_filter=None)
+def get_tweets(user_filter=None):
     """
     resp = twitter.get("account/verify_credentials.json")
     assert resp.ok
