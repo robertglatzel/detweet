@@ -35,7 +35,6 @@ def get_tweets(user_filter=None):
     print(type(resp.json()))
     #return render_template('index.html', tweets=deTweet.safety(resp.json()))
     return redirect(url_for('tweet_page', username=resp.json()['screen_name'], tweets=deTweet.safety(resp.json())))
-    """
 
     resp = twitter.get("account/verify_credentials.json")
     assert resp.ok
@@ -43,6 +42,8 @@ def get_tweets(user_filter=None):
     resp = twitter.get('statuses/user_timeline.json', params=payload)
     tweets = deTweet.safety(resp.json(), user_filter)
     return jsonify(tweets)
+    """
+    return "success"
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 5000)
