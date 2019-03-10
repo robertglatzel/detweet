@@ -26,8 +26,8 @@ def index():
 def tweet_page(username, tweets=None):
     return render_template('index.html', username=username, tweets=tweets)
 
-@app.route('/get_tweets')
-def get_tweets():
+@app.route('/get_tweets/user_filter')
+def get_tweets(user_filter=None)
     """
     resp = twitter.get("account/verify_credentials.json")
     assert resp.ok
@@ -42,7 +42,7 @@ def get_tweets():
     assert resp.ok
     payload = {'screen_name': resp.json()['screen_name']}
     resp = twitter.get('statuses/user_timeline.json', params=payload)
-    tweets = deTweet.safety(resp.json())
+    tweets = deTweet.safety(resp.json(), user_filter)
     return jsonify(tweets)
 
 if __name__ == '__main__':
