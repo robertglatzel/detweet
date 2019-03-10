@@ -19,12 +19,11 @@ def index():
     
     screen_name = resp.json()['screen_name']
     print(screen_name)
-    return redirect(url_for('tweet_page', username=screen_name,
-        tweets=None))
+    return redirect(url_for('tweet_page', username=screen_name))
 
-@app.route('/tweet_page/<username>/<tweets>')
+@app.route('/tweet_page/<username>')
 def tweet_page(username, tweets=None):
-    return render_template('index.html', username=username, tweets=tweets)
+    return render_template('index.html', username=username)
 
 @app.route('/get_tweets/user_filter')
 def get_tweets(user_filter=None)
