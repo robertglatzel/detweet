@@ -8,17 +8,19 @@ your career.
 from os.path import abspath
 
 
-def safety(tweets):
+def safety(tweets, user_filter=None):
     """
     Filter out tweets that you've tweeted and delete them.
     """
 
     bad_tweet_list = []
-    #user_id = user.id
 
-    f_path = abspath("bad_words_list")
-    with open(f_path) as f:
-        bad_words = [word.rstrip('\n') for word in f]
+    if user_filter is None:
+        f_path = abspath("bad_words_list")
+        with open(f_path) as f:
+            bad_words = [word.rstrip('\n') for word in f]
+    else:
+        bad_words = user_filter
 
     try:
         for tweet in tweets:
@@ -33,7 +35,6 @@ def safety(tweets):
                     bad_tweet_list.append(tweet_dict)
         return bad_tweet_list
     except:
-        print("Try again later")
         print(len(bad_tweet_list))
         return bad_tweet_list
 
