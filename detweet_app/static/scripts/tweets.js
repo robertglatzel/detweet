@@ -12,6 +12,21 @@ $( document ).ready(function() {
       let searchTerms = $('#search-box input').val();
       let searchArr = searchTerms.split(" ");
       console.log(searchArr);
+      $.ajax({
+        url: "http://localhost:5000/get_tweets",
+        type: "GET",
+        crossDomain: true,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
+        dataType: "text",
+        success: function(result){
+            console.log(result);
+        },
+        error: function(error){
+            console.log(error);
+        }
+      });
       $('#start-detweet-div').css('display', 'none');
       $('#main-container').css('display', 'inline');
     });
@@ -43,7 +58,7 @@ $( document ).ready(function() {
         $('.ui.basic.modal')
             .modal('hide')
         ;
-        $('#enclosure').fadeOut(3000, function() {
+        $('#main-container').fadeOut(3000, function() {
             // Send the post request back to python with the remaining id's from
             // this list.
             $('body').css('background', '#ddd6f3');

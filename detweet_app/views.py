@@ -2,7 +2,7 @@
 """ Script to start a Flask web application """
 from detweet_app import app
 from flask_dance.contrib.twitter import twitter
-from flask import render_template, url_for, redirect, jsonify
+from flask import render_template, url_for, redirect, jsonify, request
 from . import deTweet
 
 @app.route('/')
@@ -16,7 +16,7 @@ def index():
 
     resp = twitter.get("account/verify_credentials.json")
     assert resp.ok
-    
+
     screen_name = resp.json()['screen_name']
     print(screen_name)
     return redirect(url_for('tweet_page', username=screen_name))
@@ -25,8 +25,9 @@ def index():
 def tweet_page(username, tweets=None):
     return render_template('index.html', username=username)
 
-@app.route('/get_tweets/user_filter')
-def get_tweets(user_filter=None):
+@app.route('/get_tweets')
+#@cross_origin(origin='localhost', headers=['Access-Control-Allow-Origin'])
+def get_tweets():
     """
     resp = twitter.get("account/verify_credentials.json")
     assert resp.ok
@@ -43,6 +44,7 @@ def get_tweets(user_filter=None):
     tweets = deTweet.safety(resp.json(), user_filter)
     return jsonify(tweets)
     """
+    print("success")
     return "success"
 
 if __name__ == '__main__':
