@@ -1,8 +1,9 @@
+/* Whole page layout */
 body {
     background: #acb6e5;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #86fde8, #acb6e5);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #86fde8, #acb6e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Quicksand', sans-serif !important;
 }
 
 #page-container {
@@ -10,18 +11,43 @@ body {
   min-height: 100vh;
 }
 
+/* Main page wrapper, allows padding for footer at bottom */
 #content-wrap {
-  padding-bottom: 15em;    /* Footer height */
-  }
-
-footer {
-  bottom: 0;
-  position: absolute;
-  width: 100%;
-  padding: 1em 0 1em 0;
-  background: radial-gradient(circle, rgba(255,255,255,1) 14%, rgba(255,255,255,0) 86%);
+  padding-bottom: 15em;
 }
 
+/* END Whole page layout */
+
+/* Menu */
+
+/* Welcome sign */
+#welcome {
+    margin: 0 auto;
+}
+
+#welcome h3 {
+    padding: 0 20px;
+    margin-top: 16px;
+    margin-left: 100px;
+}
+
+/* twitter follow box in menu */
+#follow-box-top {
+    width: 170px;
+}
+
+/* Reposition welcome message based on screen size */
+@media (max-width: 700px) {
+    #welcome h3 {
+        margin-left: 0 !important;
+        padding: 0 10px !important;
+    }
+}
+
+/* END Menu */
+
+
+/* Logo related */
 #logo-large {
     margin-top: 30px;
     width: 150px;
@@ -33,18 +59,32 @@ footer {
 
 .logo-div {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 
 .logo-div h1 {
     font-family: 'Quicksand', sans-serif;
     margin-top: -10px;
 }
+/* END logo related */
 
+
+/* Contains all tweets and buttons for the program. Hidden by default */
 #main-container {
   display: none;
 }
 
+/* Remove All button */
+.remove-button {
+    text-align: center;
+    margin: 20px;
+}
+
+#remove-all:hover,
+#remove:hover {
+    background-color: #00acee !important;
+}
+/* Popup modal for deleting tweets */
 #confirm {
     text-align: center;
     border: 1px solid #0084b4;
@@ -56,7 +96,14 @@ footer {
     font-size: 15px;
     color: black;
 }
+/* modal cancel button */
+#cancel:hover {
+    background-color: red !important;
+}
+/* END Remove All button */
 
+
+/* Instruction box */
 .instructions {
     text-align: center;
     border: 1px solid #0084b4;
@@ -65,24 +112,40 @@ footer {
     margin: 0 auto;
     background: #ffffff;
     padding: 5px;
-    font-size: 15px;
+    font-size: 16px;
     margin-bottom: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #sign-in {
   height: 200px;
 }
 
+.instructions p {
+    margin: 7px;
+}
+
+@media (max-width: 500px) {
+    #sign-in {
+        height: 260px;
+    }
+}
+
+#login-button p {
+    display: inline;
+    margin-top: 4px;
+}
+
 #login-button,
 #start-button {
   font-size: 15px;
-  margin-top: 30px;
   color: #0084b4 !important;
 }
 
 #start-button {
   display: block;
   margin: 0 auto;
+  margin-top: 30px;
   margin-bottom: 10px;
 }
 
@@ -107,6 +170,14 @@ footer {
   font-size: 20px;
 }
 
+#search-box {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 9px;
+}
+/* END Instruction box */
+
+/* Side button to scroll to top of page */
 #up-div {
     position: fixed;
     bottom: 30px;
@@ -125,6 +196,8 @@ footer {
     margin-top: -6px;
 }
 
+/* END Side button */
+
 /* Tweet Box */
 .tweet {
     background: #c0deed !important;
@@ -140,7 +213,7 @@ footer {
     display: inline;
     margin-left: 8px;
 }
-/* Tweet Box end*/
+/* END Tweet Box*/
 
 /* Keep Tweet button */
 .keep-tweet {
@@ -158,52 +231,17 @@ footer {
 .keep-tweet:active {
     color: darkgreen;
 }
-/* Keep Tweet button end */
+/* END Keep Tweet button */
 
-/* Remove All button */
-.remove-button {
-    text-align: center;
-    margin: 20px;
+
+footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  padding: 1em 0 1em 0;
+  background: radial-gradient(circle, rgba(255,255,255,1) 14%, rgba(255,255,255,0) 86%);
 }
-#welcome {
-    margin: 0 auto;
-}
-
-#welcome h3 {
-    padding: 0 20px;
-    margin-top: 16px;
-    margin-left: 100px;
-}
-
-#follow-box-top {
-    width: 170px;
-}
-
-/* Reposition welcome message based on screen size */
-@media (max-width: 700px) {
-    #welcome h3 {
-        margin-left: 0 !important;
-        padding: 0 10px !important;
-    }
-}
-
-
-#remove-all:hover,
-#remove:hover {
-    background-color: #00acee !important;
-}
-
-#cancel:hover {
-    background-color: red !important;
-}
-
 
 #divide {
     margin: 0;
-}
-
-#search-box {
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 9px;
 }
