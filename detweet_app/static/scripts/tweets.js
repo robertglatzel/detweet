@@ -6,7 +6,6 @@ $( document ).ready(function() {
     });
     console.log(idList);
 
-
     // Sends out the request with an optional search param.
     $('#start-button').click(function () {
       let searchTerms = $('#search-box input').val();
@@ -91,4 +90,6 @@ $( document ).ready(function() {
     $('#selection-toggle').click(function() {
         $( "#search-box" ).toggleClass('focus disabled');
     });
+    // Reset searchbox input value when page reloads.
+    $('#search-box input').val('');
 });
