@@ -25,10 +25,11 @@ $( document ).ready(function() {
             console.log(error);
         }
       });
+      //Loading circle after clicking start. On a delay timer to load the content.
       $('#load-circle').addClass('active');
       setTimeout(function(){
-          $('#start-detweet-div').css('display', 'none');
-          $('#main-container').css('display', 'inline');
+          $('#start-detweet-div').fadeOut('fast');
+          $('#main-container').fadeIn(900);
           // flip tweet into place when it loads from jinja
           $('.tweet')
             .transition({

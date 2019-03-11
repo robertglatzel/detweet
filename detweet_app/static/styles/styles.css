@@ -62,6 +62,10 @@ body {
     margin-bottom: 25px;
 }
 
+#logo-text {
+    color: white;
+}
+
 .logo-div h1 {
     font-family: 'Quicksand', sans-serif;
     margin-top: -10px;
