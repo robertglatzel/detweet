@@ -10,5 +10,4 @@ app.url_map.strict_slashes = False
 
 twitter_bp = make_twitter_blueprint()
 app.register_blueprint(twitter_bp, url_prefix='/login')
-CORS(app, resources={r"/": {"origins": "*"}})
 import detweet_app.views
