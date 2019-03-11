@@ -10,7 +10,6 @@ $( document ).ready(function() {
     $('#start-button').click(function () {
       let searchTerms = $('#search-box input').val();
       let searchArr = searchTerms.split(" ");
-      console.log(searchArr);
       $.ajax({
         url: "http://localhost:5000/get_tweets",
         type: "GET",
@@ -26,8 +25,18 @@ $( document ).ready(function() {
             console.log(error);
         }
       });
-      $('#start-detweet-div').css('display', 'none');
-      $('#main-container').css('display', 'inline');
+      $('#load-circle').addClass('active');
+      setTimeout(function(){
+          $('#start-detweet-div').css('display', 'none');
+          $('#main-container').css('display', 'inline');
+          // flip tweet into place when it loads from jinja
+          $('.tweet')
+            .transition({
+              animation: 'horizontal flip in',
+              duration: 1500,
+            })
+          ;
+      }, 6000);
     });
 
     // This function is for removing tweets from the list of all
@@ -61,7 +70,6 @@ $( document ).ready(function() {
             // Send the post request back to python with the remaining id's from
             // this list.
             $('body').css('background', '#ddd6f3');
-            $('footer').css('position', 'fixed');
         });
     });
 
@@ -78,13 +86,7 @@ $( document ).ready(function() {
       return false;
     });
 
-    // flip tweet into place when it loads from jinja
-    $('.tweet')
-      .transition({
-        animation: 'horizontal flip in',
-        duration: 1500,
-      })
-    ;
+
 
     // Toggles the search bar. When search bar is toggled, it allows user to enter a search paramater. That paramater will be passed to the function, overriding the detweet.
     $('#selection-toggle').click(function() {

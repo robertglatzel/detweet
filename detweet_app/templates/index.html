@@ -39,7 +39,11 @@
                 </div>
 
                 <div id="start-detweet-div" class="instructions">
-                  <h3>This contains the button to start the detweet service. Please click the button to begin, or enter a search term.</h3>
+                <div id="load-circle" class="ui dimmer">
+                  <div class="ui text loader">Filtering...</div>
+                </div>
+
+                  <p>To start filtering tweets, please click the start button, or enter a custom search term that you would like to filter against.</p>
                   <button id="start-button"class="ui black basic button centered"></i>Start</button>
                   <div id="selection-toggle" class="ui slider checkbox">
                     <input type="checkbox">
