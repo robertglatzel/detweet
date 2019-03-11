@@ -22,14 +22,14 @@
     <body>
         <div id="page-container">
             <div id="content-wrap">
-                <div class="ui large menu">
-                  <a class="item left" href="login.html">
+                <div class="ui borderless menu">
+                  <a class="item" href="login.html">
                     <img class="logo" src="../static/images/detweet logo_larger_square.png">
                   </a>
                   <div id="welcome">
                     <h3 class="ui header">Welcome, {{ username }}</h3>
                   </div>
-                    <div class="item right">
+                    <div id="follow-box-top" class="item">
                         <a href="https://twitter.com/detweet_app?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @detweet_app</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                   <h3>This contains the button to start the detweet service. Please click the button to begin, or enter a search term.</h3>
                   <button id="start-button"class="ui black basic button centered"></i>Start</button>
                   <div id="selection-toggle" class="ui slider checkbox">
-                    <input type="checkbox" name="newsletter">
+                    <input type="checkbox">
                     <label></label>
                   </div>
                   <div id="search-box" class="ui disabled input">
