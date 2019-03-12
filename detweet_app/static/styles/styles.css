@@ -140,7 +140,8 @@ body {
 }
 
 #login-button,
-#start-button {
+#start-button,
+#remove-all {
   font-size: 15px;
   color: #0084b4 !important;
 }
@@ -157,13 +158,15 @@ body {
 }
 
 #login-button:hover,
-#start-button:hover {
+#start-button:hover,
+#remove-all:hover {
     background-color: #00acee !important;
     color: white !important;
 }
 
 #login-button:active,
-#start-button:active {
+#start-button:active,
+#remove-all:active {
     background-color: #0084b4 !important;
     color:white !important;
 }
@@ -239,6 +242,10 @@ body {
 }
 .keep-tweet:active {
     color: darkgreen;
+}
+
+.keep-tweet i {
+    margin: 0;
 }
 /* END Keep Tweet button */
 
