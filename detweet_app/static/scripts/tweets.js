@@ -10,6 +10,7 @@ $( document ).ready(function() {
     $('#start-button').click(function () {
       let searchTerms = $('#search-box input').val();
       let searchArr = searchTerms.split(" ");
+      console.log(searchArr);
       $.ajax({
         url: "http://localhost:5000/get_tweets",
         type: "POST",

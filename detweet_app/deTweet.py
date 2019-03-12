@@ -12,31 +12,35 @@ def safety(tweets, user_filter=None):
     """
     Filter out tweets that you've tweeted and delete them.
     """
-
     bad_tweet_list = []
 
+    if user_filter[0] == '':
+        user_filter = None
+
     if user_filter is None:
-        f_path = abspath("bad_words_list")
+        f_path = abspath("bad_words_list_less")
         with open(f_path) as f:
             bad_words = [word.rstrip('\n') for word in f]
     else:
-        bad_words = user_filter
+        user_bad_word = user_filter
+        bad_words = [word.lower() for word in user_bad_word]
 
-    try:
-        for tweet in tweets:
-            for word in bad_words:
-                tweet_text_lower = tweet['text'].lower().split()
-                tweet_text_orig = tweet['text'].split()
-                if word in tweet_text_lower:
-                    idx = tweet_text_lower.index(word)
-                    strong_word = '<strong>{}</strong>'.format(tweet_text_orig[idx])
-                    tweet_text_orig[idx] = strong_word
-                    tweet_dict = {tweet.id: '"{}"'.format(' '.join(tweet_text_orig))}
-                    bad_tweet_list.append(tweet_dict)
-        return bad_tweet_list
-    except:
-        print(len(bad_tweet_list))
-        return bad_tweet_list
+    print(bad_words)
+    print('length of tweets: {}'.format(len(tweets)))
+
+    for tweet in tweets:
+        for word in bad_words:
+            tweet_text_lower = tweet['text'].lower().split()
+            tweet_text_orig = tweet['text'].split()
+            if word in tweet_text_lower:
+                idx = tweet_text_lower.index(word)
+                strong_word = '<strong>{}</strong>'.format(tweet_text_orig[idx])
+                tweet_text_orig[idx] = strong_word
+                tweet_dict = {tweet.get('id'): '"{}"'.format(' '.join(tweet_text_orig))}
+                bad_tweet_list.append(tweet_dict)
+
+    print(len(bad_tweet_list))
+    return bad_tweet_list
 
 if __name__ == "__main__":
     safety()

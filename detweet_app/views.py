@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """ Script to start a Flask web application """
-from . import deTweet
+
 from detweet_app import app, twitter_bp
 from flask import jsonify, redirect, render_template, request, url_for
 from flask_cors import CORS
 from flask_dance.contrib.twitter import twitter
+from . import deTweet
 
 CORS(app, resources={r"*": {"origins": "*"}})
 
@@ -28,15 +29,20 @@ def tweet_page(username, tweets=None):
 
 @app.route('/get_tweets', methods=['POST'])
 def get_tweets():
-    resp_list_of_dicts = twitter.get('statuses/user_timeline.json').json()
-    print(len(resp_list_of_dicts))
-    '''
+    global_tweet_list = []
+    last_tweet_id = None
+    for i in range(16):
+        if (last_tweet_id) is None:
+            payload = {'count': 200, 'include_rts': 1}
+        else:
+            payload = {'count': 200, 'include_rts': 1, 'max_id': last_tweet_id}
+        tweet_list = twitter.get('statuses/user_timeline.json', params=payload).json()
+        last_tweet_id = tweet_list[-1].get('id')
+        global_tweet_list += tweet_list
+
     user_filter = request.get_json()
-    print(user_filter)
-    tweets = deTweet.safety(resp, user_filter)
+    tweets = deTweet.safety(global_tweet_list, user_filter)
     return jsonify(tweets)
-    '''
-    return jsonify(resp_list_of_dicts)
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 5000)
