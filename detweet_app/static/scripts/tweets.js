@@ -1,16 +1,10 @@
 $( document ).ready(function() {
     let idList = [];
-    $('.tweet').each(function() {
-        let id = (this.id);
-        idList.push(id);
-    });
-    console.log(idList);
 
     // Sends out the request with an optional search param.
     $('#start-button').click(function () {
       let searchTerms = $('#search-box input').val();
       let searchArr = searchTerms.split(" ");
-      console.log(searchArr);
       $.ajax({
         url: "http://localhost:5000/get_tweets",
         type: "POST",
@@ -22,7 +16,22 @@ $( document ).ready(function() {
         data: JSON.stringify(searchArr),
         contentType: "application/json; charset=utf-8",
         success: function(result){
-            console.log(result);
+            result.forEach(function(el) {
+                let tweetId = Object.keys(el)[0];
+                idList.push(tweetId);
+                let tweetText = el[tweetId];
+                $('#enclosure').append(
+                    `<div class="column hvr-grow">
+                        <div id="${tweetId}" class="tweet ui segment">
+                            <div class="top">
+                                <p>You tweeted:</p>
+                            </div>
+                            <button class="keep-tweet hvr-pulse-grow" title="Keep me!"><i class="check circle icon"></i></button>
+                            <p class="tweet-text">${tweetText}</p>
+                        </div>
+                     </div>`);
+            });
+            console.log(idList);
         },
         error: function(error){
             console.log(error);
@@ -46,7 +55,7 @@ $( document ).ready(function() {
     // This function is for removing tweets from the list of all
     // tweets that are to be deleted. The array containing all the Tweets
     // will be updated.
-    $('.keep-tweet').click(function() {
+    $('#enclosure').on('click', '.keep-tweet', function() {
         $(this).parent().fadeOut(1000, function() {
             let id = $(this).prop('id');
             if (idList.includes(id)) {
