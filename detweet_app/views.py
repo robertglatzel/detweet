@@ -5,7 +5,7 @@ from detweet_app import app, twitter_bp
 from flask import jsonify, redirect, render_template, request, url_for
 from flask_cors import CORS
 from flask_dance.contrib.twitter import twitter
-from . import deTweet
+from .deTweet import get_all_tweets
 
 CORS(app, resources={r"*": {"origins": "*"}})
 
@@ -28,20 +28,11 @@ def tweet_page(username, tweets=None):
 
 @app.route('/get_tweets', methods=['POST'])
 def get_tweets():
-    global_tweet_list = []
-    last_tweet_id = None
-    for i in range(16):
-        if (last_tweet_id) is None:
-            payload = {'count': 200, 'include_rts': 1, 'tweet_mode':'extended'}
-        else:
-            payload = {'count': 200, 'include_rts': 1, 'max_id': last_tweet_id, 'tweet_mode':'extended'}
-        tweet_list = twitter.get('statuses/user_timeline.json', params=payload).json()
-        last_tweet_id = tweet_list[-1].get('id')
-        global_tweet_list += tweet_list
-
-    user_filter = request.get_json()
-    tweets = deTweet.safety(global_tweet_list, user_filter)
-    return jsonify(tweets)
+    '''
+    gets's all tweets, passes them to filter_tweet
+    '''
+    tweets = get_all_tweets(twitter, request)
+    return(jsonify(tweets))
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 5000)

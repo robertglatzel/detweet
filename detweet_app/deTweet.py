@@ -4,18 +4,35 @@ This twitter bot checks your posts to see if you've tweeted anything
 that might be considered questionable and lead to complications further in
 your career.
 """
-
+from flask import request
 from os.path import abspath
-def safety(tweets, user_filter=None):
+
+def get_all_tweets(twitter_req_obj, request):
+    global_tweet_list = []
+    last_tweet_id = None
+    for i in range(16):
+        if (last_tweet_id) is None:
+            payload = {'count': 200, 'include_rts': 1, 'tweet_mode':'extended'}
+        else:
+            payload = {'count': 200, 'include_rts': 1, 'max_id': last_tweet_id, 'tweet_mode':'extended'}
+        tweet_list = twitter_req_obj.get('statuses/user_timeline.json', params=payload).json()
+        last_tweet_id = tweet_list[-1].get('id')
+        global_tweet_list += tweet_list
+
+    user_filter = request.get_json()
+    tweets = filter_tweets(global_tweet_list, user_filter)
+    return tweets
+
+
+def filter_tweets(tweets, user_filter=None):
     """
-    Filter out tweets that you've tweeted and delete them.
+    Filter out tweets that you've tweeted and delete them. If user has passed in
+    a custom filter, use that instead of the list of bad words as a filter.
     """
+
     bad_tweet_list = []
 
     if user_filter[0] == '':
-        user_filter = None
-
-    if user_filter is None:
         f_path = abspath("bad_words_list_less")
         with open(f_path) as f:
             bad_words = [word.rstrip('\n') for word in f]
@@ -35,64 +52,12 @@ def safety(tweets, user_filter=None):
                     tweet_dict = {tweet.get('id'): '"{}"'.format(' '.join(tweet_text_orig))}
                     bad_tweet_list.append(tweet_dict)
     except:
-        print(len(bad_tweet_list))
+        print('Try block failed')
 
     return bad_tweet_list
 
-if __name__ == "__main__":
-    safety()
-'''
-    if len(bad_tweet_list) == 0:
-        print("No problem here!")
-        return
 
-    while len(bad_tweet_list) > 0:
-        print(len(bad_tweet_list))
-        print_flagged(bad_tweet_list)
-
-        delete_prompt = input("Delete all tweets?\nEnter (y/n): ")
-        if delete_prompt == "y":
-            delete_tweets(bad_tweet_list)
-            return
-
-        exclude = input("\nOkay, do you want to exclude a tweet from the list?\
-        \nEnter (y/n): ")
-
-        if exclude == "y":
-            index = input("\nWhich tweet? Enter the index number of a tweet: ")
-            print("Trying to remove tweet at index {}...".format(index))
-            time.sleep(2)
-
-            try:
-                del bad_tweet_list[int(index)]
-                print("Removed tweet")
-            except:
-                print("\n\n\t##### ERROR! #####")
-                print("\tIndex does not exist, try again.")
-                print("\t##################\n")
-                time.sleep(4)
-
-        else:
-            print("Okay, exiting the program...")
-            return
-
-    if len(bad_tweet_list) == 0:
-        print("\n\nNothing left in the queue, exiting the program...")
-
-def print_flagged(arr):
-    """
-    Prints out all the flagged tweets
-    """
-    idx = 0
-    print("\n============= List of flagged tweets =============")
-    for tweet in arr:
-        for val in tweet.values():
-            print("\n########## FLAGGED TWEET ##########")
-            print("Index: {}\nTweet Content: {}".format(idx,val))
-            idx += 1
-            print("###################################\n")
-
-def delete_tweets(arr):
+def deTweet(arr):
     """
     Deletes all flagged tweets
     """
@@ -104,4 +69,3 @@ def delete_tweets(arr):
                 print("Fail")
                 return
     print("All flagged tweets have been deleted.")
-'''
