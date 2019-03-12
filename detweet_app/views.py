@@ -19,7 +19,6 @@ def index():
         return redirect(url_for('twitter.login'))
 
     resp = twitter.get("account/verify_credentials.json")
-    assert resp.ok
     screen_name = resp.json()['screen_name']
     return redirect(url_for('tweet_page', username=screen_name))
 
@@ -33,9 +32,9 @@ def get_tweets():
     last_tweet_id = None
     for i in range(16):
         if (last_tweet_id) is None:
-            payload = {'count': 200, 'include_rts': 1}
+            payload = {'count': 200, 'include_rts': 1, 'tweet_mode':'extended'}
         else:
-            payload = {'count': 200, 'include_rts': 1, 'max_id': last_tweet_id}
+            payload = {'count': 200, 'include_rts': 1, 'max_id': last_tweet_id, 'tweet_mode':'extended'}
         tweet_list = twitter.get('statuses/user_timeline.json', params=payload).json()
         last_tweet_id = tweet_list[-1].get('id')
         global_tweet_list += tweet_list

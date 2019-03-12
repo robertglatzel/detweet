@@ -84,6 +84,7 @@ $( document ).ready(function() {
             // this list.
             $('body').css('background', '#ddd6f3');
         });
+        console.log(idList);
     });
 
     // cancel button to back out of deleting tweets.
