@@ -13,12 +13,14 @@ $( document ).ready(function() {
       console.log(searchArr);
       $.ajax({
         url: "http://localhost:5000/get_tweets",
-        type: "GET",
+        type: "POST",
         crossDomain: true,
         headers: {
           'Access-Control-Allow-Origin': '*'
         },
-        dataType: "text",
+        dataType: "json",
+        data: JSON.stringify(searchArr),
+        contentType: "application/json; charset=utf-8",
         success: function(result){
             console.log(result);
         },
