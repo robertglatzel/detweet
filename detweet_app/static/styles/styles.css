@@ -1,8 +1,8 @@
 /* Whole page layout */
 body {
-    background: #acb6e5;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #86fde8, #acb6e5);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #86fde8, #acb6e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #E0EAFC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     font-family: 'Quicksand', sans-serif !important;
 }
 
@@ -43,7 +43,6 @@ body {
         padding: 0 10px !important;
     }
 }
-
 /* END Menu */
 
 
@@ -64,6 +63,7 @@ body {
 
 #logo-text {
     color: white;
+    text-shadow: black 1px 1px 3px;
 }
 
 .logo-div h1 {
@@ -110,11 +110,10 @@ body {
 /* Instruction box */
 .instructions {
     text-align: center;
-    border: 1px solid #0084b4;
     border-radius: 5px;
     max-width: 600px;
     margin: 0 auto;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.8);
     padding: 5px;
     font-size: 16px;
     margin-bottom: 30px;
@@ -127,6 +126,7 @@ body {
 
 .instructions p {
     margin: 7px;
+    margin-top: 14px;
 }
 
 @media (max-width: 500px) {
@@ -138,6 +138,10 @@ body {
 #login-button p {
     display: inline;
     margin-top: 4px;
+}
+
+#login-button {
+    margin-top: 12px;
 }
 
 #login-button,
@@ -171,7 +175,8 @@ body {
 }
 
 #login-button i {
-  font-size: 20px;
+  font-size: 19px;
+  margin-right: -5px;
 }
 
 #search-box {
@@ -179,6 +184,12 @@ body {
     margin: 0 auto;
     margin-bottom: 9px;
 }
+
+.ui.slider.checkbox input:checked ~ label::before {
+    background: -webkit-linear-gradient(to right, #86fde8, #acb6e5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #86fde8, #acb6e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 /* END Instruction box */
 
 /* Side button to scroll to top of page */
@@ -204,7 +215,7 @@ body {
 
 /* Tweet Box */
 .tweet {
-    background: #c0deed !important;
+    background: rgba(255, 255, 255, 0.8) !important;
     border-color: #0084b4 !important;
 }
 .top {
