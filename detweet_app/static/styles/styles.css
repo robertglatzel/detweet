@@ -3,7 +3,6 @@ body {
     background: #E0EAFC;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to top, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    font-family: 'Quicksand', sans-serif !important;
 }
 
 #page-container {
@@ -15,12 +14,9 @@ body {
 #content-wrap {
   padding-bottom: 15em;
 }
-
 /* END Whole page layout */
 
 /* Menu */
-
-/* Welcome sign */
 #welcome {
     margin: 0 auto;
 }
@@ -67,7 +63,6 @@ body {
 }
 
 .logo-div h1 {
-    font-family: 'Quicksand', sans-serif;
     margin-top: -10px;
 }
 /* END logo related */
@@ -153,7 +148,6 @@ body {
 #start-button {
   display: block;
   margin: 0 auto;
-  margin-top: 30px;
   margin-bottom: 10px;
 }
 
