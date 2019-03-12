@@ -9,52 +9,54 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
         <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- Css -->
         <link type="text/css" rel="stylesheet" href="../static/styles/styles.css">
-        <link type="text/css" rel="stylesheet" href="../static/styles/Hover-master/css/hover.css">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover.css"/>
         <!-- Font -->
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet">
 
     </head>
+
     <body>
         <div id="page-container">
+                <!-- Content wrapper -->
             <div id="content-wrap">
+                <!-- Menu -->
                 <div class="ui borderless menu">
                   <a class="item" href="login.html">
-                    <img class="logo" src="../static/images/detweet logo_larger_square.png">
-                  </a>
+                    <img class="logo" src="../static/images/detweet logo_larger_square.png"></a>
                   <div id="welcome">
                     <h3 class="ui header">Welcome, {{ username }}</h3>
                   </div>
-                    <div id="follow-box-top" class="item">
-                        <a href="https://twitter.com/detweet_app?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @detweet_app</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    </div>
+                  <div id="follow-box-top" class="item">
+                    <a href="https://twitter.com/detweet_app?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @detweet_app</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  </div>
                 </div>
+                <!-- Logo -->
                 <div class="logo-div">
                     <img id="logo-large" class="ui center aligned header logo hvr-bob" src="../static/images/detweet logo_larger_square.png">
                     <h1 id="logo-text">deTweet</h1>
                 </div>
-
+                <!-- Start detweet -->
                 <div id="start-detweet-div" class="instructions">
-                <div id="load-circle" class="ui dimmer">
-                  <div class="ui text loader">Filtering...</div>
+                    <!--Loading circle -->
+                    <div id="load-circle" class="ui dimmer">
+                      <div class="ui text loader">Filtering...</div>
+                    </div>
+
+                      <p>To begin filtering tweets against <strong>deTweet's</strong> database, please click the start button. Or enter a custom search term that you would like to filter against.</p>
+                      <button id="start-button"class="ui black basic button centered"></i>Start</button>
+                      <div id="selection-toggle" class="ui slider checkbox">
+                        <input type="checkbox">
+                        <label></label>
+                      </div>
+                      <div id="search-box" class="ui disabled input">
+                          <input type="text" placeholder="Search...">
+                      </div>
                 </div>
-
-                  <p>To begin filtering tweets against <strong>deTweet's</strong> database, please click the start button. Or enter a custom search term that you would like to filter against.</p>
-                  <button id="start-button"class="ui black basic button centered"></i>Start</button>
-                  <div id="selection-toggle" class="ui slider checkbox">
-                    <input type="checkbox">
-                    <label></label>
-                  </div>
-                  <div id="search-box" class="ui disabled input">
-                      <input type="text" placeholder="Search...">
-                  </div>
-                </div>
-
-
+                <!-- main container -->
                 <div id="main-container">
                   <div class="instructions">
                       <p>If you see a tweet that you would like to keep, click the <i class="check circle icon"></i>.<br> When you're ready to delete all flagged tweets, just click the button below. </p>
@@ -77,19 +79,18 @@
 
                   <div id="enclosure" class="ui three column stackable grid container">
 
-                      <div class="column hvr-grow">
-                        <div id="{{ key }}" class="tweet ui segment">
-                            <div class="top">
-                                <p>You tweeted:</p>
-                            </div>
-                            <button class="keep-tweet hvr-pulse-grow" title="Keep me!"><i class="check circle icon"></i></button>
-                            <p class="tweet-text"></p>
+                  <div class="column hvr-grow">
+                    <div id="{{ key }}" class="tweet ui segment">
+                        <div class="top">
+                            <p>You tweeted:</p>
                         </div>
-                      </div>
-
+                        <button class="keep-tweet hvr-pulse-grow" title="Keep me!"><i class="check circle icon"></i></button>
+                        <p class="tweet-text"></p>
+                    </div>
                   </div>
                 </div>
             </div>
+                <!-- Footer -->
             <footer>
               <div class="ui center aligned container">
                   <div class="follow-div">

@@ -90,12 +90,11 @@ $( document ).ready(function() {
       return false;
     });
 
-
-
     // Toggles the search bar. When search bar is toggled, it allows user to enter a search paramater. That paramater will be passed to the function, overriding the detweet.
     $('#selection-toggle').click(function() {
         $( "#search-box" ).toggleClass('focus disabled');
     });
+
     // Reset searchbox input value when page reloads.
     $('#search-box input').val('');
 });

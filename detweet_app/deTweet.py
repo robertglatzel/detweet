@@ -6,8 +6,6 @@ your career.
 """
 
 from os.path import abspath
-
-
 def safety(tweets, user_filter=None):
     """
     Filter out tweets that you've tweeted and delete them.
