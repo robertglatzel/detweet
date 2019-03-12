@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 """ Script to start a Flask web application """
-from detweet_app import app
-from flask_dance.contrib.twitter import twitter
-from flask import render_template, url_for, redirect, jsonify, request
 from . import deTweet
+from detweet_app import app, twitter_bp
+from flask import jsonify, redirect, render_template, request, url_for
+from flask_cors import CORS
+from flask_dance.contrib.twitter import twitter
+
+CORS(app, resources={r"*": {"origins": "*"}})
 
 @app.route('/')
 def serve_login_page():
@@ -16,36 +19,24 @@ def index():
 
     resp = twitter.get("account/verify_credentials.json")
     assert resp.ok
-
     screen_name = resp.json()['screen_name']
-    print(screen_name)
     return redirect(url_for('tweet_page', username=screen_name))
 
 @app.route('/tweet_page/<username>')
 def tweet_page(username, tweets=None):
     return render_template('index.html', username=username)
 
-@app.route('/get_tweets')
-#@cross_origin(origin='localhost', headers=['Access-Control-Allow-Origin'])
+@app.route('/get_tweets', methods=['POST'])
 def get_tweets():
-    """
-    resp = twitter.get("account/verify_credentials.json")
-    assert resp.ok
-    payload = {'screen_name': resp.json()['screen_name']}
-    resp = twitter.get('statuses/user_timeline.json', params=payload)
-    print(type(resp.json()))
-    #return render_template('index.html', tweets=deTweet.safety(resp.json()))
-    return redirect(url_for('tweet_page', username=resp.json()['screen_name'], tweets=deTweet.safety(resp.json())))
-
-    resp = twitter.get("account/verify_credentials.json")
-    assert resp.ok
-    payload = {'screen_name': resp.json()['screen_name']}
-    resp = twitter.get('statuses/user_timeline.json', params=payload)
-    tweets = deTweet.safety(resp.json(), user_filter)
+    resp_list_of_dicts = twitter.get('statuses/user_timeline.json').json()
+    print(len(resp_list_of_dicts))
+    '''
+    user_filter = request.get_json()
+    print(user_filter)
+    tweets = deTweet.safety(resp, user_filter)
     return jsonify(tweets)
-    """
-    print("success")
-    return "success"
+    '''
+    return jsonify(resp_list_of_dicts)
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 5000)
