@@ -1,0 +1,264 @@
+/* Whole page layout */
+body {
+    background: #E0EAFC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Main page wrapper, allows padding for footer at bottom */
+#content-wrap {
+  padding-bottom: 15em;
+}
+/* END Whole page layout */
+
+/* Menu */
+#welcome {
+    margin: 0 auto;
+}
+
+#welcome h3 {
+    padding: 0 20px;
+    margin-top: 16px;
+    margin-left: 100px;
+}
+
+/* twitter follow box in menu */
+#follow-box-top {
+    width: 170px;
+}
+
+/* Reposition welcome message based on screen size */
+@media (max-width: 700px) {
+    #welcome h3 {
+        margin-left: 0 !important;
+        padding: 0 10px !important;
+    }
+}
+/* END Menu */
+
+
+/* Logo related */
+#logo-large {
+    margin-top: 30px;
+    width: 150px;
+}
+
+.logo {
+    border-radius: 50%;
+}
+
+.logo-div {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#logo-text {
+    color: white;
+    text-shadow: black 1px 1px 3px;
+}
+
+.logo-div h1 {
+    margin-top: -10px;
+}
+/* END logo related */
+
+
+/* Contains all tweets and buttons for the program. Hidden by default */
+#main-container {
+  display: none;
+}
+
+/* Remove All button */
+.remove-button {
+    text-align: center;
+    margin: 20px;
+}
+
+#remove-all:hover,
+#remove:hover {
+    background-color: #00acee !important;
+}
+/* Popup modal for deleting tweets */
+#confirm {
+    text-align: center;
+    border: 1px solid #0084b4;
+    border-radius: 5px;
+    width: 400px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 40px;
+    font-size: 15px;
+    color: black;
+}
+/* modal cancel button */
+#cancel:hover {
+    background-color: red !important;
+}
+/* END Remove All button */
+
+
+/* Instruction box */
+.instructions {
+    text-align: center;
+    border-radius: 5px;
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    font-size: 16px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#sign-in {
+  height: 200px;
+}
+
+.instructions p {
+    margin: 7px;
+    margin-top: 14px;
+}
+
+@media (max-width: 500px) {
+    #sign-in {
+        height: 260px;
+    }
+}
+
+#login-button p {
+    display: inline;
+    margin-top: 4px;
+}
+
+#login-button {
+    margin-top: 12px;
+}
+
+#login-button,
+#start-button,
+#remove-all {
+  font-size: 15px;
+  color: #0084b4 !important;
+}
+
+#start-button {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+#start-detweet-div {
+  text-align: center;
+  display: ;
+}
+
+#login-button:hover,
+#start-button:hover,
+#remove-all:hover {
+    background-color: #00acee !important;
+    color: white !important;
+}
+
+#login-button:active,
+#start-button:active,
+#remove-all:active {
+    background-color: #0084b4 !important;
+    color:white !important;
+}
+
+#login-button i {
+  font-size: 19px;
+  margin-right: -5px;
+}
+
+#search-box {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 9px;
+}
+
+.ui.slider.checkbox input:checked ~ label::before {
+    background: -webkit-linear-gradient(to right, #86fde8, #acb6e5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #86fde8, #acb6e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* END Instruction box */
+
+/* Side button to scroll to top of page */
+#up-div {
+    position: fixed;
+    bottom: 30px;
+    right: 0;
+    z-index: 3000;
+}
+
+#up-button {
+    float: right;
+    margin-right: 30px;
+    width: 40px;
+    height: 40px;
+}
+
+#up-button i {
+    margin-top: -6px;
+}
+
+/* END Side button */
+
+/* Tweet Box */
+.tweet {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-color: #0084b4 !important;
+}
+.top {
+    background-color: #00acee  !important;
+    padding: 3px;
+    color: white;
+    border-radius: 5px;
+}
+.top p {
+    display: inline;
+    margin-left: 8px;
+}
+/* END Tweet Box*/
+
+/* Keep Tweet button */
+.keep-tweet {
+    float: right;
+    margin-top: -24px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: black;
+}
+
+.keep-tweet:hover {
+    color: white;
+}
+
+.keep-tweet i {
+    margin: 0;
+}
+/* END Keep Tweet button */
+
+
+footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  padding: 1em 0 1em 0;
+  background: radial-gradient(circle, rgba(255,255,255,1) 14%, rgba(255,255,255,0) 86%);
+}
+
+#divide {
+    margin: 0;
+}
