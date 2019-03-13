@@ -69,22 +69,38 @@ $( document ).ready(function() {
 
     // Triggers the confirmation or cancelation screen to delete tweets
     $('#remove-all').click(function() {
-        $('.ui.basic.modal')
-            .modal('show')
-        ;
+        $('.ui.basic.modal').modal('show');
     })
 
     //Actual removal of tweets once the user confrims.
     $('#remove').click(function() {
-        $('.ui.basic.modal')
-            .modal('hide')
-        ;
-        $('#main-container').fadeOut(3000, function() {
-            // Send the post request back to python with the remaining id's from
-            // this list.
+        // Send the post request back to python with the remaining id's from
+        // this list.
+        $('.ui.basic.modal').modal('hide');
+        $('.instructions, #enclosure, #up-div').fadeOut(3000, function() {
             $('body').css('background', '#ddd6f3');
         });
-        console.log(idList);
+        $('#search-again-div').fadeIn(6000, function() {
+            return true;
+        })
+        $.ajax({
+            url: "http://localhost:5000/delete_tweets",
+            type: "POST",
+            crossDomain: true,
+            headers: {
+              'Access-Control-Allow-Origin': '*'
+            },
+            dataType: "json",
+            data: JSON.stringify(idList),
+            contentType: "application/json; charset=utf-8",
+            success: function(result){
+                console.log(result);
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+        console.log("Id list after remove clicked: " + idList);
     });
 
     // cancel button to back out of deleting tweets.
