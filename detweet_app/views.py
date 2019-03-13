@@ -5,7 +5,7 @@ from detweet_app import app, twitter_bp
 from flask import jsonify, redirect, render_template, request, url_for
 from flask_cors import CORS
 from flask_dance.contrib.twitter import twitter
-from .deTweet import get_all_tweets
+from .deTweet import get_all_tweets, delete_tweets
 
 CORS(app, resources={r"*": {"origins": "*"}})
 
@@ -33,6 +33,16 @@ def get_tweets():
     '''
     tweets = get_all_tweets(twitter, request)
     return(jsonify(tweets))
+
+@app.route('/delete_tweets', methods=['POST'])
+def tweet_deleter():
+    ''' Grabs the POST data sent from the client
+        deletes each tweet based on the tweet id present
+        in the list
+    '''
+    ret_status = delete_tweets(twitter, request)
+    return jsonify(ret_status)
+    
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 5000)
