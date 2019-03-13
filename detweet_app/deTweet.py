@@ -66,9 +66,12 @@ def delete_tweets(twitter_req_obj, request):
     for tweet_id in tweet_id_list:
             try:
                 tweet_id = int(tweet_id)
+                print(tweet_id)
                 endpoint_build = "statuses/destroy/:{}.json".format(tweet_id)
+                print(endpoint_build)
                 resp = twitter_req_obj.post(endpoint_build).json()
                 print(resp)
+                print()
             except:
                 print("Fail")
                 return "fail"
