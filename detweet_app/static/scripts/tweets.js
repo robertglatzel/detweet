@@ -105,9 +105,7 @@ $( document ).ready(function() {
 
     // cancel button to back out of deleting tweets.
     $('#cancel').click(function() {
-        $('.ui.basic.modal')
-            .modal('hide')
-        ;
+        $('.ui.basic.modal').modal('hide');
     });
 
     // Scroll to the top button animation.
