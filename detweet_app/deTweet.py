@@ -62,11 +62,13 @@ def delete_tweets(twitter_req_obj, request):
     Deletes all flagged tweets
     """
     tweet_id_list = request.get_json()
+    print(tweet_id_list)
     for tweet_id in tweet_id_list:
             try:
                 tweet_id = int(tweet_id)
                 endpoint_build = "statuses/destroy/:{}.json".format(tweet_id)
-                twitter_req_obj.post(endpoint_build)
+                resp = twitter_req_obj.post(endpoint_build).json()
+                print(resp)
             except:
                 print("Fail")
                 return "fail"
