@@ -25,20 +25,12 @@ body {
     margin: 0 auto;
 }
 
-#welcome h3 {
-    padding: 0 20px;
-    margin-top: 16px;
-    margin-left: 100px;
-}
 
 /* twitter follow box in menu */
 #follow-box-top {
     width: 170px;
 }
 
-#logout-box-top {
-
-}
 /* Reposition welcome message based on screen size */
 @media (max-width: 700px) {
     #welcome h3 {
@@ -204,6 +196,7 @@ body {
     background: linear-gradient(to right, #86fde8, #acb6e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+#no-results-div,
 #search-again-div {
     display: none;
 }
@@ -265,7 +258,6 @@ body {
     margin: 0;
 }
 /* END Keep Tweet button */
-
 
 footer {
   bottom: 0;

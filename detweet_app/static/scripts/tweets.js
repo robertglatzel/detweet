@@ -18,6 +18,8 @@ $( document ).ready(function() {
     $('#start-button').click(function () {
       let userSearch = $('#search-box input').val();
       let searchArr = userSearch.split(" ");
+      //Loading circle after clicking start. On a delay timer to load the content.
+      $('#load-circle').addClass('active');
       $.ajax({
         url: "http://localhost:5000/get_tweets",
         type: "POST",
@@ -30,39 +32,49 @@ $( document ).ready(function() {
         contentType: "application/json; charset=utf-8",
         success: function(result){
             //on success, loop through the returned list and extract the tweet id and the text, append it to the page.
-            result.forEach(function(el) {
-                let tweetId = Object.keys(el)[0];
-                idList.push(tweetId);
-                let tweetText = el[tweetId];
-                $('#enclosure').append(
-                    `<div class="column hvr-grow">
-                        <div id="${tweetId}" class="tweet ui segment">
-                            <div class="top">
-                                <p>You tweeted:</p>
+            if (result.length != 0) {
+                result.forEach(function(el) {
+                    let tweetId = Object.keys(el)[0];
+                    idList.push(tweetId);
+                    let tweetText = el[tweetId];
+                    $('#enclosure').append(
+                        `<div class="column hvr-grow">
+                            <div id="${tweetId}" class="tweet ui segment">
+                                <div class="top">
+                                    <p>You tweeted:</p>
+                                </div>
+                                <button class="keep-tweet hvr-pulse-grow" title="Keep me!"><i class="check circle icon"></i></button>
+                                <p class="tweet-text">${tweetText}</p>
                             </div>
-                            <button class="keep-tweet hvr-pulse-grow" title="Keep me!"><i class="check circle icon"></i></button>
-                            <p class="tweet-text">${tweetText}</p>
-                        </div>
-                     </div>`);
-            });
-            console.log(idList);
+                         </div>`);
+                });
+                setTimeout(function(){
+                    $('#start-detweet-div').fadeOut('fast');
+                    $('#main-container').fadeIn(900);
+                    // flip tweet into place when loaded
+                    $('.tweet').transition({
+                        animation: 'horizontal flip in', duration: 1500
+                    });
+                }, 6000);
+            }
+            else if (result.length == 0){
+                setTimeout(function(){
+                    console.log("Result is 0");
+                    $('#start-detweet-div').fadeOut(100);
+                    $('#no-results-div').transition({
+                        animation: 'drop', duration: 900
+                    });
+                }, 6000);
+            }
         },
         error: function(error){
             console.log(error);
         }
       });
-      //Loading circle after clicking start. On a delay timer to load the content.
-      $('#load-circle').addClass('active');
-      setTimeout(function(){
-          $('#start-detweet-div').fadeOut('fast');
-          $('#main-container').fadeIn(900);
-          // flip tweet into place when loaded
-          $('.tweet').transition({
-              animation: 'horizontal flip in', duration: 1500,
-          });
-      }, 6000);
     });
 /* ============ START BUTTON END ============ */
+
+
 
 /* ============ KEEP BUTTON ============ */
     // This function is for keeping tweets by removing them from the list of all tweets that are to be deleted.
@@ -132,4 +144,8 @@ $( document ).ready(function() {
       return false;
     });
 /* ============ SCROLL TO TOP BUTTON END ============ */
+
+
+
+
 });

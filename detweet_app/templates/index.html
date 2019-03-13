@@ -28,7 +28,6 @@
                   <a class="item" href="#">
                     <img class="logo" src="../static/images/detweet logo_larger_square.png"></a>
                   <div id="welcome">
-                    <h3 class="ui header">Welcome, {{ username }}</h3>
                   </div>
                   <div id="logout-box-top" class="item">
                     <a href="#"><button id="logout-button" class="ui basic button">Logout</button></a>
@@ -72,21 +71,27 @@
                       <button id="cancel" class="ui basic button">On second thought...</button>
                   </div>
 
+                  <div id="up-div">
+                      <a href="#top"><button id="up-button" class="circular ui icon button inverted hvr-pulse-grow "><i class="angle double up icon"></i>
+                        </button></a>
+                  </div>
+
                   <div id="search-again-div" class="instructions">
                     <p>Thank you for using deTweet! Your tweets have been deTweeted! Please give your profile a moment to register the changes.</p>
                     <button id="search-again" class="ui basic button centered"></i>Search Again</button>
                     <a href=" https://twitter.com/intent/tweet?via=detweet_app&text=Thank%20you%20deTweet%20for%20helping%20me%20clean%20up%20my%20twitter%20account%21%20%3C3&hashtags=detweet%2Ccleanse%2Capp"><button id="search-again" class="ui basic button centered">Tweet about us!</button></a>
                   </div>
 
-                  <div id="up-div">
-                      <a href="#top"><button id="up-button" class="circular ui icon button inverted hvr-pulse-grow "><i class="angle double up icon"></i>
-                        </button></a>
-                  </div>
-
                   <div id="enclosure" class="ui three column stackable grid container"></div>
 
 
                 </div>
+
+                <div id="no-results-div" class="instructions">
+                  <p>Looks like we didn't find any matches. Want to try again?</p>
+                  <button id="search-again" class="ui basic button centered"></i>Search Again</button>
+                </div>
+
             </div>
                 <!-- Footer -->
             <footer>
