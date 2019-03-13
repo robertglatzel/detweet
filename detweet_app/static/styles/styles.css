@@ -143,9 +143,12 @@ body {
     margin-top: 12px;
 }
 
+
 #login-button,
 #start-button,
-#remove-all {
+#remove-all,
+#search-again,
+#send-tweet{
   font-size: 15px;
   color: #0084b4 !important;
 }
@@ -163,14 +166,18 @@ body {
 
 #login-button:hover,
 #start-button:hover,
-#remove-all:hover {
+#remove-all:hover,
+#search-again:hover,
+#send-tweet:hover{
     background-color: #00acee !important;
     color: white !important;
 }
 
 #login-button:active,
 #start-button:active,
-#remove-all:active {
+#remove-all:active,
+#search-again:active,
+#send-tweet:active{
     background-color: #0084b4 !important;
     color:white !important;
 }

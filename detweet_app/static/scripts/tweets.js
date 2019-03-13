@@ -43,12 +43,9 @@ $( document ).ready(function() {
           $('#start-detweet-div').fadeOut('fast');
           $('#main-container').fadeIn(900);
           // flip tweet into place when it loads from jinja
-          $('.tweet')
-            .transition({
-              animation: 'horizontal flip in',
-              duration: 1500,
-            })
-          ;
+          $('.tweet').transition({
+              animation: 'horizontal flip in', duration: 1500,
+          });
       }, 6000);
     });
 
@@ -77,12 +74,10 @@ $( document ).ready(function() {
         // Send the post request back to python with the remaining id's from
         // this list.
         $('.ui.basic.modal').modal('hide');
-        $('.instructions, #enclosure, #up-div').fadeOut(3000, function() {
+        $('.instructions, #enclosure, #up-div').fadeOut(2000, function() {
             $('body').css('background', '#ddd6f3');
         });
-        $('#search-again-div').fadeIn(6000, function() {
-            return true;
-        })
+        /*
         $.ajax({
             url: "http://localhost:5000/delete_tweets",
             type: "POST",
@@ -100,6 +95,14 @@ $( document ).ready(function() {
                 console.log(error);
             }
         });
+        */
+
+        setTimeout(function() {
+            $('#search-again-div').transition({
+                animation: 'drop', duration: 500
+            });
+        }, 2000);
+
         console.log("Id list after remove clicked: " + idList);
     });
 

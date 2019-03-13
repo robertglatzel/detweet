@@ -20,7 +20,6 @@ def index():
         return redirect(url_for('twitter.login'))
 
     resp = twitter.get("account/verify_credentials.json")
-    print(resp.json())
     session['img'] = resp.json()['profile_image_url_https']
     screen_name = resp.json()['screen_name']
     return redirect(url_for('tweet_page', username=screen_name))
