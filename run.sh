@@ -11,5 +11,5 @@ if [ ! -d detweet_env ]; then
     echo "Installed all dependencies in virtual environment.."
 else
     source detweet_env/bin/activate
-fi 
+fi
 flask run --host=0.0.0.0
