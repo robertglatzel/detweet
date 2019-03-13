@@ -36,6 +36,9 @@ body {
     width: 170px;
 }
 
+#logout-box-top {
+
+}
 /* Reposition welcome message based on screen size */
 @media (max-width: 700px) {
     #welcome h3 {
@@ -148,7 +151,8 @@ body {
 #start-button,
 #remove-all,
 #search-again,
-#send-tweet{
+#send-tweet,
+#logout-button {
   font-size: 15px;
   color: #0084b4 !important;
 }
@@ -168,7 +172,8 @@ body {
 #start-button:hover,
 #remove-all:hover,
 #search-again:hover,
-#send-tweet:hover{
+#send-tweet:hover,
+#logout-button:hover {
     background-color: #00acee !important;
     color: white !important;
 }
@@ -177,7 +182,8 @@ body {
 #start-button:active,
 #remove-all:active,
 #search-again:active,
-#send-tweet:active{
+#send-tweet:active,
+#logout-button:active {
     background-color: #0084b4 !important;
     color:white !important;
 }
@@ -270,5 +276,6 @@ footer {
 }
 
 #divide {
-    margin: 0;
+    width: 70%;
+    margin: 0 auto;
 }

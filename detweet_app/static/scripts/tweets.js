@@ -1,10 +1,23 @@
 $( document ).ready(function() {
+    //List containing all the tweet id's that have been flagged and will be rendered to the page.
     let idList = [];
 
+/* ============ SEARCH BAR ============ */
+    // Toggles the search box. When search box is toggled, it allows user to enter a search paramater.
+    // That paramater will be passed to the function, overriding the detweet.
+    $('#selection-toggle').click(function() {
+        $( "#search-box" ).toggleClass('focus disabled');
+    });
+
+    // Reset search box input value when page reloads.
+    $('#search-box input').val('');
+/* ============ SEARCH BAR END ============ */
+
+/* ============ START BUTTON ============ */
     // Sends out the request with an optional search param.
     $('#start-button').click(function () {
-      let searchTerms = $('#search-box input').val();
-      let searchArr = searchTerms.split(" ");
+      let userSearch = $('#search-box input').val();
+      let searchArr = userSearch.split(" ");
       $.ajax({
         url: "http://localhost:5000/get_tweets",
         type: "POST",
@@ -16,6 +29,7 @@ $( document ).ready(function() {
         data: JSON.stringify(searchArr),
         contentType: "application/json; charset=utf-8",
         success: function(result){
+            //on success, loop through the returned list and extract the tweet id and the text, append it to the page.
             result.forEach(function(el) {
                 let tweetId = Object.keys(el)[0];
                 idList.push(tweetId);
@@ -42,16 +56,16 @@ $( document ).ready(function() {
       setTimeout(function(){
           $('#start-detweet-div').fadeOut('fast');
           $('#main-container').fadeIn(900);
-          // flip tweet into place when it loads from jinja
+          // flip tweet into place when loaded
           $('.tweet').transition({
               animation: 'horizontal flip in', duration: 1500,
           });
       }, 6000);
     });
+/* ============ START BUTTON END ============ */
 
-    // This function is for removing tweets from the list of all
-    // tweets that are to be deleted. The array containing all the Tweets
-    // will be updated.
+/* ============ KEEP BUTTON ============ */
+    // This function is for keeping tweets by removing them from the list of all tweets that are to be deleted.
     $('#enclosure').on('click', '.keep-tweet', function() {
         $(this).parent().fadeOut(1000, function() {
             let id = $(this).prop('id');
@@ -63,11 +77,18 @@ $( document ).ready(function() {
             console.log(idList);
         });
     });
+/* ============ KEEP BUTTON END ============ */
 
+/* ============ REMOVE BUTTON ============ */
     // Triggers the confirmation or cancelation screen to delete tweets
     $('#remove-all').click(function() {
         $('.ui.basic.modal').modal('show');
-    })
+    });
+
+    // cancel button to back out of deleting tweets.
+    $('#cancel').click(function() {
+        $('.ui.basic.modal').modal('hide');
+    });
 
     //Actual removal of tweets once the user confrims.
     $('#remove').click(function() {
@@ -77,7 +98,6 @@ $( document ).ready(function() {
         $('.instructions, #enclosure, #up-div').fadeOut(2000, function() {
             $('body').css('background', '#ddd6f3');
         });
-        /*
         $.ajax({
             url: "http://localhost:5000/delete_tweets",
             type: "POST",
@@ -95,33 +115,21 @@ $( document ).ready(function() {
                 console.log(error);
             }
         });
-        */
-
+        //Brings in the seach again / tweet out supoort menu. On a delay so the other box fades out first.
         setTimeout(function() {
             $('#search-again-div').transition({
                 animation: 'drop', duration: 500
             });
         }, 2000);
-
         console.log("Id list after remove clicked: " + idList);
     });
+/* ============ REMOVE BUTTON END ============ */
 
-    // cancel button to back out of deleting tweets.
-    $('#cancel').click(function() {
-        $('.ui.basic.modal').modal('hide');
-    });
-
+/* ============ SCROLL TO TOP BUTTON ============ */
     // Scroll to the top button animation.
     $("a[href='#top']").click(function() {
       $("html, body").animate({ scrollTop: 0 }, "slow");
       return false;
     });
-
-    // Toggles the search bar. When search bar is toggled, it allows user to enter a search paramater. That paramater will be passed to the function, overriding the detweet.
-    $('#selection-toggle').click(function() {
-        $( "#search-box" ).toggleClass('focus disabled');
-    });
-
-    // Reset searchbox input value when page reloads.
-    $('#search-box input').val('');
+/* ============ SCROLL TO TOP BUTTON END ============ */
 });
