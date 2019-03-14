@@ -25,18 +25,32 @@
             <div id="content-wrap">
                 <!-- Menu -->
                 <div class="ui borderless menu">
-                  <a class="item" href="#">
-                    <img class="logo" src="../static/images/detweet logo_larger_square.png"></a>
+                  <a class="item" href="#"><img class="logo" src="../static/images/detweet logo_larger_square.png"></a>
                   <div id="welcome">
+                      <h3>deTweet</h3>
                   </div>
                   <div id="logout-box-top" class="item">
                     <a href="#"><button id="logout-button" class="ui basic button">Logout</button></a>
                   </div>
                 </div>
                 <!-- Logo -->
-                <div class="logo-div">
-                    <img id="logo-large" class="ui center aligned header logo hvr-bob" src= {{ img }}>
-                    <h1 id="logo-text">{{ username }}</h1>
+                <div class="user-profile-div instructions">
+                    <div id="profile-content" class="ui unstackable items">
+                      <div class="item">
+                        <div class="image">
+                          <img id="user-image-large" class="ui center aligned header logo" src= {{ img }}>
+                        </div>
+                        <div class="content">
+                          <p class="header">@{{ username }}</p>
+                          <div class="description">
+                            <p>{{ info }} </p>
+                          </div>
+                          <div class="extra">
+                            Total flagged tweets: <span></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 </div>
                 <!-- Start detweet -->
                 <div id="start-detweet-div" class="instructions">
