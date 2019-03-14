@@ -1,6 +1,17 @@
 $( document ).ready(function() {
-    //List containing all the tweet id's that have been flagged and will be rendered to the page.
+    // List containing all the tweet id's that have been flagged and will be rendered to the page.
     let idList = [];
+
+/* ============ ENTER KEY START ============ */
+    // Trigger start button keypress on enter.
+    $(document).keypress(function(e) {
+        var key = e.which;
+        if(key == 13) {
+            $('#start-button').click();
+            return false;
+        }
+    })
+/* ============ ENTER KEY START END ============ */
 
 /* ============ SEARCH BAR ============ */
     // Toggles the search box. When search box is toggled, it allows user to enter a search paramater.
@@ -18,8 +29,9 @@ $( document ).ready(function() {
     $('#start-button').click(function () {
       let userSearch = $('#search-box input').val();
       let searchArr = userSearch.split(" ");
-      //Loading circle after clicking start. On a delay timer to load the content.
+      // Loading circle after clicking start. On a delay timer to load the content.
       $('#load-circle').addClass('active');
+      // Get the tweets from the api
       $.ajax({
         url: "http://localhost:5000/get_tweets",
         type: "POST",
@@ -31,7 +43,7 @@ $( document ).ready(function() {
         data: JSON.stringify(searchArr),
         contentType: "application/json; charset=utf-8",
         success: function(result){
-            //on success, loop through the returned list and extract the tweet id and the text, append it to the page.
+            // On success, loop through the returned list and extract the tweet id and the text, append it to the page.
             if (result.length != 0) {
                 result.forEach(function(el) {
                     let tweetId = Object.keys(el)[0];
@@ -48,7 +60,7 @@ $( document ).ready(function() {
                             </div>
                          </div>`);
                 });
-                //Loads tweets into the page.
+                // Loads tweets into the page.
                 setTimeout(function(){
                     $('#start-detweet-div').fadeOut('fast');
                     $('#main-container').fadeIn(900);
@@ -58,10 +70,9 @@ $( document ).ready(function() {
                         animation: 'horizontal flip in', duration: 1500
                     });
                 }, 6000);
-                //Loads the no results elements.
+                // Loads the 'no results' search element on to the page.
             } else if (result.length == 0){
                 setTimeout(function(){
-                    console.log("Result is 0");
                     $('#start-detweet-div').fadeOut(100);
                     $('#no-results-div').transition({
                         animation: 'drop', duration: 900
@@ -77,8 +88,8 @@ $( document ).ready(function() {
 /* ============ START BUTTON END ============ */
 
 /* ============ SEARCH AGAIN BUTTON ============ */
-    //This functions is for when the search again button is pressed. The page has to
-    //remove some classes to reset like above.
+    // This functions is for when the search again button is pressed. The page has to
+    // remove some classes to reset like above.
     $('#search-again-r').click(function() {
         $('#load-circle').removeClass('active');
         $('#start-detweet-div').fadeIn(100);
@@ -92,7 +103,6 @@ $( document ).ready(function() {
         $('#no-results-div').removeClass('transition visible');
         $('#no-results-div').attr('style', '');
     });
-
 /* ============ SEARCH AGAIN BUTTON END ============ */
 
 /* ============ KEEP BUTTON ============ */
@@ -105,6 +115,7 @@ $( document ).ready(function() {
                 idList.splice(idIndex, 1);
             }
             $(this).parent().remove();
+            // If there are no elements left to keep, show the search again option with custom text.
             if (idList.length == 0){
                 $('#search-again-div p').text("Looks like there are no tweets left to delete. Thank you for using deTweet!");
                 $('#main-container').fadeOut(200);
@@ -130,7 +141,7 @@ $( document ).ready(function() {
         $('.ui.basic.modal').modal('hide');
     });
 
-    //Actual removal of tweets once the user confrims.
+    // Actual removal of tweets once the user confrims.
     $('#remove').click(function() {
         // Send the post request back to python with the remaining id's from
         // this list.
@@ -138,6 +149,7 @@ $( document ).ready(function() {
         $('.instructions, #enclosure, #up-div').fadeOut(2000, function() {
             $('body').css('background', '#ddd6f3');
         });
+        // Sending post request back to the api to delete tweets.
         $.ajax({
             url: "http://localhost:5000/delete_tweets",
             type: "POST",
@@ -155,7 +167,7 @@ $( document ).ready(function() {
                 console.log(error);
             }
         });
-        //Brings in the seach again / tweet out supoort menu. On a delay so the other box fades out first.
+        // Brings in the seach again / tweet out supoort menu. On a delay so the other box fades out first.
         setTimeout(function() {
             $('#search-again-div p').text("Thank you for using deTweet! Your tweets have been deTweeted! Please give your profile a moment to register the changes.");
             $('#search-again-div').transition({
