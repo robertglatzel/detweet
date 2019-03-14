@@ -25,12 +25,6 @@ body {
     margin: 0 auto;
 }
 
-#welcome h3 {
-    padding: 0 20px;
-    margin-top: 16px;
-    margin-left: 100px;
-}
-
 /* twitter follow box in menu */
 #follow-box-top {
     width: 170px;
@@ -143,9 +137,14 @@ body {
     margin-top: 12px;
 }
 
+
 #login-button,
 #start-button,
-#remove-all {
+#remove-all,
+#search-again-r,
+#search-again-nr,
+#send-tweet,
+#logout-button {
   font-size: 15px;
   color: #0084b4 !important;
 }
@@ -163,14 +162,22 @@ body {
 
 #login-button:hover,
 #start-button:hover,
-#remove-all:hover {
+#remove-all:hover,
+#search-again-r:hover,
+#search-again-nr:hover,
+#send-tweet:hover,
+#logout-button:hover {
     background-color: #00acee !important;
     color: white !important;
 }
 
 #login-button:active,
 #start-button:active,
-#remove-all:active {
+#remove-all:active,
+#search-again-r:active,
+#search-again-nr:active,
+#send-tweet:active,
+#logout-button:active {
     background-color: #0084b4 !important;
     color:white !important;
 }
@@ -191,6 +198,10 @@ body {
     background: linear-gradient(to right, #86fde8, #acb6e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+#no-results-div,
+#search-again-div {
+    display: none;
+}
 /* END Instruction box */
 
 /* Side button to scroll to top of page */
@@ -250,7 +261,6 @@ body {
 }
 /* END Keep Tweet button */
 
-
 footer {
   bottom: 0;
   position: absolute;
@@ -260,5 +270,6 @@ footer {
 }
 
 #divide {
-    margin: 0;
+    width: 70%;
+    margin: 0 auto;
 }
