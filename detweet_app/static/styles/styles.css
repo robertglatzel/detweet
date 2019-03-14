@@ -102,6 +102,15 @@ body {
     font-size: 14px;
 }
 
+.content {
+    margin-top: 15px !important;
+}
+
+@media (max-width: 450px) {
+    .content {
+        margin-top: 0 !important;
+    }
+}
 /* END profle div */
 
 
