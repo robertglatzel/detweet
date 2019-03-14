@@ -1,7 +1,7 @@
 $( document ).ready(function() {
     // List containing all the tweet id's that have been flagged and will be rendered to the page.
     let idList = [];
-
+    
 /* ============ ENTER KEY START ============ */
     // Trigger start button keypress on enter.
     $(document).keypress(function(e) {
@@ -10,7 +10,7 @@ $( document ).ready(function() {
             $('#start-button').click();
             return false;
         }
-    })
+    });
 /* ============ ENTER KEY START END ============ */
 
 /* ============ SEARCH BAR ============ */
