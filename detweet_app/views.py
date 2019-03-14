@@ -1,61 +1,75 @@
 #!/usr/bin/python3
 """ Script to start a Flask web application """
 
-from detweet_app import app, twitter_bp, login_manager, login_user, logout_user, db
-from flask import jsonify, redirect, render_template, request, url_for, session
+from detweet_app import app, db, User, OAuth
+from flask import jsonify, redirect, render_template, request, url_for, session, flash
 from flask_cors import CORS
 from flask_dance.consumer import oauth_authorized
+from flask_dance.consumer.storage.sqla import SQLAlchemyStorage
 from flask_dance.contrib.twitter import twitter
 from .deTweet import get_all_tweets, delete_tweets
+from flask_dance.contrib.twitter import make_twitter_blueprint
+from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 import re
 
+twitter_bp = make_twitter_blueprint(redirect_to='index')
+twitter_bp.storage = SQLAlchemyStorage(OAuth, db.session, user=current_user)
+app.register_blueprint(twitter_bp, url_prefix='/login')
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'twitter.login'
 CORS(app, resources={r"*": {"origins": "*"}})
 
+
+@login_manager.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
 #create/Login Local user on Succesful OAuth Login
-@oauth_authorized.connect_via(blueprint)
-def hubspot_logged_in(blueprint, token):
-  if not token:
-      flash("Failed to log in with twitter", category="error")
-      return False
+@oauth_authorized.connect_via(twitter_bp)
+def twitter_logged_in(twitter_bp, token):
+    print(token)
+    if not token:
+        flash("Failed to log in with twitter", category="error")
+        return False
 
-  resp = blueprint.session.get("account/verify_credentials.json")
-  if not resp.ok:
-      msg = "Failed to fetch user info from Twitter"
-      flash(msg, category="error")
-      return False
+    resp = twitter_bp.session.get("account/verify_credentials.json")
+    if not resp.ok:
+        msg = "Failed to fetch user info from Twitter"
+        flash(msg, category="error")
+        return False
 
-  twitter_info = resp.json()
-  twitter_user_id = str(twitter_info['id'])
+    twitter_info = resp.json()
+    id = str(twitter_info['id'])
 
-  # Find this OAuth token in the database, or create it
-  query = OAuth.query.filter_by(
-    provider=blueprint.name,
-    provider_user_id=twitter_user_id)
-  )
-  try:
-    oauth = query.one()
-  except NoResultFound:
-    oauth = Oauth(
-      provider=blueprint.name,
-      provider_user_id=hubspot_user_id,
-      token=token,
-    )
+    # Find this OAuth token in the database, or create it
+    query = OAuth.query.filter_by(
+    provider=twitter_bp.name,
+    provider_user_id=id)
+    try:
+        oauth = query.one()
+    except NoResultFound:
+        oauth = Oauth(
+          provider=twitter_bp.name,
+          provider_user_id=hubspot_user_id,
+          token=token,
+        )
 
-  if oauth.user:
-    login_user(oauth.user)
-    flash("Successfully signed in with Twitter")
-  else:
-    # Create a new local user account for this user
-    user = User(
-      # Remember that 'email' can be None, if the user declines
-      username=twitter_info["screen_name"]
-      id = twitter_info['id']
-    )
-    oauth.user = user
-    db.session.add_all([user, oauth])
-    db.session.commit()
-    login_user(user)
-    flash("Successfully signed in with hubspot")
+    if oauth.user:
+        login_user(oauth.user)
+        flash("Successfully signed in with Twitter")
+    else:
+        # Create a new local user account for this user
+        user = User(
+        # Remember that 'email' can be None, if the user declines
+            username=twitter_info["screen_name"], 
+            id = twitter_info['id']
+            )
+        oauth.user = user
+        db.session.add_all([user, oauth])
+        db.session.commit()
+        login_user(user)
+        flash("Successfully signed in with hubspot")
 
     return False
 
