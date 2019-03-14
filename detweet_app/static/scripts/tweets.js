@@ -1,7 +1,7 @@
 $( document ).ready(function() {
     // List containing all the tweet id's that have been flagged and will be rendered to the page.
     let idList = [];
-    
+
 /* ============ ENTER KEY START ============ */
     // Trigger start button keypress on enter.
     $(document).keypress(function(e) {
@@ -19,7 +19,6 @@ $( document ).ready(function() {
     $('#selection-toggle').click(function() {
         $( "#search-box" ).toggleClass('focus disabled');
     });
-
     // Reset search box input value when page reloads.
     $('#search-box input').val('');
 /* ============ SEARCH BAR END ============ */
