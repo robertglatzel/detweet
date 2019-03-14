@@ -48,16 +48,18 @@ $( document ).ready(function() {
                             </div>
                          </div>`);
                 });
+                //Loads tweets into the page.
                 setTimeout(function(){
                     $('#start-detweet-div').fadeOut('fast');
                     $('#main-container').fadeIn(900);
+                    $('#instruction-box, #enclosure, #up-div').show();
                     // flip tweet into place when loaded
                     $('.tweet').transition({
                         animation: 'horizontal flip in', duration: 1500
                     });
                 }, 6000);
-            }
-            else if (result.length == 0){
+                //Loads the no results elements.
+            } else if (result.length == 0){
                 setTimeout(function(){
                     console.log("Result is 0");
                     $('#start-detweet-div').fadeOut(100);
@@ -74,7 +76,24 @@ $( document ).ready(function() {
     });
 /* ============ START BUTTON END ============ */
 
+/* ============ SEARCH AGAIN BUTTON ============ */
+    //This functions is for when the search again button is pressed. The page has to
+    //remove some classes to reset like above.
+    $('#search-again-r').click(function() {
+        $('#load-circle').removeClass('active');
+        $('#start-detweet-div').fadeIn(100);
+        $('#search-again-div').removeClass('transition visible');
+        $('#search-again-div').attr('style', '');
+    });
 
+    $('#search-again-nr').click(function() {
+        $('#load-circle').removeClass('active');
+        $('#start-detweet-div').fadeIn(100);
+        $('#no-results-div').removeClass('transition visible');
+        $('#no-results-div').attr('style', '');
+    });
+
+/* ============ SEARCH AGAIN BUTTON END ============ */
 
 /* ============ KEEP BUTTON ============ */
     // This function is for keeping tweets by removing them from the list of all tweets that are to be deleted.
@@ -86,6 +105,15 @@ $( document ).ready(function() {
                 idList.splice(idIndex, 1);
             }
             $(this).parent().remove();
+            if (idList.length == 0){
+                $('#search-again-div p').text("Looks like there are no tweets left to delete. Thank you for using deTweet!");
+                $('#main-container').fadeOut(200);
+                setTimeout(function() {
+                    $('#search-again-div').transition({
+                        animation: 'drop', duration: 900
+                    });
+                }, 500);
+            }
             console.log(idList);
         });
     });
@@ -129,6 +157,7 @@ $( document ).ready(function() {
         });
         //Brings in the seach again / tweet out supoort menu. On a delay so the other box fades out first.
         setTimeout(function() {
+            $('#search-again-div p').text("Thank you for using deTweet! Your tweets have been deTweeted! Please give your profile a moment to register the changes.");
             $('#search-again-div').transition({
                 animation: 'drop', duration: 500
             });
@@ -144,8 +173,6 @@ $( document ).ready(function() {
       return false;
     });
 /* ============ SCROLL TO TOP BUTTON END ============ */
-
-
 
 
 });

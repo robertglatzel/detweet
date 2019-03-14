@@ -25,7 +25,6 @@ body {
     margin: 0 auto;
 }
 
-
 /* twitter follow box in menu */
 #follow-box-top {
     width: 170px;
@@ -142,7 +141,8 @@ body {
 #login-button,
 #start-button,
 #remove-all,
-#search-again,
+#search-again-r,
+#search-again-nr,
 #send-tweet,
 #logout-button {
   font-size: 15px;
@@ -163,7 +163,8 @@ body {
 #login-button:hover,
 #start-button:hover,
 #remove-all:hover,
-#search-again:hover,
+#search-again-r:hover,
+#search-again-nr:hover,
 #send-tweet:hover,
 #logout-button:hover {
     background-color: #00acee !important;
@@ -173,7 +174,8 @@ body {
 #login-button:active,
 #start-button:active,
 #remove-all:active,
-#search-again:active,
+#search-again-r:active,
+#search-again-nr:active,
 #send-tweet:active,
 #logout-button:active {
     background-color: #0084b4 !important;
