@@ -25,6 +25,12 @@ body {
     margin: 0 auto;
 }
 
+#welcome h3 {
+    margin-top: 13px;
+    margin-left: 50px;
+    font-size: 30px;
+}
+
 /* twitter follow box in menu */
 #follow-box-top {
     width: 170px;
@@ -47,13 +53,14 @@ body {
 }
 
 .logo {
-    border-radius: 50%;
+    border-radius: 50% !important;
 }
 
 .logo-div {
     text-align: center;
     margin-bottom: 25px;
 }
+
 
 #logo-text {
     color: white;
@@ -64,6 +71,39 @@ body {
     margin-top: -10px;
 }
 /* END logo related */
+
+/* profile div */
+
+.user-profile-div {
+    margin: 0 auto;
+    margin-bottom: 25px;
+    margin-top: 50px !important;
+    max-width: 500px !important;
+    text-align: left !important;
+}
+
+#user-image-large {
+    width: 150px;
+}
+
+.image {
+    width: auto !important;
+}
+
+#profile-content {
+    padding: 5px;
+    min-height: 130px;
+}
+
+.description {
+    margin: 0 !important;
+}
+.description p {
+    font-size: 14px;
+}
+
+/* END profle div */
+
 
 
 /* Contains all tweets and buttons for the program. Hidden by default */
@@ -273,3 +313,18 @@ footer {
     width: 70%;
     margin: 0 auto;
 }
+
+
+
+
+#a {
+  display: block;
+}
+
+#a:hover + #b {
+  display:block !important;
+}
+
+#b {
+  display:none;
+  }

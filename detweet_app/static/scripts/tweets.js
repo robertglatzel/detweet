@@ -10,7 +10,7 @@ $( document ).ready(function() {
             $('#start-button').click();
             return false;
         }
-    })
+    });
 /* ============ ENTER KEY START END ============ */
 
 /* ============ SEARCH BAR ============ */
@@ -19,7 +19,6 @@ $( document ).ready(function() {
     $('#selection-toggle').click(function() {
         $( "#search-box" ).toggleClass('focus disabled');
     });
-
     // Reset search box input value when page reloads.
     $('#search-box input').val('');
 /* ============ SEARCH BAR END ============ */
@@ -43,6 +42,8 @@ $( document ).ready(function() {
         data: JSON.stringify(searchArr),
         contentType: "application/json; charset=utf-8",
         success: function(result){
+            let flagged_ct = result.length;
+            $('.extra span').text(flagged_ct);
             // On success, loop through the returned list and extract the tweet id and the text, append it to the page.
             if (result.length != 0) {
                 result.forEach(function(el) {
@@ -50,7 +51,7 @@ $( document ).ready(function() {
                     idList.push(tweetId);
                     let tweetText = el[tweetId];
                     $('#enclosure').append(
-                        `<div class="column hvr-grow">
+                        `<div class="column">
                             <div id="${tweetId}" class="tweet ui segment">
                                 <div class="top">
                                     <p>You tweeted:</p>
