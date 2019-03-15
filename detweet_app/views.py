@@ -47,5 +47,13 @@ def tweet_deleter():
     ret_status = delete_tweets(twitter, request)
     return jsonify(ret_status)
 
+@app.route('/logout')
+def session_logout():
+    """ Deletes the OAuth token from the database and redirects the user
+        to the serve_login_page view
+    """
+    twitter_bp.storage.delete(twitter_bp)
+    return redirect(url_for('serve_login_page'))
+
 if __name__ == '__main__':
     app.run('0.0.0.0', 5000)
