@@ -22,16 +22,17 @@ def index():
 @app.route('/authorize')
 def authorize():
     token = oauth.twitter.authorize_access_token()
+    user_id = token['user_id']
     name = token['screen_name']
     oauth_token = token['oauth_token']
     oauth_token_secret = token['oauth_token_secret']
     oauth_entry = OAuth1Token(
+            user_id = user_id,
             name = name,
             oauth_token = oauth_token,
             oauth_token_secret = oauth_token_secret
             )
-    db.session.add(oauth_entry)
-    db.session.commit()
+    oauth_entry.save()
     return redirect(url_for('tweet_page'))
 
 @app.route('/tweet_page')

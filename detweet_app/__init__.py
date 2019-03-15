@@ -1,28 +1,26 @@
 #!/usr/bin/python3
 from flask import Flask
 from authlib.flask.client import OAuth
-from flask_sqlalchemy import SQLAlchemy
+from flask.ext.mongoalchemy import MongoAlchemy
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('config.py')
+app.config['MONGOALCHEMY_DATABASE'] = 'detweet'
 app.url_map.strict_slashes = False
 
-db = SQLAlchemy(app)
+db = MongoAlchemy(app)
 
-class OAuth1Token(db.Model):
-    user_id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(20), nullable=False)
-
-    oauth_token = db.Column(db.String(100), nullable=False)
-    oauth_token_secret = db.Column(db.String(100))
+class OAuth1Token(db.Document):
+    user_id = db.IntField()
+    name = db.StringField()
+    oauth_token = db.StringField()
+    oauth_token_secret = db.StringField()
 
     def to_token(self):
         return dict(
             oauth_token=self.access_token,
             oauth_token_secret=self.alt_token,
         )
-
-db.create_all()
 
 class Cache(object):
     def __init__(self):
