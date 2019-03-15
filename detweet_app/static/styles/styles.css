@@ -288,6 +288,7 @@ body {
 .tweet {
     background: rgba(255, 255, 255, 0.8) !important;
     border-color: #0084b4 !important;
+    width: 100% !important;
 }
 .top {
     background-color: #00acee  !important;
@@ -303,21 +304,12 @@ body {
 
 /* Keep Tweet button */
 .keep-tweet {
-    float: right;
-    margin-top: -24px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: black;
+    float: right !important;
+    margin-right: auto !important;
+    margin-top: -26px !important;
+    font-size: 10px !important;
 }
 
-.keep-tweet:hover {
-    color: white;
-}
-
-.keep-tweet i {
-    margin: 0;
-}
 /* END Keep Tweet button */
 
 footer {

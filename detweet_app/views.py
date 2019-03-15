@@ -18,7 +18,6 @@ def serve_login_page():
 def index():
     if not twitter.authorized:
         return redirect(url_for('twitter.login'))
-
     resp = twitter.get("account/verify_credentials.json")
     session['img'] = resp.json()['profile_image_url_https']
     screen_name = resp.json()['screen_name']

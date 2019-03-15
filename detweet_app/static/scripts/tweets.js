@@ -52,11 +52,11 @@ $( document ).ready(function() {
                     let tweetText = el[tweetId];
                     $('#enclosure').append(
                         `<div class="column">
-                            <div id="${tweetId}" class="tweet ui segment">
+                            <div id="${tweetId}" class="tweet ui segment hvr-float-shadow">
                                 <div class="top">
                                     <p>You tweeted:</p>
                                 </div>
-                                <button class="keep-tweet hvr-pulse-grow" title="Keep me!"><i class="check circle icon"></i></button>
+                                <button class="keep-tweet ui button violet hvr-pulse-grow" title="Keep me!">Keep me</button>
                                 <p class="tweet-text">${tweetText}</p>
                             </div>
                          </div>`);
