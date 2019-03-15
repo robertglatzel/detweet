@@ -43,7 +43,7 @@ $( document ).ready(function() {
         contentType: "application/json; charset=utf-8",
         success: function(result){
             let flagged_ct = result.length;
-            $('.extra span').text(flagged_ct);
+            $('.extra span').text("Total flagged tweets: " + flagged_ct);
             // On success, loop through the returned list and extract the tweet id and the text, append it to the page.
             if (result.length != 0) {
                 result.forEach(function(el) {
@@ -146,8 +146,10 @@ $( document ).ready(function() {
     $('#remove').click(function() {
         // Send the post request back to python with the remaining id's from
         // this list.
+
+        $('.extra span').text("Total deTweets: " + idList.length);
         $('.ui.basic.modal').modal('hide');
-        $('.instructions, #enclosure, #up-div').fadeOut(2000, function() {
+        $('#instruction-box, #enclosure, #up-div').fadeOut(2000, function() {
             $('body').css('background', '#ddd6f3');
         });
         // Sending post request back to the api to delete tweets.

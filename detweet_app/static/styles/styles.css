@@ -52,7 +52,7 @@ body {
 /* Logo related */
 #logo-large {
     margin-top: 30px;
-    width: 150px;
+    width: 180px;
 }
 
 #logo-large-404 {
@@ -332,18 +332,3 @@ footer {
     width: 70%;
     margin: 0 auto;
 }
-
-
-
-
-#a {
-  display: block;
-}
-
-#a:hover + #b {
-  display:block !important;
-}
-
-#b {
-  display:none;
-  }
