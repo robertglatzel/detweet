@@ -10,7 +10,7 @@ app.url_map.strict_slashes = False
 db = SQLAlchemy(app)
 
 class OAuth1Token(db.Model):
-    user_id = db.Column(db.Integer, auto_increment=True, primary_key = True)
+    user_id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(20), nullable=False)
 
     oauth_token = db.Column(db.String(100), nullable=False)
