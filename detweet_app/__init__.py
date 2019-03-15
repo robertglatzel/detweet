@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from flask import Flask
 from authlib.flask.client import OAuth
-from flask.ext.mongoalchemy import MongoAlchemy
+from flask_mongoalchemy import MongoAlchemy
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('config.py')
@@ -18,8 +18,8 @@ class OAuth1Token(db.Document):
 
     def to_token(self):
         return dict(
-            oauth_token=self.access_token,
-            oauth_token_secret=self.alt_token,
+            oauth_token=self.oauth_token,
+            oauth_token_secret=self.oauth_token_secret
         )
 
 class Cache(object):
@@ -35,6 +35,12 @@ class Cache(object):
     def delete(self, key):
         del self.temp_dict[key]
 
+def fetch_twitter_token():
+    item = OAuth1Token.query.filter(
+        user_id=session['name'].user_id
+    ).first()
+    return item.to_token()
+
 oauth = OAuth(app, cache=Cache())
 oauth.register(
     name='twitter',
@@ -46,6 +52,7 @@ oauth.register(
     authorize_url='https://api.twitter.com/oauth/authenticate',
     api_base_url='https://api.twitter.com/1.1/',
     client_kwargs=None,
+    fetch_token = fetch_twitter_token
 )
 
 import detweet_app.views

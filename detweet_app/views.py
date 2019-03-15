@@ -9,7 +9,6 @@ import re
 
 CORS(app, resources={r"*": {"origins": "*"}})
 
-
 @app.route('/')
 def serve_login_page():
     return render_template('login.html')
@@ -27,7 +26,7 @@ def authorize():
     oauth_token = token['oauth_token']
     oauth_token_secret = token['oauth_token_secret']
     oauth_entry = OAuth1Token(
-            user_id = user_id,
+            user_id = int(user_id),
             name = name,
             oauth_token = oauth_token,
             oauth_token_secret = oauth_token_secret
