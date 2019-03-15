@@ -17,12 +17,21 @@ def serve_login_page():
 @app.route('/login')
 def index():
     redirect_uri = url_for('authorize', _external = True)
-    print(redirect_uri)
     return oauth.twitter.authorize_redirect(redirect_uri)
 
 @app.route('/authorize')
 def authorize():
     token = oauth.twitter.authorize_access_token()
+    name = token['screen_name']
+    oauth_token = token['oauth_token']
+    oauth_token_secret = token['oauth_token_secret']
+    oauth_entry = OAuth1Token(
+            name = name,
+            oauth_token = oauth_token,
+            oauth_token_secret = oauth_token_secret
+            )
+    db.session.add(oauth_entry)
+    db.session.commit()
     return redirect(url_for('tweet_page'))
 
 @app.route('/tweet_page')
