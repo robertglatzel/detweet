@@ -12,9 +12,18 @@ def get_all_tweets(twitter_req_obj, request):
     last_tweet_id = None
     for i in range(16):
         if (last_tweet_id) is None:
-            payload = {'count': 200, 'include_rts': 1, 'tweet_mode':'extended'}
+            payload = {
+                'count': 200,
+                'include_rts': 1,
+                'tweet_mode':'extended'
+            }
         else:
-            payload = {'count': 200, 'include_rts': 1, 'max_id': last_tweet_id, 'tweet_mode':'extended'}
+            payload = {
+                'count': 200, 
+                'include_rts': 1, 
+                'max_id': last_tweet_id, 
+                'tweet_mode':'extended'
+            }
         tweet_list = twitter_req_obj.get('statuses/user_timeline.json', params=payload).json()
         last_tweet_id = tweet_list[-1].get('id')
         global_tweet_list += tweet_list
