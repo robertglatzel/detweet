@@ -9,13 +9,9 @@ app.config.from_pyfile('config.py')
 app.url_map.strict_slashes = False
 
 db = SQLAlchemy(app)
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(250), unique = True)
 
 class OAuth(OAuthConsumerMixin, db.Model):
-    user_id = db.Column(db.Integer, db.ForeignKey(User.id))
-    user = db.relationship(User)
+    pass
 db.create_all()
 
 twitter_bp = make_twitter_blueprint(redirect_to='index')
