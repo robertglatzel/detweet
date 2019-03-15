@@ -20,12 +20,13 @@ def index():
         return redirect(url_for('twitter.login'))
     resp = twitter.get("account/verify_credentials.json")
     session['img'] = resp.json()['profile_image_url_https']
-    screen_name = resp.json()['screen_name']
+    session['screen_name'] = resp.json()['screen_name']
     session['info'] = resp.json()['description']
-    return redirect(url_for('tweet_page', username=screen_name))
+    return redirect(url_for('tweet_page'))
 
-@app.route('/tweet_page/<username>')
-def tweet_page(username):
+@app.route('/tweet_page')
+def tweet_page():
+    username = session.get('screen_name', None)
     img = session.get('img', None)
     info = session.get('info', None)
     img = ''.join(re.split("_normal", img))
