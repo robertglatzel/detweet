@@ -1,22 +1,20 @@
 #!/usr/bin/python3
 from flask import Flask
 from authlib.flask.client import OAuth
-from sqlalchemy.ext.declarative import declarative_base
-from flask_login import UserMixin
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('config.py')
 app.url_map.strict_slashes = False
 
-Base = declarative_base()
+db = SQLAlchemy(app)
 
-class OAuth1Token(Base):
-    __tablename__ = 'OAuth1Token'
-    user_id = Column(Integer, auto_increment=True, primary_key = True)
-    name = Column(String(20), nullable=False)
+class OAuth1Token(db.Model):
+    user_id = db.Column(db.Integer, auto_increment=True, primary_key = True)
+    name = db.Column(db.String(20), nullable=False)
 
-    oauth_token = Column(String(100), nullable=False)
-    oauth_token_secret = Column(String(100))
+    oauth_token = db.Column(db.String(100), nullable=False)
+    oauth_token_secret = db.Column(db.String(100))
 
     def to_token(self):
         return dict(
@@ -51,5 +49,5 @@ oauth.register(
     api_base_url='https://api.twitter.com/1.1/',
     client_kwargs=None,
 )
-print(oauth.__dict__)
+
 import detweet_app.views
