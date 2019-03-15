@@ -9,18 +9,21 @@ app.config.from_pyfile('config.py')
 app.url_map.strict_slashes = False
 
 db = SQLAlchemy(app)
-class OAuth1Token(db.Model)
-    user_id = Column(Integer, nullable=False)
-    name = Column(String(20), nullable=False)
+class OAuth1Token(db.Model):
+    user_id = db.Column(db.Integer, nullable=False, primary_key = True)
+    name = db.Column(db.String(20), nullable=False)
 
-    oauth_token = Column(String(48), nullable=False)
-    oauth_token_secret = Column(String(48))
+    oauth_token = db.Column(db.String(48), nullable=False)
+    oauth_token_secret = db.Column(db.String(48))
 
     def to_token(self):
         return dict(
             oauth_token=self.access_token,
             oauth_token_secret=self.alt_token,
         )
+
+    def save_token(self, user_id, token):
+
 
 db.create_all()
 
@@ -31,11 +34,13 @@ class Cache(object):
     def get(self, key):
         return self.temp_dict.get(key)
 
-    def set(self, key, value, expires=None):
+    def set(self, key, value, expires=None, **kwargs):
         self.temp_dict[key] = value
 
-oauth = OAuth(app, cache = Cache())
+    def delete(self, key):
+        del self.temp_dict[key]
 
+oauth = OAuth(app, cache=Cache())
 oauth.register(
     name='twitter',
     request_token_url='https://api.twitter.com/oauth/request_token',
@@ -47,4 +52,5 @@ oauth.register(
     api_base_url='https://api.twitter.com/1.1/',
     client_kwargs=None,
 )
+print(oauth.__dict__)
 import detweet_app.views
