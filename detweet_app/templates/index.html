@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
+        <link rel="icon" href="../static/images/detweet logo_favicon.png" type="image/gif" sizes="16x16">
         <title>detweet - Cleaning up your twitter</title>
 
         <!-- Scripts for semantic ui -->
@@ -12,42 +13,53 @@
 
         <!-- Css -->
         <link type="text/css" rel="stylesheet" href="../static/styles/styles.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover.css"/>
+        <link type="text/css" rel="stylesheet" href="../static/styles/Hover-master/css/hover-min.css">
+
         <!-- Font -->
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet">
-
     </head>
-
     <body>
         <div id="page-container">
                 <!-- Content wrapper -->
             <div id="content-wrap">
                 <!-- Menu -->
                 <div class="ui borderless menu">
-                  <a class="item" href="login.html">
-                    <img class="logo" src="../static/images/detweet logo_larger_square.png"></a>
+                  <a class="item" href="#"><img class="logo" src="../static/images/detweet logo_larger_square.png"></a>
                   <div id="welcome">
-                    <h3 class="ui header">Welcome, {{ username }}</h3>
                   </div>
-                  <div id="follow-box-top" class="item">
-                    <a href="https://twitter.com/detweet_app?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @detweet_app</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  <div id="logout-box-top" class="item">
+                    <a href="http://localhost:5000/logout"><button id="logout-button" class="ui basic button">Logout</button></a>
                   </div>
                 </div>
                 <!-- Logo -->
-                <div class="logo-div">
-                    <img id="logo-large" class="ui center aligned header logo hvr-bob" src="../static/images/detweet logo_larger_square.png">
-                    <h1 id="logo-text">deTweet</h1>
+                <div class="user-profile-div instructions">
+                    <div id="profile-content" class="ui unstackable items">
+                      <div class="item">
+                        <div class="image">
+                          <img id="user-image-large" class="ui center aligned header logo" src= {{ img }}>
+                        </div>
+                        <div class="content">
+                          <p class="header">@{{ username }}</p>
+                          <div class="description">
+                            <p>{{ info }} </p>
+                          </div>
+                          <div class="extra">
+                            <span></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 </div>
                 <!-- Start detweet -->
                 <div id="start-detweet-div" class="instructions">
                     <!--Loading circle -->
                     <div id="load-circle" class="ui dimmer">
-                      <div class="ui text loader">Filtering...</div>
+                      <div class="ui text loader">Searching...</div>
                     </div>
 
                       <p>To begin filtering tweets against <strong>deTweet's</strong> database, please click the start button. Or enter a custom search term that you would like to filter against.</p>
-                      <button id="start-button"class="ui black basic button centered"></i>Start</button>
+                      <button id="start-button"class="ui basic button centered"></i>Start</button>
                       <div id="selection-toggle" class="ui slider checkbox">
                         <input type="checkbox">
                         <label></label>
@@ -58,22 +70,18 @@
                 </div>
                 <!-- main container -->
                 <div id="main-container">
-                  <div class="instructions">
-                      <p>If you see a tweet that you would like to keep, click the <i class="check circle icon"></i>.<br> When you're ready to delete all flagged tweets, just click the button below. </p>
+                  <div id="instruction-box" class="instructions">
+                      <p>If you see a tweet that you would like to keep, click the 'Keep me' button.<br> When you're ready to delete all flagged tweets, just click the button below. </p>
                       <div class="remove-button">
-                          <button id="remove-all"class="ui black basic button centered">Remove All Flagged Tweets</button>
+                          <button id="remove-all"class="ui basic button centered">Remove All Flagged Tweets</button>
                       </div>
                   </div>
 
                   <div id="confirm" class="ui basic modal">
                       <p>Are you sure you want to delete all tweets?
                           <br> This action is irreversiable.</p>
-                      <button id="remove"class="ui black basic button">deTweet</button>
-                      <button id="cancel" class="ui black basic button">On second thought...</button>
-                  </div>
-
-                  <div id="search-again-div" class="instructions">
-                    <button id="search-again"class="ui black basic button centered"></i>Search Again</button>
+                      <button id="remove"class="ui basic button">deTweet</button>
+                      <button id="cancel" class="ui basic button">On second thought...</button>
                   </div>
 
                   <div id="up-div">
@@ -81,24 +89,35 @@
                         </button></a>
                   </div>
 
-                  <div id="enclosure" class="ui three column stackable grid container"></div>
-
+                  <div id="enclosure" class="ui three column stackable grid container">
+                  </div>
 
                 </div>
+
+                <div id="no-results-div" class="instructions">
+                  <p>Looks like we didn't find any matches. Want to try again?</p>
+                  <button id="search-again-nr" class="ui basic button centered"></i>Search Again</button>
+                </div>
+
+                <div id="search-again-div" class="instructions">
+                  <p>Thank you for using deTweet! Your tweets have been deTweeted! Please give your profile a moment to register the changes.</p>
+                  <button id="search-again-r" class="ui basic button centered"></i>Search Again</button>
+                  <a href=" https://twitter.com/intent/tweet?via=detweet_app&text=Thank%20you%20deTweet%20for%20helping%20me%20clean%20up%20my%20twitter%20account%21%20%3C3&hashtags=detweet%2Ccleanse%2Capp"><button id="send-tweet" class="ui basic button centered">Tweet about us!</button></a>
+                </div>
+
             </div>
                 <!-- Footer -->
             <footer>
               <div class="ui center aligned container">
                   <div class="follow-div">
-                      <h4 class="ui center aligned header">Follow the developers</h4>
+                      <h4 class="ui center aligned header">Connect with the developers</h4>
+                      <a href="https://twitter.com/detweet_app?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @detweet_app</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                       <a href="https://twitter.com/rglatzell?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @rglatzell</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                       <a href="https://twitter.com/hemant_heer?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @hemant_heer</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                   </div>
                 <div id="divide" class="ui inverted section divider"></div>
                 <div class="ui horizontal small divided link list">
-                  <a class="item" href="#">Site Map</a>
                   <a class="item" href="#">Contact Us</a>
-                  <a class="item" href="#">Terms and Conditions</a>
                   <a class="item" href="#">Privacy Policy</a>
                 </div>
               </div>

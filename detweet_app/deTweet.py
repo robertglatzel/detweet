@@ -12,9 +12,18 @@ def get_all_tweets(twitter_req_obj, request):
     last_tweet_id = None
     for i in range(16):
         if (last_tweet_id) is None:
-            payload = {'count': 200, 'include_rts': 1, 'tweet_mode':'extended'}
+            payload = {
+                'count': 200,
+                'include_rts': 1,
+                'tweet_mode':'extended'
+            }
         else:
-            payload = {'count': 200, 'include_rts': 1, 'max_id': last_tweet_id, 'tweet_mode':'extended'}
+            payload = {
+                'count': 200, 
+                'include_rts': 1, 
+                'max_id': last_tweet_id, 
+                'tweet_mode':'extended'
+            }
         tweet_list = twitter_req_obj.get('statuses/user_timeline.json', params=payload).json()
         last_tweet_id = tweet_list[-1].get('id')
         global_tweet_list += tweet_list
@@ -66,12 +75,8 @@ def delete_tweets(twitter_req_obj, request):
     for tweet_id in tweet_id_list:
             try:
                 tweet_id = int(tweet_id)
-                print(tweet_id)
                 endpoint_build = "statuses/destroy/{}.json".format(tweet_id)
-                print(endpoint_build)
                 resp = twitter_req_obj.post(endpoint_build).json()
-                print(resp)
-                print()
             except:
                 print("Fail")
                 return "fail"

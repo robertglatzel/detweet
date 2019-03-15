@@ -9,11 +9,12 @@ app.config.from_pyfile('config.py')
 app.url_map.strict_slashes = False
 
 db = SQLAlchemy(app)
+
 class OAuth(OAuthConsumerMixin, db.Model):
     pass
 db.create_all()
 
-twitter_bp = make_twitter_blueprint()
+twitter_bp = make_twitter_blueprint(redirect_to='index')
 twitter_bp.storage = SQLAlchemyStorage(OAuth, db.session)
 
 app.register_blueprint(twitter_bp, url_prefix='/login')

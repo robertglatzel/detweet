@@ -26,9 +26,12 @@ body {
 }
 
 #welcome h3 {
-    padding: 0 20px;
-    margin-top: 16px;
-    margin-left: 100px;
+    margin-top: 13px;
+    margin-left: 50px;
+    font-size: 35px;
+
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
+    font-weight: 400;
 }
 
 /* twitter follow box in menu */
@@ -49,17 +52,23 @@ body {
 /* Logo related */
 #logo-large {
     margin-top: 30px;
-    width: 150px;
+    width: 180px;
+}
+
+#logo-large-404 {
+    margin-top: 140px;
+    width: 200px;
 }
 
 .logo {
-    border-radius: 50%;
+    border-radius: 50% !important;
 }
 
 .logo-div {
     text-align: center;
     margin-bottom: 25px;
 }
+
 
 #logo-text {
     color: white;
@@ -70,6 +79,48 @@ body {
     margin-top: -10px;
 }
 /* END logo related */
+
+/* profile div */
+
+.user-profile-div {
+    margin: 0 auto;
+    margin-bottom: 25px;
+    margin-top: 50px !important;
+    max-width: 500px !important;
+    text-align: left !important;
+}
+
+#user-image-large {
+    width: 150px;
+}
+
+.image {
+    width: auto !important;
+}
+
+#profile-content {
+    padding: 5px;
+    min-height: 130px;
+}
+
+.description {
+    margin: 0 !important;
+}
+.description p {
+    font-size: 14px;
+}
+
+.content {
+    margin-top: 15px !important;
+}
+
+@media (max-width: 450px) {
+    .content {
+        margin-top: 0 !important;
+    }
+}
+/* END profle div */
+
 
 
 /* Contains all tweets and buttons for the program. Hidden by default */
@@ -145,7 +196,12 @@ body {
 
 #login-button,
 #start-button,
-#remove-all {
+#remove-all,
+#search-again-r,
+#search-again-nr,
+#send-tweet,
+#logout-button,
+#button-404 {
   font-size: 15px;
   color: #0084b4 !important;
 }
@@ -163,14 +219,24 @@ body {
 
 #login-button:hover,
 #start-button:hover,
-#remove-all:hover {
+#remove-all:hover,
+#search-again-r:hover,
+#search-again-nr:hover,
+#send-tweet:hover,
+#logout-button:hover,
+#button-404:hover {
     background-color: #00acee !important;
     color: white !important;
 }
 
 #login-button:active,
 #start-button:active,
-#remove-all:active {
+#remove-all:active,
+#search-again-r:active,
+#search-again-nr:active,
+#send-tweet:active,
+#logout-button:active,
+#button-404:active {
     background-color: #0084b4 !important;
     color:white !important;
 }
@@ -191,10 +257,10 @@ body {
     background: linear-gradient(to right, #86fde8, #acb6e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+#no-results-div,
 #search-again-div {
     display: none;
 }
-
 /* END Instruction box */
 
 /* Side button to scroll to top of page */
@@ -222,6 +288,7 @@ body {
 .tweet {
     background: rgba(255, 255, 255, 0.8) !important;
     border-color: #0084b4 !important;
+    width: 100% !important;
 }
 .top {
     background-color: #00acee  !important;
@@ -237,23 +304,13 @@ body {
 
 /* Keep Tweet button */
 .keep-tweet {
-    float: right;
-    margin-top: -24px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: black;
+    float: right !important;
+    margin-right: auto !important;
+    margin-top: -26px !important;
+    font-size: 10px !important;
 }
 
-.keep-tweet:hover {
-    color: white;
-}
-
-.keep-tweet i {
-    margin: 0;
-}
 /* END Keep Tweet button */
-
 
 footer {
   bottom: 0;
@@ -264,5 +321,6 @@ footer {
 }
 
 #divide {
-    margin: 0;
+    width: 70%;
+    margin: 0 auto;
 }
