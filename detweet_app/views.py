@@ -57,5 +57,10 @@ def session_logout():
     twitter_bp.storage.delete(twitter_bp)
     return redirect(url_for('serve_login_page'))
 
+
+@app.errorhandler(404)
+def handle_error(error):
+    return render_template('404page.html'), 404
+
 if __name__ == '__main__':
     app.run('0.0.0.0', 5000)
