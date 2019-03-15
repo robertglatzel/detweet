@@ -28,7 +28,10 @@ body {
 #welcome h3 {
     margin-top: 13px;
     margin-left: 50px;
-    font-size: 30px;
+    font-size: 35px;
+
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
+    font-weight: 400;
 }
 
 /* twitter follow box in menu */
@@ -50,6 +53,11 @@ body {
 #logo-large {
     margin-top: 30px;
     width: 150px;
+}
+
+#logo-large-404 {
+    margin-top: 140px;
+    width: 200px;
 }
 
 .logo {
@@ -186,14 +194,14 @@ body {
     margin-top: 12px;
 }
 
-
 #login-button,
 #start-button,
 #remove-all,
 #search-again-r,
 #search-again-nr,
 #send-tweet,
-#logout-button {
+#logout-button,
+#button-404 {
   font-size: 15px;
   color: #0084b4 !important;
 }
@@ -215,7 +223,8 @@ body {
 #search-again-r:hover,
 #search-again-nr:hover,
 #send-tweet:hover,
-#logout-button:hover {
+#logout-button:hover,
+#button-404:hover {
     background-color: #00acee !important;
     color: white !important;
 }
@@ -226,7 +235,8 @@ body {
 #search-again-r:active,
 #search-again-nr:active,
 #send-tweet:active,
-#logout-button:active {
+#logout-button:active,
+#button-404:active {
     background-color: #0084b4 !important;
     color:white !important;
 }
