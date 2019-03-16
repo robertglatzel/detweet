@@ -37,7 +37,7 @@ body {
 #banner {
     margin-top: 6px;
     width: 200px;
-    margin-right: 20px;
+    margin-right: 36px;
 }
 
 #banner-index {
@@ -58,6 +58,12 @@ body {
         width: 160px;
         margin-left: 0 !important;
 
+    }
+    #banner {
+        margin-left: 36px;
+    }
+    #logo-corner {
+        display: none;
     }
 }
 /* END Menu */
