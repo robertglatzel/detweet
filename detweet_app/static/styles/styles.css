@@ -34,16 +34,30 @@ body {
     font-weight: 400;
 }
 
+#banner {
+    margin-top: 6px;
+    width: 200px;
+    margin-right: 20px;
+}
+
+#banner-index {
+    margin-top: 9px;
+    width: 200px;
+    margin-left: 70px;
+}
+
 /* twitter follow box in menu */
 #follow-box-top {
     width: 170px;
 }
 
 /* Reposition welcome message based on screen size */
-@media (max-width: 700px) {
-    #welcome h3 {
+@media (max-width: 500px) {
+    #banner-index {
+        margin-top: 13px;
+        width: 160px;
         margin-left: 0 !important;
-        padding: 0 10px !important;
+
     }
 }
 /* END Menu */
@@ -62,6 +76,10 @@ body {
 
 .logo {
     border-radius: 50% !important;
+}
+
+#logo-corner {
+    width: 3em;
 }
 
 .logo-div {
