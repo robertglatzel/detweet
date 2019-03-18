@@ -7,6 +7,8 @@ from flask_cors import CORS
 from flask_dance.contrib.twitter import twitter
 from .deTweet import get_all_tweets, delete_tweets
 import re
+from uuid import uuid4
+
 
 CORS(app, resources={r"*": {"origins": "*"}})
 
@@ -18,19 +20,20 @@ def serve_login_page():
 def index():
     if not twitter.authorized:
         return redirect(url_for('twitter.login'))
+    unique_id = str(uuid4())
     resp = twitter.get("account/verify_credentials.json")
     session['img'] = resp.json()['profile_image_url_https']
     session['screen_name'] = resp.json()['screen_name']
     session['info'] = resp.json()['description']
-    return redirect(url_for('tweet_page'))
+    return redirect(url_for('tweet_page', unique_id=unique_id))
 
-@app.route('/tweet_page')
-def tweet_page():
+@app.route('/tweet_page/<unique_id>')
+def tweet_page(unique_id):
     username = session.get('screen_name', None)
     img = session.get('img', None)
     info = session.get('info', None)
     img = ''.join(re.split("_normal", img))
-    return render_template('index.html', username=username, img=img, info=info)
+    return render_template('index.html', username=username, img=img, info=info, unique_id=unique_id)
 
 @app.route('/get_tweets', methods=['POST'])
 def get_tweets():
