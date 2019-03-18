@@ -34,16 +34,36 @@ body {
     font-weight: 400;
 }
 
+#banner {
+    margin-top: 6px;
+    width: 200px;
+    margin-right: 36px;
+}
+
+#banner-index {
+    margin-top: 9px;
+    width: 200px;
+    margin-left: 70px;
+}
+
 /* twitter follow box in menu */
 #follow-box-top {
     width: 170px;
 }
 
 /* Reposition welcome message based on screen size */
-@media (max-width: 700px) {
-    #welcome h3 {
+@media (max-width: 500px) {
+    #banner-index {
+        margin-top: 13px;
+        width: 160px;
         margin-left: 0 !important;
-        padding: 0 10px !important;
+
+    }
+    #banner {
+        margin-left: 36px;
+    }
+    #logo-corner {
+        display: none;
     }
 }
 /* END Menu */
@@ -62,6 +82,10 @@ body {
 
 .logo {
     border-radius: 50% !important;
+}
+
+#logo-corner {
+    width: 3em;
 }
 
 .logo-div {
@@ -141,7 +165,6 @@ body {
 /* Popup modal for deleting tweets */
 #confirm {
     text-align: center;
-    border: 1px solid #0084b4;
     border-radius: 5px;
     width: 400px;
     margin: 0 auto;
@@ -150,10 +173,7 @@ body {
     font-size: 15px;
     color: black;
 }
-/* modal cancel button */
-#cancel:hover {
-    background-color: red !important;
-}
+
 /* END Remove All button */
 
 
@@ -201,7 +221,9 @@ body {
 #search-again-nr,
 #send-tweet,
 #logout-button,
-#button-404 {
+#button-404,
+#remove,
+#cancel {
   font-size: 15px;
   color: #0084b4 !important;
 }
@@ -224,7 +246,8 @@ body {
 #search-again-nr:hover,
 #send-tweet:hover,
 #logout-button:hover,
-#button-404:hover {
+#button-404:hover,
+#remove:hover {
     background-color: #00acee !important;
     color: white !important;
 }
@@ -253,8 +276,8 @@ body {
 }
 
 .ui.slider.checkbox input:checked ~ label::before {
-    background: -webkit-linear-gradient(to right, #86fde8, #acb6e5);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #86fde8, #acb6e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to right, #86fde8, #acb6e5);
+    background: linear-gradient(to right, #86fde8, #acb6e5);
 }
 
 #no-results-div,
@@ -308,6 +331,10 @@ body {
     margin-right: auto !important;
     margin-top: -26px !important;
     font-size: 10px !important;
+    background: #4568DC !important;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #B06AB3, #4568DC) !important;  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #B06AB3, #4568DC) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 /* END Keep Tweet button */

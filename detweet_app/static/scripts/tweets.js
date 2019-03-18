@@ -43,7 +43,8 @@ $( document ).ready(function() {
         contentType: "application/json; charset=utf-8",
         success: function(result){
             let flagged_ct = result.length;
-            $('.extra span').text("Total flagged tweets: " + flagged_ct);
+            $('#count-info').text("Total flagged tweets: ");
+            $('#remaining').text(flagged_ct);
             // On success, loop through the returned list and extract the tweet id and the text, append it to the page.
             if (result.length != 0) {
                 result.forEach(function(el) {
@@ -114,6 +115,7 @@ $( document ).ready(function() {
             if (idList.includes(id)) {
                 let idIndex = idList.indexOf(id);
                 idList.splice(idIndex, 1);
+                $('#remaining').text(idList.length);
             }
             $(this).parent().remove();
             // If there are no elements left to keep, show the search again option with custom text.
@@ -146,12 +148,8 @@ $( document ).ready(function() {
     $('#remove').click(function() {
         // Send the post request back to python with the remaining id's from
         // this list.
-
-        $('.extra span').text("Total deTweets: " + idList.length);
         $('.ui.basic.modal').modal('hide');
-        $('#instruction-box, #enclosure, #up-div').fadeOut(2000, function() {
-            $('body').css('background', '#ddd6f3');
-        });
+        $('#instruction-box, #enclosure, #up-div').fadeOut(2000);
         // Sending post request back to the api to delete tweets.
         $.ajax({
             url: "http://localhost:5000/delete_tweets",
@@ -172,6 +170,8 @@ $( document ).ready(function() {
         });
         // Brings in the seach again / tweet out supoort menu. On a delay so the other box fades out first.
         setTimeout(function() {
+            $('#count-info').text("Total deTweets: ");
+            $('#remaining').text(idList.length);
             $('#search-again-div p').text("Thank you for using deTweet! Your tweets have been deTweeted! Please give your profile a moment to register the changes.");
             $('#search-again-div').transition({
                 animation: 'drop', duration: 500
