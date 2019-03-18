@@ -6,6 +6,7 @@ your career.
 """
 from flask import request
 from os.path import abspath
+import re
 
 def get_all_tweets(twitter_req_obj, request):
     global_tweet_list = []
@@ -52,16 +53,18 @@ def filter_tweets(tweets, user_filter=None):
     try:
         for tweet in tweets:
             for word in bad_words:
-                tweet_text_lower = tweet['full_text'].lower().split()
-                tweet_text_orig = tweet['full_text'].split()
+                tweet_text_lower = re.findall(r"[\w']+", tweet['full_text'].lower())
+                tweet_text_orig = re.findall(r"[\w']+", tweet['full_text'])
+#                tweet_text_lower = tweet['full_text'].lower().split()
+#                tweet_text_orig = tweet['full_text'].split()
                 if word in tweet_text_lower:
                     idx = tweet_text_lower.index(word)
                     strong_word = '<strong>{}</strong>'.format(tweet_text_orig[idx])
                     tweet_text_orig[idx] = strong_word
                     tweet_dict = {tweet.get('id'): '"{}"'.format(' '.join(tweet_text_orig))}
                     bad_tweet_list.append(tweet_dict)
-    except:
-        print('Try block failed')
+    except Exception as e:
+        print(e)
 
     return bad_tweet_list
 
