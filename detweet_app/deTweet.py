@@ -9,6 +9,9 @@ from os.path import abspath
 import re
 
 def get_all_tweets(twitter_req_obj, request):
+    '''
+    Grabs 3200 the tweets from the twitter api in their full text form.
+    '''
     global_tweet_list = []
     last_tweet_id = None
     for i in range(16):
@@ -20,9 +23,9 @@ def get_all_tweets(twitter_req_obj, request):
             }
         else:
             payload = {
-                'count': 200, 
-                'include_rts': 1, 
-                'max_id': last_tweet_id, 
+                'count': 200,
+                'include_rts': 1,
+                'max_id': last_tweet_id,
                 'tweet_mode':'extended'
             }
         tweet_list = twitter_req_obj.get('statuses/user_timeline.json', params=payload).json()
