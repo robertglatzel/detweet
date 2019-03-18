@@ -25,6 +25,7 @@ def index():
     session['img'] = resp.json()['profile_image_url_https']
     session['screen_name'] = resp.json()['screen_name']
     session['info'] = resp.json()['description']
+
     return redirect(url_for('tweet_page', unique_id=unique_id))
 
 @app.route('/tweet_page/<unique_id>')
