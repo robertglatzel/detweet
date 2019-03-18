@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
+# Sets up the virtual environment with all the dependencies listed in the requirements.txt file and runs the flask app on 0.0.0.0
 export FLASK_APP=detweet_app
 export FLASK_ENV=development
+
 if [ ! -d detweet_env ]; then
     echo "Virtual environment does not exist..creating one now"
     virtualenv detweet_env 1>detweet_creation_log.txt
