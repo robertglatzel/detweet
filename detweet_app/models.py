@@ -24,9 +24,12 @@ class OAuth(OAuthConsumerMixin, db.Model):
 
 # setup login manager
 login_manager = LoginManager()
-login_manager.login_view = 'twitter.login'
+login_manager.login_view = 'serve_login_page'
 
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    try:
+        return User.query.filter_by(id=int(user_id)).first()
+    except:
+        return None
