@@ -28,12 +28,6 @@ def index():
 def tweet_page():
     img = current_user.image_url
     img_no_normal = ''.join(re.split("_normal", img))
-    query = User.query.filter_by(
-            id = int(current_user.id)
-            )
-
-    temp = query.one()
-    print(temp)
     return render_template(
             'index.html',
             username = current_user.name,
@@ -55,15 +49,6 @@ def tweet_deleter():
         deletes each tweet based on the tweet id present
         in the list
     '''
-    query = User.query.filter_by(
-            id = int(current_user.id)
-            )
-
-    temp = query.one()
-    print(temp)
-
-    print("In the delete_tweets view.... the current user is = ", end='')
-    print(current_user)
     ret_status = delete_tweets(twitter, request)
     return jsonify(ret_status)
 
