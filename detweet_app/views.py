@@ -1,12 +1,17 @@
 #!/usr/bin/python3
 """ Script to start a Flask web application """
 
-from detweet_app import app, twitter_bp
+from detweet_app import app
+from .oauth import blueprint
+from .models import OAuth, User
 from flask import jsonify, redirect, render_template, request, url_for, session
 from flask_cors import CORS
 from flask_dance.contrib.twitter import twitter
+from flask_login import login_required, logout_user, current_user
 from .deTweet import get_all_tweets, delete_tweets
 import re
+from uuid import uuid4
+
 
 CORS(app, resources={r"*": {"origins": "*"}})
 
@@ -16,26 +21,24 @@ def serve_login_page():
 
 @app.route('/login')
 def index():
-    if not twitter.authorized:
-        return redirect(url_for('twitter.login'))
-    resp = twitter.get("account/verify_credentials.json")
-    session['img'] = resp.json()['profile_image_url_https']
-    session['screen_name'] = resp.json()['screen_name']
-    session['info'] = resp.json()['description']
-    return redirect(url_for('tweet_page'))
+    return redirect(url_for('twitter.login'))
 
 @app.route('/tweet_page')
+@login_required
 def tweet_page():
-    username = session.get('screen_name', None)
-    img = session.get('img', None)
-    info = session.get('info', None)
-    img = ''.join(re.split("_normal", img))
-    return render_template('index.html', username=username, img=img, info=info)
+    img = current_user.image_url
+    img_no_normal = ''.join(re.split("_normal", img))
+    return render_template(
+            'index.html',
+            username = current_user.name,
+            info = current_user.description,
+            img = img_no_normal
+            )
+
 
 @app.route('/get_tweets', methods=['POST'])
 def get_tweets():
-    '''
-    gets's all tweets, passes them to filter_tweet
+    ''' gets's all tweets, passes them to filter_tweet
     '''
     tweets = get_all_tweets(twitter, request)
     return(jsonify(tweets))
@@ -50,11 +53,12 @@ def tweet_deleter():
     return jsonify(ret_status)
 
 @app.route('/logout')
+@login_required
 def session_logout():
     """ Deletes the OAuth token from the database and redirects the user
         to the serve_login_page view
     """
-    twitter_bp.storage.delete(twitter_bp)
+    logout_user()
     return redirect(url_for('serve_login_page'))
 
 
