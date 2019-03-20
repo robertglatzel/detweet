@@ -18,6 +18,7 @@ $( document ).ready(function() {
     // That paramater will be passed to the function, overriding the detweet.
     $('#selection-toggle').click(function() {
         $( "#search-box" ).toggleClass('focus disabled');
+        $('#search-box input').val('');
     });
     // Reset search box input value when page reloads.
     $('#search-box input').val('');
