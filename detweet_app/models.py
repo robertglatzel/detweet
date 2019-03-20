@@ -30,6 +30,9 @@ login_manager.login_view = 'serve_login_page'
 @login_manager.user_loader
 def load_user(user_id):
     try:
-        return User.query.filter_by(id=int(user_id)).first()
+        user = User.query.filter_by(id=int(user_id)).first()
+        print(user.id)
+        return user
     except:
+        print('error')
         return None
