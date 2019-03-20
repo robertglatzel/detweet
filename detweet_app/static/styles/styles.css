@@ -223,8 +223,9 @@ body {
 #logout-button,
 #button-404,
 #remove,
-#cancel {
-  font-size: 15px;
+#cancel,
+#reset {
+  font-size: 15px !important;
   color: #0084b4 !important;
 }
 
@@ -247,10 +248,19 @@ body {
 #send-tweet:hover,
 #logout-button:hover,
 #button-404:hover,
-#remove:hover {
+#remove:hover,
+#reset:hover {
     background-color: #00acee !important;
     color: white !important;
 }
+
+#cancel:hover {
+  background: #4568DC !important;
+  background: -webkit-linear-gradient(to bottom, #B06AB3, #4568DC) !important;
+  background: linear-gradient(to bottom, #B06AB3, #4568DC) !important;
+  color: white !important;
+}
+
 
 #login-button:active,
 #start-button:active,
@@ -259,7 +269,8 @@ body {
 #search-again-nr:active,
 #send-tweet:active,
 #logout-button:active,
-#button-404:active {
+#button-404:active,
+#reset:active {
     background-color: #0084b4 !important;
     color:white !important;
 }
@@ -315,7 +326,7 @@ body {
 }
 .top {
     background-color: #00acee  !important;
-    padding: 3px;
+    padding: 3.6px;
     color: white;
     border-radius: 5px;
 }
@@ -328,12 +339,12 @@ body {
 /* Keep Tweet button */
 .keep-tweet {
     float: right !important;
-    margin-right: auto !important;
+    margin-right: -1px !important;
     margin-top: -26px !important;
     font-size: 10px !important;
-    background: #4568DC !important;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #B06AB3, #4568DC) !important;  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #B06AB3, #4568DC) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #4568DC !important;
+    background: -webkit-linear-gradient(to bottom, #B06AB3, #4568DC) !important;
+    background: linear-gradient(to bottom, #B06AB3, #4568DC) !important;
 
 }
 

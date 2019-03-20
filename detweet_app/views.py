@@ -34,8 +34,6 @@ def tweet_page():
             info = current_user.description,
             img = img_no_normal
             )
-
-
 @app.route('/get_tweets', methods=['POST'])
 def get_tweets():
     ''' gets's all tweets, passes them to filter_tweet
