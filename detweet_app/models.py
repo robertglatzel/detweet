@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from flask import redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin
 from flask_dance.consumer.storage.sqla import OAuthConsumerMixin
@@ -30,6 +31,10 @@ login_manager.login_view = 'serve_login_page'
 @login_manager.user_loader
 def load_user(user_id):
     try:
-        return User.query.filter_by(id=int(user_id)).first()
+        return User.query.get(id=int(user_id))
     except:
         return None 
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect(url_for('tweet_page'))
