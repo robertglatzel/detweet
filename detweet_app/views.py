@@ -24,8 +24,9 @@ def index():
     return redirect(url_for('twitter.login'))
 
 @app.route('/tweet_page')
-@login_required
 def tweet_page():
+    if current_user.is_authenticated == False:
+        return redirect(url_for('index'))
     img = current_user.image_url
     img_no_normal = ''.join(re.split("_normal", img))
     return render_template(
