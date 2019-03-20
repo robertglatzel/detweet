@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from flask import flash, redirect, request
+from flask import flash, redirect, request, url_for
 from flask_login import current_user, login_user
 from flask_dance.contrib.twitter import make_twitter_blueprint
 from flask_dance.consumer import oauth_authorized, oauth_error
