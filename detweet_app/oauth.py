@@ -10,8 +10,7 @@ from .models import db, User, OAuth
 
 
 blueprint = make_twitter_blueprint(
-    storage=SQLAlchemyStorage(OAuth, db.session, user=current_user),
-    redirect_to = 'tweet_page')
+    storage=SQLAlchemyStorage(OAuth, db.session, user=current_user))
 
 
 # create/login local user on successful OAuth login
@@ -48,6 +47,7 @@ def twitter_logged_in(blueprint, token):
     if oauth.user:
         login_user(oauth.user)
         flash("Successfully signed in.")
+        return redirect('tweet_page')
 
     else:
         # Create a new local user account for this user
@@ -64,6 +64,7 @@ def twitter_logged_in(blueprint, token):
         # Log in the new local user account
         login_user(user)
         flash("Successfully signed in.")
+        return redirect('tweet_page')
 
     # Disable Flask-Dance's default behavior for saving the OAuth token
     return False
