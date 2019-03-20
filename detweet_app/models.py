@@ -31,10 +31,6 @@ login_manager.login_view = 'serve_login_page'
 @login_manager.user_loader
 def load_user(user_id):
     try:
-        return User.query.get(id=int(user_id))
+        return User.query.filter_by(id=int(user_id)).first()
     except:
         return None 
-
-@login_manager.unauthorized_handler
-def unauthorized():
-    return redirect(url_for('tweet_page'))
