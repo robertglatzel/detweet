@@ -10,7 +10,9 @@ from .models import db, User, OAuth
 
 
 blueprint = make_twitter_blueprint(
-    storage=SQLAlchemyStorage(OAuth, db.session, user=current_user))
+    storage=SQLAlchemyStorage(OAuth, db.session, user=current_user),
+    redirect_to = 'tweet_page')
+
 
 # create/login local user on successful OAuth login
 @oauth_authorized.connect_via(blueprint)
