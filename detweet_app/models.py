@@ -31,6 +31,6 @@ login_manager = LoginManager()
 @login_manager.user_loader
 def load_user(user_id):
     try:
-        return User.query.filter_by(id=int(user_id)).first()
+        return User.query.get(id=int(user_id))
     except:
         return None
