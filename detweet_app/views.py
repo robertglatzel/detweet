@@ -17,13 +17,13 @@ CORS(app, resources={r"*": {"origins": "*"}})
 
 @app.route('/')
 def serve_login_page():
-    return render_template('login.html')
+    if request.args.get('next') == None:
+        return render_template('login.html')
+    return redirect(request.args.get('next'))
 
 @app.route('/login')
 def index():
-    if request.args.get('next') == None:
-        return redirect(url_for('twitter.login'))
-    return redirect(request.args.get('next'))
+    return redirect(url_for('twitter.login'))
 
 @app.route('/tweet_page')
 @login_required
