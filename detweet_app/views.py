@@ -21,9 +21,12 @@ def serve_login_page():
 
 @app.route('/login')
 def index():
-    return redirect(url_for('twitter.login'))
+    if not twitter.authorized:
+        return redirect(url_for('twitter.login'))
+    return redirect(url_for('tweet_page'))
 
 @app.route('/tweet_page')
+@login_required
 def tweet_page():
     if current_user.is_authenticated == False:
         return redirect(url_for('index'))
