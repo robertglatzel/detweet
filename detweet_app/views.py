@@ -17,6 +17,8 @@ CORS(app, resources={r"*": {"origins": "*"}})
 
 @app.route('/')
 def serve_login_page():
+    if current_user.is_authenticated:
+        return redirect(url_for('tweet_page'))
     return render_template('login.html')
 
 @app.route('/login')

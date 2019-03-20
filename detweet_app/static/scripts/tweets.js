@@ -33,7 +33,7 @@ $( document ).ready(function() {
       $('#load-circle').addClass('active');
       // Get the tweets from the api
       $.ajax({
-        url: "http://localhost:5000/get_tweets",
+        url: "http://127.0.0.1:5000/get_tweets",
         type: "POST",
         crossDomain: true,
         headers: {
@@ -164,7 +164,7 @@ $( document ).ready(function() {
         $('#instruction-box, #enclosure, #up-div').fadeOut(2000);
         // Sending post request back to the api to delete tweets.
         $.ajax({
-            url: "http://localhost:5000/delete_tweets",
+            url: "http://127.0.0.1:5000/delete_tweets",
             type: "POST",
             crossDomain: true,
             headers: {
