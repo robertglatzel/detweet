@@ -53,7 +53,7 @@ $( document ).ready(function() {
                     idList.push(tweetId);
                     let tweetText = el[tweetId];
                     $('#enclosure').append(
-                        `<div class="column">
+                        `<div class="column centered">
                             <div id="${tweetId}" class="tweet ui segment hvr-float-shadow">
                                 <div class="top">
                                     <p>You tweeted:</p>
