@@ -38,5 +38,5 @@ def load_user(user_id):
 @login_manager.unauthorized_handler
 def handle_needs_login():
     next = url_for(request.endpoint, **request.view_args)
-    return redirect(url_for(next))
+    return redirect(next)
 
