@@ -65,8 +65,10 @@ def twitter_logged_in(blueprint, token):
         login_user(user)
         flash("Successfully signed in.")
 
+    return redirect(url_for('tweet_page'))
+
     # Disable Flask-Dance's default behavior for saving the OAuth token
-    return False
+    #return False
 
 
 # notify on OAuth provider error
