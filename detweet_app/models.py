@@ -33,4 +33,10 @@ def load_user(user_id):
     try:
         return User.query.get(id=int(user_id))
     except:
-        return None
+        return None 
+
+@login_manager.unauthorized_handler
+def handle_needs_login():
+    next = url_for(request.endpoint, **request.view_args)
+    return redirect(url_for('serve_login_page', next=next))
+
