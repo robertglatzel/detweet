@@ -18,6 +18,7 @@ $( document ).ready(function() {
     // That paramater will be passed to the function, overriding the detweet.
     $('#selection-toggle').click(function() {
         $( "#search-box" ).toggleClass('focus disabled');
+        $('#search-box input').val('');
     });
     // Reset search box input value when page reloads.
     $('#search-box input').val('');
@@ -52,7 +53,7 @@ $( document ).ready(function() {
                     idList.push(tweetId);
                     let tweetText = el[tweetId];
                     $('#enclosure').append(
-                        `<div class="column">
+                        `<div class="column centered">
                             <div id="${tweetId}" class="tweet ui segment hvr-float-shadow">
                                 <div class="top">
                                     <p>You tweeted:</p>
@@ -71,7 +72,7 @@ $( document ).ready(function() {
                     $('.tweet').transition({
                         animation: 'horizontal flip in', duration: 1500
                     });
-                }, 6000);
+                }, 4000);
                 // Loads the 'no results' search element on to the page.
             } else if (result.length == 0){
                 setTimeout(function(){
@@ -79,7 +80,7 @@ $( document ).ready(function() {
                     $('#no-results-div').transition({
                         animation: 'drop', duration: 900
                     });
-                }, 6000);
+                }, 4000);
             }
         },
         error: function(error){
@@ -97,6 +98,17 @@ $( document ).ready(function() {
         $('#start-detweet-div').fadeIn(100);
         $('#search-again-div').removeClass('transition visible');
         $('#search-again-div').attr('style', '');
+    });
+
+    $('#reset').click(function() {
+      $('#load-circle').removeClass('active');
+      $('#enclosure').fadeOut(50);
+      $('#instruction-box').fadeOut(50);
+      $('#enclosure').empty();
+      idList = [];
+      $('#start-detweet-div').fadeIn(1800);
+      $('#remaining').text(idList.length);
+      console.log(idList);
     });
 
     $('#search-again-nr').click(function() {
