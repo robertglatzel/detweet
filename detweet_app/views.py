@@ -21,6 +21,10 @@ def serve_login_page():
 
 @app.route('/login')
 def index():
+    query = User.query.filter_by(name=current_user.name).one()
+    if current_user.is_authenticated:
+        login_user(query)
+        return redirect(url_for('tweet_page'))
     return redirect(url_for('twitter.login'))
 
 @app.route('/tweet_page')
