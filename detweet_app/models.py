@@ -25,7 +25,7 @@ class OAuth(OAuthConsumerMixin, db.Model):
 
 # setup login manager
 login_manager = LoginManager()
-#login_manager.login_view = 'serve_login_page'
+login_manager.login_view = 'serve_login_page'
 
 
 @login_manager.user_loader
