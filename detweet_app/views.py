@@ -17,9 +17,7 @@ CORS(app, resources={r"*": {"origins": "*"}})
 
 @app.route('/')
 def serve_login_page():
-    if request.args.get('next') == None:
-        return render_template('login.html')
-    return redirect(request.args.get('next'))
+    return render_template('login.html')
 
 @app.route('/login')
 def index():
