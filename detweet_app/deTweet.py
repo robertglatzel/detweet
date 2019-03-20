@@ -55,9 +55,12 @@ def filter_tweets(tweets, user_filter=None):
     try:
         for tweet in tweets:
             tweet_text_lower = re.split(r'[\s,\.]+', tweet['full_text'].lower())
+            tweet_text_orig = re.split(r'[\s,\.]+', tweet['full_text'])
             for word in bad_words:
                 if word in tweet_text_lower:
-                    new_txt = re.sub(word, '<strong>{}</strong>'.format(word), tweet['full_text'], flags=re.IGNORECASE)
+                    idx = tweet_text_lower.index(word)
+                    original_word = tweet_text_orig[idx]
+                    new_txt = re.sub(original_word , '<strong>{}</strong>'.format(original_word), tweet['full_text'], flags=re.IGNORECASE)
                     tweet_dict = {tweet.get('id'): '"{}"'.format(new_txt)}
                     bad_tweet_list.append(tweet_dict)
     except Exception as e:
