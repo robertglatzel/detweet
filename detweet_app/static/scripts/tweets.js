@@ -1,14 +1,15 @@
-$( document ).ready(function() {
+document.addEventListener('DOMContentLoaded', function (){
     // List containing all the tweet id's that have been flagged and will be rendered to the page.
     let idList = [];
-
+    //Shorthand query selector
+    var $$ = function(sel) {
+        return document.querySelector(sel);
+    }
 /* ============ ENTER KEY START ============ */
     // Trigger start button keypress on enter.
-    $(document).keypress(function(e) {
-        var key = e.which;
-        if(key == 13) {
-            $('#start-button').click();
-            return false;
+    document.body.addEventListener('keyup', function(e){
+        if (e.key === 'Enter'){
+            $$('#start-button').click()
         }
     });
 /* ============ ENTER KEY START END ============ */
@@ -16,21 +17,24 @@ $( document ).ready(function() {
 /* ============ SEARCH BAR ============ */
     // Toggles the search box. When search box is toggled, it allows user to enter a search paramater.
     // That paramater will be passed to the function, overriding the detweet.
-    $('#selection-toggle').click(function() {
-        $( "#search-box" ).toggleClass('focus disabled');
-        $('#search-box input').val('');
+    $$('#selection-toggle').addEventListener('click', function (){
+        $$('#search-box').classList.toggle('disabled');
+        $$('#search-box').classList.toggle('focus');
+        $$('#search-box input').value = '';
     });
     // Reset search box input value when page reloads.
-    $('#search-box input').val('');
+    $$('#search-box input').value = '';
 /* ============ SEARCH BAR END ============ */
 
 /* ============ START BUTTON ============ */
     // Sends out the request with an optional search param.
-    $('#start-button').click(function () {
-      let userSearch = $('#search-box input').val();
+    $$('#start-button').addEventListener('click', function() {
+//    $('#start-button').click(function () {
+//      let userSearch = $('#search-box input').val();
+      let userSearch = $$('#search-box input').value;
       let searchArr = userSearch.split(" ");
       // Loading circle after clicking start. On a delay timer to load the content.
-      $('#load-circle').addClass('active');
+      $$('#load-circle').classList.add('active');
       // Get the tweets from the api
       $.ajax({
         url: "http://localhost:5000/get_tweets",
@@ -44,24 +48,25 @@ $( document ).ready(function() {
         contentType: "application/json; charset=utf-8",
         success: function(result){
             let flagged_ct = result.length;
-            $('#count-info').text("Total flagged tweets: ");
-            $('#remaining').text(flagged_ct);
+            $$('#count-info').textContent = "Total flagged tweets: ";
+            $$('#remaining').textContent = flagged_ct;
             // On success, loop through the returned list and extract the tweet id and the text, append it to the page.
             if (result.length != 0) {
                 result.forEach(function(el) {
                     let tweetId = Object.keys(el)[0];
                     idList.push(tweetId);
                     let tweetText = el[tweetId];
-                    $('#enclosure').append(
-                        `<div class="column centered">
-                            <div id="${tweetId}" class="tweet ui segment hvr-float-shadow">
+                    let newTweet = document.createElement('div');
+                    newTweet.classList.add('column', 'centered');
+                    newTweet.innerHTML =
+                            `<div id="${tweetId}" class="tweet ui segment hvr-float-shadow">
                                 <div class="top">
                                     <p>You tweeted:</p>
                                 </div>
                                 <button class="keep-tweet ui button violet hvr-pulse-grow" title="Keep me!">Keep me</button>
                                 <p class="tweet-text">${tweetText}</p>
-                            </div>
-                         </div>`);
+                            </div>`;
+                    $$('#enclosure').appendChild(newTweet);
                 });
                 // Loads tweets into the page.
                 setTimeout(function(){
@@ -93,29 +98,32 @@ $( document ).ready(function() {
 /* ============ SEARCH AGAIN BUTTON ============ */
     // This functions is for when the search again button is pressed. The page has to
     // remove some classes to reset like above.
-    $('#search-again-r').click(function() {
-        $('#load-circle').removeClass('active');
+    $$('#search-again-r').addEventListener('click', function() {
+        $$('#load-circle').classList.remove('active');
         $('#start-detweet-div').fadeIn(100);
-        $('#search-again-div').removeClass('transition visible');
-        $('#search-again-div').attr('style', '');
+        $$('#search-again-div').classList.remove('transition');
+        $$('#search-again-div').classList.remove('visible');
+        $$('#search-again-div').setAttribute('style', '');
     });
-
-    $('#reset').click(function() {
-      $('#load-circle').removeClass('active');
+    // For when you want to search again and empty the list of all flagged tweets.
+    // Essentially a 'Keep all' button.
+    $$('#reset').addEventListener('click', function() {
+      $$('#load-circle').classList.remove('active');
       $('#enclosure').fadeOut(50);
       $('#instruction-box').fadeOut(50);
-      $('#enclosure').empty();
+      $$('#enclosure').innerHTML = "";
       idList = [];
       $('#start-detweet-div').fadeIn(1800);
-      $('#remaining').text(idList.length);
+      $$('#remaining').textContent = idList.length;
       console.log(idList);
     });
 
-    $('#search-again-nr').click(function() {
-        $('#load-circle').removeClass('active');
+    $$('#search-again-nr').addEventListener('click', function() {
+        $$('#load-circle').classList.remove('active');
         $('#start-detweet-div').fadeIn(100);
-        $('#no-results-div').removeClass('transition visible');
-        $('#no-results-div').attr('style', '');
+        $$('#no-results-div').classList.remove('transition');
+        $$('#no-results-div').classList.remove('visible');
+        $$('#no-results-div').setAttribute('style', '');
     });
 /* ============ SEARCH AGAIN BUTTON END ============ */
 
@@ -123,16 +131,16 @@ $( document ).ready(function() {
     // This function is for keeping tweets by removing them from the list of all tweets that are to be deleted.
     $('#enclosure').on('click', '.keep-tweet', function() {
         $(this).parent().fadeOut(1000, function() {
-            let id = $(this).prop('id');
+            let id = this['id'];
             if (idList.includes(id)) {
                 let idIndex = idList.indexOf(id);
                 idList.splice(idIndex, 1);
-                $('#remaining').text(idList.length);
+                $$('#remaining').textContent = idList.length;
             }
-            $(this).parent().remove();
+            this.parentElement.remove();
             // If there are no elements left to keep, show the search again option with custom text.
             if (idList.length == 0){
-                $('#search-again-div p').text("Looks like there are no tweets left to delete. Thank you for using deTweet!");
+                $$('#search-again-div p').textContent = "Looks like there are no tweets left to delete. Thank you for using deTweet!";
                 $('#main-container').fadeOut(200);
                 setTimeout(function() {
                     $('#search-again-div').transition({
@@ -147,17 +155,17 @@ $( document ).ready(function() {
 
 /* ============ REMOVE BUTTON ============ */
     // Triggers the confirmation or cancelation screen to delete tweets
-    $('#remove-all').click(function() {
+    $$('#remove-all').addEventListener('click', function() {
         $('.ui.basic.modal').modal('show');
     });
 
     // cancel button to back out of deleting tweets.
-    $('#cancel').click(function() {
+    $$('#cancel').addEventListener('click', function() {
         $('.ui.basic.modal').modal('hide');
     });
 
     // Actual removal of tweets once the user confrims.
-    $('#remove').click(function() {
+    $$('#remove').addEventListener('click', function() {
         // Send the post request back to python with the remaining id's from
         // this list.
         $('.ui.basic.modal').modal('hide');
@@ -180,11 +188,11 @@ $( document ).ready(function() {
                 console.log(error);
             }
         });
-        // Brings in the seach again / tweet out supoort menu. On a delay so the other box fades out first.
+        // Brings in the seach again / tweet out suport menu. On a delay so the other box fades out first.
         setTimeout(function() {
-            $('#count-info').text("Total deTweets: ");
-            $('#remaining').text(idList.length);
-            $('#search-again-div p').text("Thank you for using deTweet! Your tweets have been deTweeted! Please give your profile a moment to register the changes.");
+            $$('#count-info').textContent = "Total deTweets: ";
+            $$('#remaining').textContent = idList.length;
+            $$('#search-again-div p').textContent = "Thank you for using deTweet! Your tweets have been deTweeted! Please give your profile a moment to register the changes.";
             $('#search-again-div').transition({
                 animation: 'drop', duration: 500
             });
@@ -195,7 +203,7 @@ $( document ).ready(function() {
 
 /* ============ SCROLL TO TOP BUTTON ============ */
     // Scroll to the top button animation.
-    $("a[href='#top']").click(function() {
+    $$("a[href='#top']").addEventListener('click', function() {
       $("html, body").animate({ scrollTop: 0 }, "slow");
       return false;
     });
