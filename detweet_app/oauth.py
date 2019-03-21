@@ -45,6 +45,7 @@ def twitter_logged_in(blueprint, token):
             token=token,
         )
 
+    next = request.args.get('next')
     if oauth.user:
         login_user(oauth.user)
         flash("Successfully signed in.")
@@ -65,6 +66,8 @@ def twitter_logged_in(blueprint, token):
         login_user(user)
         flash("Successfully signed in.")
 
+    return redirect(next_page)
+
     # Disable Flask-Dance's default behavior for saving the OAuth token
     return False
 
@@ -80,4 +83,4 @@ def twitter_error(blueprint, message, response):
         message=message,
         response=response,
     )
-    flash(msg, category="error")
+    flash(msg, category="error")q
