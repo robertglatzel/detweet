@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from flask import flash
+from flask import flash, redirect, request, url_for
 from flask_login import current_user, login_user
 from flask_dance.contrib.twitter import make_twitter_blueprint
 from flask_dance.consumer import oauth_authorized, oauth_error
@@ -11,7 +11,7 @@ from .models import db, User, OAuth
 
 blueprint = make_twitter_blueprint(
     storage=SQLAlchemyStorage(OAuth, db.session, user=current_user),
-    redirect_to='tweet_page')
+    redirect_to = 'tweet_page')
 
 
 # create/login local user on successful OAuth login

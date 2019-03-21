@@ -31,8 +31,6 @@ login_manager.login_view = 'serve_login_page'
 def load_user(user_id):
     try:
         user = User.query.filter_by(id=int(user_id)).first()
-        print(user.id)
         return user
     except:
-        print('error')
         return None

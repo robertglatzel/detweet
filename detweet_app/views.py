@@ -28,7 +28,6 @@ def index():
 @app.route('/tweet_page')
 @login_required
 def tweet_page():
-    print(current_user)
     img = current_user.image_url
     img_no_normal = ''.join(re.split("_normal", img))
     return render_template(
