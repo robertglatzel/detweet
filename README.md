@@ -1,3 +1,4 @@
 # deTweet
 
-[Imgur](https://i.imgur.com/cwkB9gF.png)
+
+![alt text](https://imgur.com/cwkB9gF "Description goes here")
