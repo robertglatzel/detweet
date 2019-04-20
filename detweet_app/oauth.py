@@ -45,7 +45,17 @@ def twitter_logged_in(blueprint, token):
             token=token,
         )
 
+
+    name=info['screen_name']
+    image_url=info['profile_image_url_https']
+    description=info['description']
+
     if oauth.user:
+        oauth.user.name = name
+        oauth.user.image_url = image_url
+        oauth.user.description = description
+        db.session.add(oauth.user)
+        db.session.commit()
         login_user(oauth.user)
         flash("Successfully signed in.")
 
