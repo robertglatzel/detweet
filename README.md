@@ -2,6 +2,8 @@
 
 deTweet is a twitter application that cleans your profile of unwanted tweets by filtering your tweets against a database of flagged words. We make it easy for you to review and remove problematic tweets with the click of a button. 
 
+A live demo is available here: https://www.youtube.com/watch?v=NZCVmNk-uHg&feature=youtu.be
+
 deTweet is currently being rewritten to run on the MERN stack. 
 
 ## How to install and run
