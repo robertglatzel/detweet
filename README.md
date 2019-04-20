@@ -6,6 +6,10 @@ A live demo is available here: https://www.youtube.com/watch?v=NZCVmNk-uHg&featu
 
 deTweet is currently being rewritten to run on the MERN stack. 
 
+## Authors
+- Robert Glatzel: handled all of the front end using jQuery, Javascript, Semantic UI, and creating a responsive UI
+- Hemant Heer: handled the back end by integrating Flask, routes, Twitter OAuth, Flask-Login, Flask-Dance, and functions to both obtain and delete tweets.
+
 ## How to install and run
 This application has been developed and tested on Ubuntu 14.04. The best way to run the application is to use vagrant and initialize a box that lets you run Ubuntu 14.04 server edition.
 
