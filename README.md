@@ -17,7 +17,7 @@ Look for the line `config.vm.box` and the replace the string "base" with "ubuntu
 
 The next line that you'll want to look for is `config.vm.network "forwarded_port"`. On a default VagrantFile, this should be on line 26. A bit further down, you'll see a line that's nearly similar but it contains host_ip. You'll want to ignore this line.
 
-Uncomment the line by removing the `#` and set the guest and host parameters to 5000. The line should look like: `config.vm.network "forwarded_port", guest: 5002, host: 5002`
+Uncomment the line by removing the `#` and set the guest and host parameters to 5002. The line should look like: `config.vm.network "forwarded_port", guest: 5002, host: 5002`
 
 Run the commands `vagrant up` and `vagrant ssh` to obtain a shell into the remote machine.
 
@@ -50,7 +50,7 @@ Please make sure you have Python3, python3-pip, and MySQL installed (the default
 
 13. You're now ready to run the app by doing `FLASK_APP=detweet_app FLASK_ENV=development flask run --host=0.0.0.0`.
 
-14. Head to your browser and access the application by typing `localhost:5000`.
+14. Head to your browser and access the application by typing `localhost:5002`.
 
 
 Login Page
