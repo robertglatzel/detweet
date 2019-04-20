@@ -3,6 +3,11 @@
 export FLASK_APP=detweet_app
 export FLASK_ENV=development
 
+sudo apt-get update
+sudo apt-get -y install python3-pip
+sudo apt-get -y install mysql-server
+echo 'CREATE DATABASE IF NOT EXISTS detweet' | mysql -uroot -p
+
 if [ ! -d detweet_env ]; then
     echo "Virtual environment does not exist..creating one now"
     virtualenv detweet_env 1>detweet_creation_log.txt
