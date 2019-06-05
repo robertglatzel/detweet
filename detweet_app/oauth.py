@@ -46,6 +46,16 @@ def twitter_logged_in(blueprint, token):
         )
 
     if oauth.user:
+        # Update user information if their profile has changed
+        oauth.user.name = info['screen_name']
+        oauth.user.image_url = info['profile_image_url_https']
+        oauth.user.description = info['description']
+
+        # Add the user and commit the changes to the database
+        db.session.add(oauth.user)
+        db.session.commit()
+
+        # Use Flask-Login's feature to log the user into the session
         login_user(oauth.user)
         flash("Successfully signed in.")
 
