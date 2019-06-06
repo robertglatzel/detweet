@@ -3,9 +3,9 @@
 import os
 
 SECRET_KEY = os.urandom(16)
-SQLALCHEMY_DATABASE_URI = os.environ.get('database_uri')
+SQLALCHEMY_DATABASE_URI = "mysql://root:8%7CN`k=DsY84fE(@localhost/detweet?charset=utf8mb4"
 SQLALCHEMY_TRACK_MODIFICATIONS = False
-TWITTER_OAUTH_API_KEY = os.environ.get('twitter_api_key')
-TWITTER_OAUTH_API_SECRET = os.environ.get('twitter_api_secret')
-ACCESS_TOKEN = os.environ.get('access_token')
-ACCESS_SECRET = os.environ.get('access_secret')
+TWITTER_OAUTH_API_KEY = '2WK6jljRXLHVZgNYs85voIHRj'
+TWITTER_OAUTH_API_SECRET = 'juqVGUjmTy2yX0XOCVbR6545fJx2AjHVsUKd5pEpDMnSLZNRR1'
+ACCESS_TOKEN = '2899681232-D1XbtltOySLOQGGMGISRO4ORMObz115J1zX6MJ6'
+ACCESS_SECRET = '98boXE2zXWUK8GFq2d0UGvfnYeMzo5pscuFZY3pS060Mw'
