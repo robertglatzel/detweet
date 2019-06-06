@@ -33,8 +33,7 @@ Ubuntu 18.04
  - pip3 install -r requirements.txt
  - Create an instance directory in the root level of the repository
  - Add __init__.py and config.py into the directory.
- - Set these as environmental variables in your shell: database_uri, twitter_api_key, twitter_api_secret, access_token, access_secret
+ - Set these environmental variables: SECRET_KEY=os.urandom(16), SQLALCHEMY_DATABASE_URI, SQLALCHEMY_TRACK_MODIFICATIONS=False, TWITTER_OAUTH_API_KEY, TWITTER_OAUTH_API_SECRET, ACCESS_TOKEN, ACCESS_SECRET
  - export FLASK_APP = detweet_app in the shell
- - export FLASK_ENV = development (for debug mode)
  - flask run
  - check out the application on localhost:5000
