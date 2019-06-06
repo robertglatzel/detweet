@@ -16,3 +16,25 @@ Displaying filtered tweets
 
 Removing tweets
 <img src="https://github.com/robertglatzel/detweet/blob/master/images/Screen%20Shot%202019-04-03%20at%2010.18.32%20AM.png" />
+
+
+## Developer Environment
+Ubuntu 18.04
+
+
+## Installation instructions
+
+ - Clone the repo
+ - cd into the directory
+ - ./install_mysql.sh (This installs pip3 and mysqlserver) (remember your root user's password)
+ - ./update_tables_databases.sh (This updates the databases and tables to support full unicode)
+ - python3 -m venv detweet_env (This creates a virtual environment)
+ - source detweet_env/bin/activate (Activates the virtual environment)
+ - pip3 install -r requirements.txt
+ - Create an instance directory in the root level of the repository
+ - Add __init__.py and config.py into the directory.
+ - Set these as environmental variables in your shell: database_uri, twitter_api_key, twitter_api_secret, access_token, access_secret
+ - export FLASK_APP = detweet_app in the shell
+ - export FLASK_ENV = development (for debug mode)
+ - flask run
+ - check out the application on localhost:5000
