@@ -1,6 +1,6 @@
 $( document ).ready(function() {
-    // List containing all the tweet id's that have been flagged and will be rendered to the page.
-    let idList = [];
+    // Obj containing all the tweet id's and their text that have been flagged and will be rendered to the page.
+    let tweetObj = {};
 
 /* ============ ENTER KEY START ============ */
     // Trigger start button keypress on enter.
@@ -49,8 +49,9 @@ $( document ).ready(function() {
             if (result.length != 0) {
                 result.forEach(function(el) {
                     let tweetId = Object.keys(el)[0];
-                    idList.push(tweetId);
                     let tweetText = el[tweetId];
+                    tweetObj[tweetId] = tweetText
+
                     $('#enclosure').append(
                         `<div class="column">
                             <div id="${tweetId}" class="tweet ui segment hvr-float-shadow">
@@ -112,14 +113,13 @@ $( document ).ready(function() {
     $('#enclosure').on('click', '.keep-tweet', function() {
         $(this).parent().fadeOut(1000, function() {
             let id = $(this).prop('id');
-            if (idList.includes(id)) {
-                let idIndex = idList.indexOf(id);
-                idList.splice(idIndex, 1);
-                $('#remaining').text(idList.length);
+            if (id in tweetObj){
+                delete tweetObj[id]
+                $('#remaining').text(Object.keys(tweetObj).length);                
             }
             $(this).parent().remove();
             // If there are no elements left to keep, show the search again option with custom text.
-            if (idList.length == 0){
+            if (Object.keys(tweetObj).length == 0){
                 $('#search-again-div p').text("Looks like there are no tweets left to delete. Thank you for using deTweet!");
                 $('#main-container').fadeOut(200);
                 setTimeout(function() {
@@ -128,7 +128,6 @@ $( document ).ready(function() {
                     });
                 }, 500);
             }
-            console.log(idList);
         });
     });
 /* ============ KEEP BUTTON END ============ */
@@ -150,7 +149,11 @@ $( document ).ready(function() {
         // this list.
         $('.ui.basic.modal').modal('hide');
         $('#instruction-box, #enclosure, #up-div').fadeOut(2000);
-        // Sending post request back to the api to delete tweets.
+        // Sending post request back to the api to delete tweets. Loop add id's to a list and send the list back.
+        let removalList = [];
+        for (let id in tweetObj){
+            removalList.push(id)
+        }
         $.ajax({
             url: "http://127.0.0.1:5000/delete_tweets",
             type: "POST",
@@ -159,7 +162,7 @@ $( document ).ready(function() {
               'Access-Control-Allow-Origin': '*'
             },
             dataType: "json",
-            data: JSON.stringify(idList),
+            data: JSON.stringify(removalList),
             contentType: "application/json; charset=utf-8",
             success: function(result){
                 console.log(result);
@@ -171,13 +174,13 @@ $( document ).ready(function() {
         // Brings in the seach again / tweet out supoort menu. On a delay so the other box fades out first.
         setTimeout(function() {
             $('#count-info').text("Total deTweets: ");
-            $('#remaining').text(idList.length);
+            $('#remaining').text(removalList.length);
             $('#search-again-div p').text("Thank you for using deTweet! Your tweets have been deTweeted! Please give your profile a moment to register the changes.");
             $('#search-again-div').transition({
                 animation: 'drop', duration: 500
             });
         }, 2000);
-        console.log("Id list after remove clicked: " + idList);
+        console.log("Id list after remove clicked: " + removalList);
     });
 /* ============ REMOVE BUTTON END ============ */
 
