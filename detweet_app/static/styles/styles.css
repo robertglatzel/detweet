@@ -191,7 +191,7 @@ body {
 }
 
 #sign-in {
-  height: 200px;
+  height: 300px;
 }
 
 .instructions p {
@@ -205,16 +205,19 @@ body {
     }
 }
 
-#login-button p {
+#login-button p,
+#dummy-button p {
     display: inline;
     margin-top: 4px;
 }
 
-#login-button {
+#login-button,
+#dummy-button {
     margin-top: 12px;
 }
 
 #login-button,
+#dummy-button,
 #start-button,
 #remove-all,
 #search-again-r,
@@ -254,6 +257,15 @@ body {
     color: white !important;
 }
 
+#dummy-button:hover {
+    background-color: #B06AB3 !important;
+    color: white !important;
+}
+
+#dummy-button:hover > i {
+    transform: scaleX(-1);
+}
+
 #cancel:hover {
   background: #4568DC !important;
   background: -webkit-linear-gradient(to bottom, #B06AB3, #4568DC) !important;
@@ -275,7 +287,8 @@ body {
     color:white !important;
 }
 
-#login-button i {
+#login-button i,
+#dummy-button i {
   font-size: 19px;
   margin-right: -5px;
 }
