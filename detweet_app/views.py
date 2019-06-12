@@ -1,13 +1,11 @@
 #!/usr/bin/python3
 """ Script to start a Flask web application """
 
-from detweet_app import app
-from .oauth import blueprint
-from .models import OAuth, User
+from detweet_app import app, blueprint
 from flask import jsonify, redirect, render_template, request, url_for, session
 from flask_cors import CORS
 from flask_dance.contrib.twitter import twitter
-from flask_login import login_required, logout_user, current_user
+from flask_dance.consumer import oauth_authorized
 from .deTweet import get_all_tweets, delete_tweets
 import re
 from uuid import uuid4
@@ -24,17 +22,19 @@ def index():
     return redirect(url_for('twitter.login'))
 
 @app.route('/tweet_page')
-@login_required
 def tweet_page():
-    img = current_user.image_url
+    resp = twitter.get('account/verify_credentials.json')
+
+    info = resp.json()
+
+    img = info['profile_image_url_https']
     img_no_normal = ''.join(re.split("_normal", img))
     return render_template(
             'index.html',
-            username = current_user.name,
-            info = current_user.description,
+            username = info['screen_name'],
+            info = info['description'],
             img = img_no_normal
             )
-
 
 @app.route('/get_tweets', methods=['POST'])
 def get_tweets():
@@ -53,12 +53,10 @@ def tweet_deleter():
     return jsonify(ret_status)
 
 @app.route('/logout')
-@login_required
 def session_logout():
     """ Deletes the OAuth token from the database and redirects the user
         to the serve_login_page view
     """
-    logout_user()
     return redirect(url_for('serve_login_page'))
 
 
