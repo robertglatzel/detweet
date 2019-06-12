@@ -5,6 +5,7 @@ from detweet_app import app, blueprint
 from flask import jsonify, redirect, render_template, request, url_for, session
 from flask_cors import CORS
 from flask_dance.contrib.twitter import twitter
+from flask_dance.consumer import oauth_authorized
 from .deTweet import get_all_tweets, delete_tweets
 import re
 from uuid import uuid4
@@ -12,9 +13,9 @@ from uuid import uuid4
 
 CORS(app, resources={r"*": {"origins": "*"}})
 
-
-def getUserInformation():
-    resp = twitter.get('account/verify_credentials.json')
+@oauth_authorized.connect
+def logged_in(blueprint, token):
+    resp = blueprint.session.get('account/verify_credentials.json')
 
     info = resp.json()
 
@@ -22,6 +23,7 @@ def getUserInformation():
 
     for item in keys_to_store:
         session[item] = info[item]
+
 
 @app.route('/')
 def serve_login_page():
@@ -33,8 +35,6 @@ def index():
 
 @app.route('/tweet_page')
 def tweet_page():
-    if twitter.authorized:
-        getUserInformation()
     img = session['profile_image_url_https']
     img_no_normal = ''.join(re.split("_normal", img))
     return render_template(
