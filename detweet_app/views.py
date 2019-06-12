@@ -33,7 +33,8 @@ def index():
 
 @app.route('/tweet_page')
 def tweet_page():
-    getUserInformation()
+    if twitter.authorized:
+        getUserInformation()
     img = session['profile_image_url_https']
     img_no_normal = ''.join(re.split("_normal", img))
     return render_template(
