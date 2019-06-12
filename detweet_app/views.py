@@ -13,18 +13,6 @@ from uuid import uuid4
 
 CORS(app, resources={r"*": {"origins": "*"}})
 
-@oauth_authorized.connect
-def logged_in(blueprint, token):
-    resp = blueprint.session.get('account/verify_credentials.json')
-
-    info = resp.json()
-
-    keys_to_store = ['screen_name', 'profile_image_url_https','description']
-
-    for item in keys_to_store:
-        session[item] = info[item]
-
-
 @app.route('/')
 def serve_login_page():
     return render_template('login.html')
@@ -35,12 +23,16 @@ def index():
 
 @app.route('/tweet_page')
 def tweet_page():
-    img = session['profile_image_url_https']
+    resp = twitter.get('account/verify_credentials.json')
+
+    info = resp.json()
+
+    img = info['profile_image_url_https']
     img_no_normal = ''.join(re.split("_normal", img))
     return render_template(
             'index.html',
-            username = session['screen_name'],
-            info = session['description'],
+            username = info['screen_name'],
+            info = info['description'],
             img = img_no_normal
             )
 
@@ -65,8 +57,6 @@ def session_logout():
     """ Deletes the OAuth token from the database and redirects the user
         to the serve_login_page view
     """
-    for key in session.keys():
-        session.pop(key)
     return redirect(url_for('serve_login_page'))
 
 
