@@ -1,0 +1,385 @@
+.App {
+  text-align: center;
+}
+
+/* Whole page layout */
+body {
+  background: #E0EAFC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  background-size:  cover;
+}
+
+#page-container {
+position: relative;
+min-height: 100vh;
+}
+
+/* Main page wrapper, allows padding for footer at bottom */
+#content-wrap {
+padding-bottom: 15em;
+}
+/* END Whole page layout */
+
+/* Menu */
+#welcome {
+  margin: 0 auto;
+}
+
+#welcome h3 {
+  margin-top: 13px;
+  margin-left: 50px;
+  font-size: 35px;
+
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
+  font-weight: 400;
+}
+
+#banner {
+  margin-top: 6px;
+  width: 200px;
+  margin-right: 36px;
+}
+
+#banner-index {
+  margin-top: 9px;
+  width: 200px;
+  margin-left: 70px;
+}
+
+/* twitter follow box in menu */
+#follow-box-top {
+  width: 170px;
+}
+
+/* Reposition welcome message based on screen size */
+@media (max-width: 500px) {
+  #banner-index {
+      margin-top: 13px;
+      width: 160px;
+      margin-left: 0 !important;
+
+  }
+  #banner {
+      margin-left: 36px;
+  }
+  #logo-corner {
+      display: none;
+  }
+}
+/* END Menu */
+
+
+/* Logo related */
+#logo-large {
+  margin-top: 30px;
+  width: 210px;
+}
+
+#logo-large-404 {
+  margin-top: 140px;
+  width: 200px;
+}
+
+.logo {
+  border-radius: 50% !important;
+}
+
+#logo-corner {
+  width: 3em;
+}
+
+.logo-div {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+
+#logo-text {
+  color: white;
+  text-shadow: black 1px 1px 3px;
+}
+
+.logo-div h1 {
+  margin-top: -10px;
+}
+/* END logo related */
+
+/* profile div */
+
+.user-profile-div {
+  margin: 0 auto;
+  margin-bottom: 25px;
+  margin-top: 50px !important;
+  max-width: 500px !important;
+  text-align: left !important;
+}
+
+#user-image-large {
+  width: 150px;
+}
+
+.image {
+  width: auto !important;
+}
+
+#profile-content {
+  padding: 5px;
+  min-height: 130px;
+}
+
+.description {
+  margin: 0 !important;
+}
+.description p {
+  font-size: 14px;
+}
+
+.content {
+  margin-top: 15px !important;
+}
+
+@media (max-width: 450px) {
+  .content {
+      margin-top: 0 !important;
+  }
+}
+/* END profle div */
+
+
+
+/* Contains all tweets and buttons for the program. Hidden by default */
+#main-container {
+display: none;
+}
+
+/* Remove All button */
+.remove-button {
+  text-align: center;
+  margin: 20px;
+}
+
+#remove-all:hover,
+#remove:hover {
+  background-color: #00acee !important;
+}
+/* Popup modal for deleting tweets */
+#confirm {
+  text-align: center;
+  border-radius: 5px;
+  width: 400px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 40px;
+  font-size: 15px;
+  color: black;
+}
+
+/* END Remove All button */
+
+
+/* Instruction box */
+.instructions {
+  text-align: center;
+  border-radius: 5px;
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  font-size: 16px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#sign-in {
+height: 320px;
+}
+
+.instructions p {
+  margin: 7px;
+  margin-top: 14px;
+}
+
+@media (max-width: 500px) {
+  #sign-in {
+      height: 260px;
+  }
+}
+
+#login-button p,
+#dummy-button p {
+  display: inline;
+  margin-top: 4px;
+}
+
+#login-button,
+#dummy-button {
+  margin-top: 12px;
+}
+
+#login-button,
+#dummy-button,
+#start-button,
+#remove-all,
+#search-again-r,
+#search-again-nr,
+#send-tweet,
+#logout-button,
+#button-404,
+#remove,
+#cancel,
+#reset {
+font-size: 15px !important;
+color: #0084b4 !important;
+}
+
+#start-button {
+display: block;
+margin: 0 auto;
+margin-bottom: 10px;
+}
+
+#start-detweet-div {
+text-align: center;
+display: ;
+}
+
+#login-button:hover,
+#start-button:hover,
+#remove-all:hover,
+#search-again-r:hover,
+#search-again-nr:hover,
+#send-tweet:hover,
+#logout-button:hover,
+#button-404:hover,
+#remove:hover,
+#reset:hover {
+  background-color: #00acee !important;
+  color: white !important;
+}
+
+#dummy-button:hover {
+  background-color: #B06AB3 !important;
+  color: white !important;
+}
+
+#dummy-button:hover > i {
+  transform: scaleX(-1);
+}
+
+#cancel:hover {
+background: #4568DC !important;
+background: -webkit-linear-gradient(to bottom, #B06AB3, #4568DC) !important;
+background: linear-gradient(to bottom, #B06AB3, #4568DC) !important;
+color: white !important;
+}
+
+
+#login-button:active,
+#start-button:active,
+#remove-all:active,
+#search-again-r:active,
+#search-again-nr:active,
+#send-tweet:active,
+#logout-button:active,
+#button-404:active,
+#reset:active {
+  background-color: #0084b4 !important;
+  color:white !important;
+}
+
+#login-button i,
+#dummy-button i {
+font-size: 19px;
+margin-right: -5px;
+}
+
+#search-box {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 9px;
+}
+
+.ui.slider.checkbox input:checked ~ label::before {
+  background: -webkit-linear-gradient(to right, #86fde8, #acb6e5);
+  background: linear-gradient(to right, #86fde8, #acb6e5);
+}
+
+#no-results-div,
+#search-again-div {
+  display: none;
+}
+/* END Instruction box */
+
+/* Side button to scroll to top of page */
+#up-div {
+  position: fixed;
+  bottom: 30px;
+  right: 0;
+  z-index: 3000;
+}
+
+#up-button {
+  float: right;
+  margin-right: 30px;
+  width: 40px;
+  height: 40px;
+}
+
+#up-button i {
+  margin-top: -6px;
+}
+
+/* END Side button */
+
+/* Tweet Box */
+.tweet {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: #0084b4 !important;
+  width: 100% !important;
+}
+.top {
+  background-color: #00acee  !important;
+  padding: 3px;
+  color: white;
+  border-radius: 5px;
+}
+.top p {
+  display: inline;
+  margin-left: 8px;
+}
+/* END Tweet Box*/
+
+/* Keep Tweet button */
+.keep-tweet {
+  float: right !important;
+  margin-right: -1px !important;
+  margin-top: -26px !important;
+  font-size: 10px !important;
+  background: #4568DC !important;
+  background: -webkit-linear-gradient(to bottom, #B06AB3, #4568DC) !important;
+  background: linear-gradient(to bottom, #B06AB3, #4568DC) !important;
+
+}
+
+/* END Keep Tweet button */
+
+footer {
+bottom: 0;
+position: absolute;
+width: 100%;
+padding: 1em 0 1em 0;
+background: radial-gradient(circle, rgba(255,255,255,1) 14%, rgba(255,255,255,0) 86%);
+}
+
+.privacy {
+  display: inherit;
+}
+
+#divide {
+  width: 70%;
+  margin: 0 auto;
+}
