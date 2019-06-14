@@ -4,31 +4,67 @@ This twitter bot checks your posts to see if you've tweeted anything
 that might be considered questionable and lead to complications further in
 your career.
 """
-from flask import request
-from os.path import abspath
-import re
 
-def get_all_tweets(twitter_req_obj, request):
+from detweet_app import app, oauth, consumer
+from flask import request, session
+from os.path import abspath
+import urllib.parse
+import json
+import re
+import time
+
+def get_all_tweets(request):
     '''
     Grabs 3200 the tweets from the twitter api in their full text form.
     '''
+
+
+    api_endpoint = 'https://api.twitter.com/1.1/statuses/user_timeline'
+
+    token = oauth.Token(
+         key = session['access_token']['oauth_token'],
+         secret = session['access_token']['oauth_token_secret']
+    )
+
+    print(token.key)
+    print(token.secret)
+
+
+    client = oauth.Client(
+        consumer,
+        token
+    )
+
+
+    params = {
+        'count': 200,
+        'include_rts': 1,
+        'tweet_mode': 'extended'
+    }
+
+    #qs = '?count=200&include_rts=1&tweet_mode=extended'
+
     global_tweet_list = []
     last_tweet_id = None
     for i in range(16):
         if (last_tweet_id) is None:
-            payload = {
-                'count': 200,
-                'include_rts': 1,
-                'tweet_mode':'extended'
-            }
+            pass
         else:
-            payload = {
-                'count': 200,
-                'include_rts': 1,
-                'max_id': last_tweet_id,
-                'tweet_mode':'extended'
+            params['max_id'] = last_tweet_id
+            #qs += '&max_id={}'.format(last_tweet_id)
+        resp, content = client.request(
+            api_endpoint,
+            method="GET",
+            body=bytes(urllib.parse.urlencode(params), 'utf-8'),
+            headers={
+                'Content-Type': 'application/x-wwww-form-urlencoded'
             }
-        tweet_list = twitter_req_obj.get('statuses/user_timeline.json', params=payload).json()
+        )
+
+        print(resp)
+
+        tweet_list = json.loads(content.decode('utf-8'))
+        print(tweet_list)
         last_tweet_id = tweet_list[-1].get('id')
         global_tweet_list += tweet_list
 
