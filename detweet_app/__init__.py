@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 
 from flask import Flask
-from flask_dance.contrib.twitter import make_twitter_blueprint
-import sentry_sdk
-from sentry_sdk.integrations.flask import FlaskIntegration
+import oauth2 as oauth
 
-sentry_sdk.init(
-    dsn="https://09c2874ccfa24b7ba3634623ebf97350@sentry.io/1480075",
-    integrations=[FlaskIntegration()]
-)
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('config.py')
 app.url_map.strict_slashes = False
 
-blueprint = make_twitter_blueprint(redirect_to='tweet_page')
-app.register_blueprint(blueprint, url_prefix="/login")
+consumer_key = app.config['TWITTER_OAUTH_API_KEY']
+consumer_secret = app.config['TWITTER_OAUTH_API_SECRET']
+
+request_token_url = 'https://api.twitter.com/oauth/request_token'
+access_token_url = 'https://api.twitter.com/oauth/access_token'
+authorize_url = 'https://api.twitter.com/oauth/authorize'
+
+consumer = oauth.Consumer(consumer_key, consumer_secret)
+client = oauth.Client(consumer)
+
 import detweet_app.views
