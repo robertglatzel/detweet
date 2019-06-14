@@ -63,7 +63,7 @@ def tweet_page():
     if resp['status'] == 401:
         return redirect(url_for('entry'))
 
-    info = json.loads(content.decode('utf-8').replace("'", '"'))
+    info = json.loads(content.decode('utf-8'))
 
     img = info['profile_image_url_https']
     img_no_normal = ''.join(re.split("_normal", img))
@@ -78,7 +78,7 @@ def tweet_page():
 def get_tweets():
     ''' gets's all tweets, passes them to filter_tweet
     '''
-    tweets = get_all_tweets(twitter, request)
+    tweets = get_all_tweets(request)
     return(jsonify(tweets))
 
 @app.route('/delete_tweets', methods=['POST'])
