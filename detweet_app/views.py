@@ -78,7 +78,17 @@ def tweet_page():
 def get_tweets():
     ''' gets's all tweets, passes them to filter_tweet
     '''
-    tweets = get_all_tweets(request)
+
+    token = oauth.Token(
+        session['access_token']['oauth_token'],
+        session['access_token']['oauth_token_secret']
+    )
+
+    print(token.key)
+    print(token.secret)
+    client = oauth.Client(consumer, token)
+
+    tweets = get_all_tweets(client, request)
     return(jsonify(tweets))
 
 @app.route('/delete_tweets', methods=['POST'])
@@ -87,7 +97,14 @@ def tweet_deleter():
         deletes each tweet based on the tweet id present
         in the list
     '''
-    ret_status = delete_tweets(twitter, request)
+
+
+    token = oauth.Token(
+        session['access_token']['oauth_token'],
+        session['access_token']['oauth_token_secret']
+    )
+    client = oauth.Client(consumer, token)
+    ret_status = delete_tweets(client, request)
     return jsonify(ret_status)
 
 @app.route('/logout')

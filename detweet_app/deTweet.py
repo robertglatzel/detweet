@@ -5,7 +5,7 @@ that might be considered questionable and lead to complications further in
 your career.
 """
 
-from detweet_app import app, oauth, consumer
+from detweet_app import app
 from flask import request, session
 from os.path import abspath
 import urllib.parse
@@ -13,28 +13,13 @@ import json
 import re
 import time
 
-def get_all_tweets(request):
+def get_all_tweets(client, request):
     '''
     Grabs 3200 the tweets from the twitter api in their full text form.
     '''
 
 
-    api_endpoint = 'https://api.twitter.com/1.1/statuses/user_timeline'
-
-    token = oauth.Token(
-         key = session['access_token']['oauth_token'],
-         secret = session['access_token']['oauth_token_secret']
-    )
-
-    print(token.key)
-    print(token.secret)
-
-
-    client = oauth.Client(
-        consumer,
-        token
-    )
-
+    api_endpoint = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
 
     params = {
         'count': 200,
@@ -42,7 +27,7 @@ def get_all_tweets(request):
         'tweet_mode': 'extended'
     }
 
-    #qs = '?count=200&include_rts=1&tweet_mode=extended'
+    qs = '?count=200&include_rts=1&tweet_mode=extended'
 
     global_tweet_list = []
     last_tweet_id = None
@@ -50,21 +35,14 @@ def get_all_tweets(request):
         if (last_tweet_id) is None:
             pass
         else:
-            params['max_id'] = last_tweet_id
-            #qs += '&max_id={}'.format(last_tweet_id)
+            #params['max_id'] = last_tweet_id
+            qs += '&max_id={}'.format(last_tweet_id)
         resp, content = client.request(
-            api_endpoint,
+            api_endpoint + qs,
             method="GET",
-            body=bytes(urllib.parse.urlencode(params), 'utf-8'),
-            headers={
-                'Content-Type': 'application/x-wwww-form-urlencoded'
-            }
         )
 
-        print(resp)
-
         tweet_list = json.loads(content.decode('utf-8'))
-        print(tweet_list)
         last_tweet_id = tweet_list[-1].get('id')
         global_tweet_list += tweet_list
 
@@ -108,17 +86,24 @@ def filter_tweets(tweets, user_filter=None):
     return bad_tweet_list
 
 
-def delete_tweets(twitter_req_obj, request):
+def delete_tweets(client, request):
     """
     Deletes all flagged tweets
     """
     tweet_id_list = request.get_json()
     print(tweet_id_list)
+    not_deleted = []
     for tweet_id in tweet_id_list:
             try:
                 tweet_id = int(tweet_id)
-                endpoint_build = "statuses/destroy/{}.json".format(tweet_id)
-                resp = twitter_req_obj.post(endpoint_build).json()
+                endpoint = "https://api.twitter.com/1.1/statuses/destroy/{}.json".format(tweet_id)
+
+                resp, content = client.request(
+                    endpoint,
+                    method='POST'
+                )
+                if resp.status != 200:
+                    not_deleted.append(tweet_id)
             except:
                 print("Fail")
                 return "fail"
