@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserInfo from './UserInfo'
 import Start from './Start'
 import Instructions from './Instructions'
+import Tweet from './Tweet'
 
 class TweetPage extends Component {
     constructor(props) {
@@ -11,19 +12,6 @@ class TweetPage extends Component {
             username: "",
             description: "",
             startClicked: false,
-        }
-    }
-
-    loadTweets(userType){
-        // Removes the start button box and toggles the instructions box.
-        this.setState({startClicked: true})
-        // Loads tweets from twitter api or via fake_detweet.
-        if (userType === true){
-            //load tweets from api.
-            console.log('loading real tweets')
-        } else {
-            // load tweets from fake_detweet
-            console.log('loading fake tweets')
         }
     }
 
@@ -43,14 +31,33 @@ class TweetPage extends Component {
         }
     }
 
+
+    // Removes the start button box and toggles the instructions box.
+    loadTweets(userType){
+        this.setState({startClicked: true})
+        // Loads tweets from twitter api or via fake_detweet.
+        if (userType === true){
+            //load tweets from api.
+            console.log('loading real tweets')
+        } else {
+            // load tweets from fake_detweet
+            console.log('loading fake tweets')
+        }
+    }
+
+    // Will remove all loaded tweets and instructions, retriggering the start box.
+    searchAgain(){
+        this.setState({startClicked: false})
+        console.log('search again clicked')
+    }
+
+
     render() { 
         return (
             <div>
-                <UserInfo 
-                    user={this.state}
-                />
+                <UserInfo user={this.state} />
                 {/* If start has not been clicked, render the start button message. 
-                Otherwise the main container which cointains instructions, the loaded tweets, and the search again buttons. 
+                Otherwise the main container which cointains instructions, the loaded tweets. 
                 */}
 
                 {!this.state.startClicked ? 
@@ -60,11 +67,15 @@ class TweetPage extends Component {
                     />)
                 :
                     (<div id="main-container">
-                        <Instructions />
-
+                        <Instructions searchAgain={this.searchAgain.bind(this)}/>
+                        <div id="enclosure" className="ui three column stackable grid container">
+                            {/* Tweets get loaded here. */}
+                            <Tweet />
+                            <Tweet />
+                            <Tweet />
+                        </div>
                     </div>) 
                 }
-
             </div>
 
             

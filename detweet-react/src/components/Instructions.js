@@ -6,13 +6,14 @@ class Instructions extends Component {
         super(props);
         this.state = {  }
     }
-    render() { 
+    render() {
+        let props = this.props; 
         return (
             <div id="instruction-box" className="instructions">
                 <p>If you see a tweet that you would like to keep, click the 'Keep me' button.<br /> When you're ready to remove the tweets just click the button below, or search again.</p>
                 <div className="remove-button" >
                     <button id="remove-all" className="ui basic button centered button-style">Remove Tweets</button>
-                    <button id="reset" className="ui basic button button-style">Search Again</button>
+                    <button id="reset" className="ui basic button button-style" onClick={props.searchAgain}>Search Again</button>
                 </div>
             </div>
         );
