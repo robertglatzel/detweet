@@ -8,38 +8,38 @@ import TweetPage from './TweetPage'
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      realLogin: false,
-      dummyLogin: false,
-      isLogged: false
-     }
-     this.login.bind(this);
-  }
+	constructor(props) {
+		super(props);
+		this.state = { 
+			real: false,
+			isLogged: false
+		 }
+		 this.login.bind(this);
+		 this.dLogin.bind(this);
+	}
 
-  login(){
-    this.setState({realLogin: true, isLogged: true})
-    console.log('logged in');
-  }
+	login(){
+		this.setState({real:true, isLogged: true})
+	}
 
-  dummyLogin(){
-    this.setState({dummyLogin: true, isLogged:true})
-    console.log('Logged in with dummy profile.')
-  }
+	dLogin(){
+		this.setState({isLogged:true})
+	}
 
-  render() { 
-    return (     
-    <div className="App">
-      <Nav />
-      {!this.state.isLogged ? 
-        (<Login login={this.login.bind(this)} dummy={this.dummyLogin.bind(this)} />) :
-        (<TweetPage />)
-      }
-      <Footer />
-    </div> 
-    );
-  }
+	render() { 
+		return (     
+		<div className="App" id="page-container">
+			<div id="contant-wrap">
+				<Nav />
+				{!this.state.isLogged ? 
+					(<Login login={this.login.bind(this)} dummy={this.dLogin.bind(this)} />) :
+					(<TweetPage user={this.state.real} />)
+				}
+				<Footer />
+			</div>
+		</div> 
+		);
+	}
 }
 
 export default App;

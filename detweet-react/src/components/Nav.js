@@ -9,7 +9,7 @@ class Nav extends Component {
     render() { 
         return ( 
             <div className="ui borderless menu">
-                <a className="item logo" href="#"><img id="logo-corner" src={require("../images/detweet logo_favicon.png")} alt="detweet logo"/></a>
+                <a className="item logo" href="/"><img id="logo-corner" src={require("../images/detweet logo_favicon.png")} alt="detweet logo"/></a>
                 <div id="welcome">
                     <img id="banner" className="ui center aligned" src={require("../images/banner-logo_resize.png")} alt="detweet banner" />
                 </div>
@@ -17,7 +17,7 @@ class Nav extends Component {
 
                 </div>
             </div>
-         );
+        );
     }
 }
  

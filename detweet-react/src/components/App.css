@@ -33,7 +33,6 @@ padding-bottom: 15em;
   margin-top: 13px;
   margin-left: 50px;
   font-size: 35px;
-
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
   font-weight: 400;
 }
@@ -152,9 +151,6 @@ padding-bottom: 15em;
 
 
 /* Contains all tweets and buttons for the program. Hidden by default */
-#main-container {
-display: none;
-}
 
 /* Remove All button */
 .remove-button {
@@ -205,7 +201,7 @@ height: 320px;
 
 @media (max-width: 500px) {
   #sign-in {
-      height: 260px;
+      height: 400px;
   }
 }
 
