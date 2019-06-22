@@ -5,7 +5,7 @@ from detweet_app import app, blueprint
 from flask import jsonify, redirect, render_template, request, url_for, session
 from flask_cors import CORS
 from flask_dance.contrib.twitter import twitter
-from flask_dance.consumer import oauth_authorized
+from flask_login import login_required, logout_user
 from .deTweet import get_all_tweets, delete_tweets
 import re
 from uuid import uuid4
@@ -14,14 +14,15 @@ from uuid import uuid4
 CORS(app, resources={r"*": {"origins": "*"}})
 
 @app.route('/')
-def serve_login_page():
+def main():
     return render_template('login.html')
 
 @app.route('/login')
-def index():
+def login():
     return redirect(url_for('twitter.login'))
 
 @app.route('/tweet_page')
+@login_required
 def tweet_page():
     resp = twitter.get('account/verify_credentials.json')
 
@@ -53,11 +54,13 @@ def tweet_deleter():
     return jsonify(ret_status)
 
 @app.route('/logout')
-def session_logout():
+@login_required
+def logout():
     """ Deletes the OAuth token from the database and redirects the user
         to the serve_login_page view
     """
-    return redirect(url_for('serve_login_page'))
+    logout_user()
+    return redirect(url_for('main'))
 
 
 @app.errorhandler(404)

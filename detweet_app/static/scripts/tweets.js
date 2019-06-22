@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function (){
       $$('#load-circle').classList.add('active');
       // Get the tweets from the api
       $.ajax({
-        url: "http://127.0.0.1:5000/get_tweets",
+        url: "/get_tweets",
         type: "POST",
         crossDomain: true,
         headers: {
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function (){
             removalList.push(id)
         }
         $.ajax({
-            url: "http://localhost:5000/delete_tweets",
+            url: "/delete_tweets",
             type: "POST",
             crossDomain: true,
             headers: {
