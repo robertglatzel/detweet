@@ -105,11 +105,27 @@ class TweetPage extends Component {
 					/>
 				) : (
 					<div id="main-container">
-						<Instructions searchAgain={this.searchAgain} />
-						<div id="enclosure" className="ui three column stackable grid container">
-							{/* Tweets get loaded here. */}
-							{tweets}
-						</div>
+						{/* If tweet array length is empty, display no results div */}
+						{this.state.tweets.length != 0 ? (
+							<div>
+								<Instructions searchAgain={this.searchAgain} />
+								<div id="enclosure" className="ui three column stackable grid container">
+									{/* Tweets get loaded here. */}
+									{tweets}
+								</div>
+							</div>
+						) : (
+							<div id="no-results-div" class="instructions">
+								<p>Looks like we didn't find any matches. Want to try again?</p>
+								<button
+									id="search-again-nr"
+									onClick={this.searchAgain}
+									class="ui basic button centered button-style"
+								>
+									Search Again
+								</button>
+							</div>
+						)}
 					</div>
 				)}
 			</div>
