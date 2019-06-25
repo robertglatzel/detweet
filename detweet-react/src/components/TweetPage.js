@@ -11,7 +11,13 @@ class TweetPage extends Component {
 			realUser: null,
 			startClicked: false,
 			searchTerm: '',
-			disabledSearch: true
+			disabledSearch: true,
+			tweets: [
+				{ id: '100', text: 'tweet one' },
+				{ id: '200', text: 'tweet two' },
+				{ id: '300', text: 'tweet three' },
+				{ id: '400', text: 'tweet four' }
+			]
 		};
 	}
 
@@ -44,9 +50,20 @@ class TweetPage extends Component {
 		console.log(`This will be sent to detweet: ${this.state.searchTerm}`);
 	};
 
+	// Keep tweet. Should remove the tweet from the page and from the array of loaded objects.
+	// keep me should update the tweets state and remove the selected tweet with a matching id.
+	// Needs an animation
+
+	keepTweet = (e) => {
+		let id = e.target.parentElement.id;
+		this.setState((prevState) => ({
+			tweets: prevState.tweets.filter((tweet) => tweet.id !== id)
+		}));
+	};
+
 	// Will remove all loaded tweets and instructions, retriggering the start box.
 	searchAgain = () => {
-		this.setState({ startClicked: false, searchTerm: '', disabledSearch: true });
+		this.setState({ startClicked: false, searchTerm: '', disabledSearch: true, tweets: [] });
 		console.log('search again clicked');
 	};
 
@@ -65,6 +82,10 @@ class TweetPage extends Component {
 	};
 
 	render() {
+		let tweets = this.state.tweets.map((tweet) => (
+			<Tweet id={tweet.id} key={tweet.id} text={tweet.text} keep={this.keepTweet} />
+		));
+
 		return (
 			<div>
 				<UserInfo user={this.props.userInfo} />
@@ -87,9 +108,7 @@ class TweetPage extends Component {
 						<Instructions searchAgain={this.searchAgain} />
 						<div id="enclosure" className="ui three column stackable grid container">
 							{/* Tweets get loaded here. */}
-							<Tweet />
-							<Tweet />
-							<Tweet />
+							{tweets}
 						</div>
 					</div>
 				)}

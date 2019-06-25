@@ -38,7 +38,7 @@ def tweet_page():
 
 @app.route('/get_tweets', methods=['POST'])
 def get_tweets():
-    ''' gets's all tweets, passes them to filter_tweet
+    ''' gets all tweets, passes them to filter_tweet
     '''
     tweets = get_all_tweets(twitter, request)
     return(jsonify(tweets))
