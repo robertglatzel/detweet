@@ -3,6 +3,7 @@ import UserInfo from './UserInfo';
 import Start from './Start';
 import Instructions from './Instructions';
 import Tweet from './Tweet';
+import NoResults from './NoResults';
 
 class TweetPage extends Component {
 	constructor(props) {
@@ -106,7 +107,7 @@ class TweetPage extends Component {
 				) : (
 					<div id="main-container">
 						{/* If tweet array length is empty, display no results div */}
-						{this.state.tweets.length != 0 ? (
+						{this.state.tweets.length !== 0 ? (
 							<div>
 								<Instructions searchAgain={this.searchAgain} />
 								<div id="enclosure" className="ui three column stackable grid container">
@@ -115,16 +116,7 @@ class TweetPage extends Component {
 								</div>
 							</div>
 						) : (
-							<div id="no-results-div" class="instructions">
-								<p>Looks like we didn't find any matches. Want to try again?</p>
-								<button
-									id="search-again-nr"
-									onClick={this.searchAgain}
-									class="ui basic button centered button-style"
-								>
-									Search Again
-								</button>
-							</div>
+							<NoResults search={this.searchAgain} />
 						)}
 					</div>
 				)}
