@@ -35,7 +35,7 @@ class TweetPage extends Component {
 			// If the user type is true, it means we have a real user. We have to query detweet and grab all the users
 			// info and send it along.
 			this.setState({ realUser: true });
-			console.log('real logged in');
+			console.log('real user logged in');
 		}
 	}
 
