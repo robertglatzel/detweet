@@ -4,6 +4,7 @@ import Start from './Start';
 import Instructions from './Instructions';
 import Tweet from './Tweet';
 import NoResults from './NoResults';
+import TweetsDeleted from './TweetsDeleted';
 
 class TweetPage extends Component {
 	constructor(props) {
@@ -11,6 +12,7 @@ class TweetPage extends Component {
 		this.state = {
 			realUser: null,
 			startClicked: false,
+			deleteClicked: false,
 			searchTerm: '',
 			disabledSearch: true,
 			tweets: [
@@ -51,8 +53,9 @@ class TweetPage extends Component {
 		console.log(`This will be sent to detweet: ${this.state.searchTerm}`);
 	};
 
-	// grabs the remaining tweet id's and creats an array, sending them back to javascript.
+	// grabs the remaining tweet id's and creats an array, sending them back to detweet.
 	deleteTweets = () => {
+		this.setState({ deleteClicked: true });
 		let tweetsToRemove = [];
 		this.state.tweets.forEach((tweet) => {
 			tweetsToRemove.push(tweet['id']);
@@ -73,7 +76,7 @@ class TweetPage extends Component {
 
 	// Will remove all loaded tweets and instructions, retriggering the start box.
 	searchAgain = () => {
-		this.setState({ startClicked: false, searchTerm: '', disabledSearch: true, tweets: [] });
+		this.setState({ startClicked: false, searchTerm: '', disabledSearch: true, tweets: [], deleteClicked: false });
 		console.log('search again clicked');
 	};
 
@@ -92,10 +95,6 @@ class TweetPage extends Component {
 	};
 
 	render() {
-		let tweets = this.state.tweets.map((tweet) => (
-			<Tweet id={tweet.id} key={tweet.id} text={tweet.text} keep={this.keepTweet} />
-		));
-
 		return (
 			<div>
 				<UserInfo user={this.props.userInfo} />
@@ -115,13 +114,19 @@ class TweetPage extends Component {
 					/>
 				) : (
 					<div id="main-container">
-						{/* If tweet array length is empty, display no results div */}
-						{this.state.tweets.length !== 0 ? (
+						{/* If delete was clicked, render the TweetsDeleted component. 
+						From there, the user can decide if they want to serach again. 
+						Clicking search again will set deleteClicked to false.
+						 If tweet array length is empty, display no results div, otherwise it will display all the tweets. */}
+						{this.state.deleteClicked ? (
+							<TweetsDeleted searchAgain={this.searchAgain} />
+						) : this.state.tweets.length !== 0 ? (
 							<div>
 								<Instructions searchAgain={this.searchAgain} delete={this.deleteTweets} />
 								<div id="enclosure" className="ui three column stackable grid container">
-									{/* Tweets get loaded here. */}
-									{tweets}
+									{this.state.tweets.map((tweet) => (
+										<Tweet id={tweet.id} key={tweet.id} text={tweet.text} keep={this.keepTweet} />
+									))}
 								</div>
 							</div>
 						) : (
