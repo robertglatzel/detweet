@@ -51,6 +51,15 @@ class TweetPage extends Component {
 		console.log(`This will be sent to detweet: ${this.state.searchTerm}`);
 	};
 
+	// grabs the remaining tweet id's and creats an array, sending them back to javascript.
+	deleteTweets = () => {
+		let tweetsToRemove = [];
+		this.state.tweets.forEach((tweet) => {
+			tweetsToRemove.push(tweet['id']);
+		});
+		console.log(`This list of tweet id's will be removed ${tweetsToRemove}`);
+	};
+
 	// Keep tweet. Should remove the tweet from the page and from the array of loaded objects.
 	// keep me should update the tweets state and remove the selected tweet with a matching id.
 	// Needs an animation
@@ -68,9 +77,9 @@ class TweetPage extends Component {
 		console.log('search again clicked');
 	};
 
+	// Switches the state of the disabled search. If disabled, default to detweet bad words.
+	// if enabled, text value will be grabbed by loadTweets for sending back to detweet.
 	searchToggle = () => {
-		// Switches the state of the disabled search. If disabled, default to detweet bad words.
-		// if enabled, text value will be grabbed by loadTweets for sending back to detweet.
 		this.setState((prevState) => ({
 			disabledSearch: !prevState.disabledSearch,
 			searchTerm: (prevState.searchTerm = '')
@@ -109,7 +118,7 @@ class TweetPage extends Component {
 						{/* If tweet array length is empty, display no results div */}
 						{this.state.tweets.length !== 0 ? (
 							<div>
-								<Instructions searchAgain={this.searchAgain} />
+								<Instructions searchAgain={this.searchAgain} delete={this.deleteTweets} />
 								<div id="enclosure" className="ui three column stackable grid container">
 									{/* Tweets get loaded here. */}
 									{tweets}

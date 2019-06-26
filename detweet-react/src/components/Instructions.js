@@ -14,7 +14,7 @@ class Instructions extends Component {
 					to remove the tweets just click the button below, or search again.
 				</p>
 				<div className="remove-button">
-					<button id="remove-all" className="ui basic button centered button-style">
+					<button id="remove-all" className="ui basic button centered button-style" onClick={props.delete}>
 						Remove Tweets
 					</button>
 					<button id="reset" className="ui basic button button-style" onClick={props.searchAgain}>
