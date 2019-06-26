@@ -99,7 +99,8 @@ class TweetPage extends Component {
 			<div>
 				<UserInfo user={this.props.userInfo} />
 				{/* If start has not been clicked, render the start button message. 
-                Otherwise the main container which cointains instructions, the loaded tweets. 
+				Otherwise the main container which cointains instructions, and the loaded tweets. 
+				I realize this is kind of messy, will refactor it at some point.
                 */}
 
 				{!this.state.startClicked ? (
@@ -117,7 +118,7 @@ class TweetPage extends Component {
 						{/* If delete was clicked, render the TweetsDeleted component. 
 						From there, the user can decide if they want to serach again. 
 						Clicking search again will set deleteClicked to false.
-						 If tweet array length is empty, display no results div, otherwise it will display all the tweets. */}
+						If tweet array length is empty, display no results div, otherwise it will display all the tweets. */}
 						{this.state.deleteClicked ? (
 							<TweetsDeleted searchAgain={this.searchAgain} />
 						) : this.state.tweets.length !== 0 ? (
