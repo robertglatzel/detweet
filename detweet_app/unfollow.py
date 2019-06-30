@@ -13,6 +13,11 @@ api = TwitterAPI(consumer_key, consumer_secret, access_token, access_secret)
 
 
 def unfollow_by_likes():
+    ''' 
+    Looks at your friends and your recent likes. If you haven't liked one of your friends tweets, display the user 
+    Needs to handle paging. Should go through All your friends, and let user decide how far back to look (tweet like count)
+    '''
+
     friends = api.request('friends/list', {'count': 200})
     my_likes = api.request('favorites/list', {'count': 200})
 
