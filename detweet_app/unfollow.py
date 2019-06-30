@@ -7,10 +7,6 @@ from TwitterAPI import TwitterAPI
 import pprint
 
 """Setup"""
-consumer_key = 'UG2MeGYIb17UXWE7DB1CE7qLl'
-consumer_secret = 'hx9aq37ygMQDVLcBptrAkbzvCsU4JFinjgb2kBMYOznwGxtNfU'
-access_token = '2899681232-hcYY7FK8MujE3ZDGqKdsxoj46htrHImGJtrgsZr'
-access_secret = 'y9kLZnbDsxSRmcwcbizsJf3GpOmrq8r18fXBHw8cjzT1j'
 
 api = TwitterAPI(consumer_key, consumer_secret, access_token, access_secret)
 
