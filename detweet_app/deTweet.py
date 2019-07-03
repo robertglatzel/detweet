@@ -4,9 +4,10 @@ This twitter bot checks your posts to see if you've tweeted anything
 that might be considered questionable and lead to complications further in
 your career.
 """
-from flask import request
+from flask import request, jsonify
 from os.path import abspath
 import re
+import pprint
 
 def get_all_tweets(twitter_req_obj, request):
     '''
@@ -32,6 +33,11 @@ def get_all_tweets(twitter_req_obj, request):
         last_tweet_id = tweet_list[-1].get('id')
         global_tweet_list += tweet_list
 
+    '''
+    print('-------------------------------------------------')
+    pprint.pprint(tweet_list[0])
+    print('-------------------------------------------------')
+    '''
     user_filter = request.get_json()
     tweets = filter_tweets(global_tweet_list, user_filter)
     return tweets
@@ -56,15 +62,21 @@ def filter_tweets(tweets, user_filter=None):
     try:
         for tweet in tweets:
             for word in bad_words:
-                tweet_text_lower = re.findall(r"[\w']+", tweet['full_text'].lower())
-                tweet_text_orig = re.findall(r"[\w']+", tweet['full_text'])
-#                tweet_text_lower = tweet['full_text'].lower().split()
-#                tweet_text_orig = tweet['full_text'].split()
+                tweet_text_lower = re.findall(r"[^#!.\s]+", tweet['full_text'].lower())
+                tweet_text_orig = re.findall(r"[^#!.\s]+", tweet['full_text'])
+                special_char_and_whitespace_list = re.findall(r"[#!.\s]+", tweet['full_text'])
                 if word in tweet_text_lower:
                     idx = tweet_text_lower.index(word)
                     strong_word = '<strong>{}</strong>'.format(tweet_text_orig[idx])
                     tweet_text_orig[idx] = strong_word
-                    tweet_dict = {tweet.get('id'): '"{}"'.format(' '.join(tweet_text_orig))}
+                    reconstructed_tweet = []
+                    for i in range(len(tweet_text_orig)):
+                        reconstructed_tweet.append(tweet_text_orig[i])
+                        try:
+                            reconstructed_tweet.append(special_char_and_whitespace_list[i])
+                        except:
+                            pass
+                    tweet_dict = {tweet.get('id'): '"{}"'.format(''.join(reconstructed_tweet))}
                     bad_tweet_list.append(tweet_dict)
     except Exception as e:
         print(e)
