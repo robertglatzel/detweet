@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import UserInfo from './UserInfo';
 import StartUsers from './StartUsers';
 import Instructions from './Instructions';
 import Users from './Users';

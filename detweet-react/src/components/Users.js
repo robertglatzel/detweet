@@ -22,7 +22,11 @@ const Users = (props) => {
 				<div className="ui feed">
 					<div className="event">
 						<div className="label">
-							<img style={{ width: '100px' }} src={require('../images/' + props.img)} />
+							<img
+								style={{ width: '100px' }}
+								src={require('../images/' + props.img)}
+								alt={props.username}
+							/>
 						</div>
 						<div style={{ marginLeft: '90px' }} className="content">
 							<div className="summary">{props.description}</div>

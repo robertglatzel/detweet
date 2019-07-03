@@ -3,7 +3,6 @@ import './App.css';
 import Nav from './Nav';
 import Login from './Login';
 import Footer from './Footer';
-import TweetPage from './TweetPage';
 import UserOrTweet from './UserOrTweet';
 
 class App extends Component {
