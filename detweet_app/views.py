@@ -7,7 +7,6 @@ from flask_cors import CORS
 from flask_dance.contrib.twitter import twitter
 from flask_login import login_required, logout_user
 from .deTweet import get_all_tweets, delete_tweets
-from .unfollow import unfollow_by_likes
 import re
 
 CORS(app, resources={r"*": {"origins": "*"}})
@@ -50,12 +49,6 @@ def tweet_deleter():
     '''
     return jsonify(
         delete_tweets(twitter, request)
-    )
-
-@app.route('/users', methods=['GET'])
-def users():
-    return jsonify(
-        unfollow_by_likes(twitter)
     )
 
 @app.route('/logout')
