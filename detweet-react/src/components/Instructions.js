@@ -9,7 +9,7 @@ const Instructions = (props) => {
 			</p>
 			<div className="remove-button">
 				<button id="remove-all" className="ui basic button centered button-style" onClick={props.delete}>
-					Remove Tweets
+					Remove {props.type}
 				</button>
 				<button id="reset" className="ui basic button button-style" onClick={props.searchAgain}>
 					Search Again

@@ -114,10 +114,10 @@ class TweetPage extends Component {
 						Clicking search again will set deleteClicked to false.
 						If user array length is empty, display no results div, otherwise it will display all the user. */}
 						{this.state.deleteClicked ? (
-							<Deleted searchAgain={this.searchAgain} type={'friends'} />
+							<Deleted searchAgain={this.searchAgain} type={'users'} />
 						) : this.state.users.length !== 0 ? (
 							<div>
-								<Instructions searchAgain={this.searchAgain} delete={this.deleteUsers} />
+								<Instructions searchAgain={this.searchAgain} delete={this.deleteUsers} type={'Users'} />
 								<div id="enclosure" className="ui three column stackable grid container">
 									{this.state.users.map((user) => (
 										<Users

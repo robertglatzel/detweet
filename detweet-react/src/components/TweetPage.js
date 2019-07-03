@@ -121,7 +121,11 @@ class TweetPage extends Component {
 							<Deleted searchAgain={this.searchAgain} type={'tweets'} />
 						) : this.state.tweets.length !== 0 ? (
 							<div>
-								<Instructions searchAgain={this.searchAgain} delete={this.deleteTweets} />
+								<Instructions
+									searchAgain={this.searchAgain}
+									delete={this.deleteTweets}
+									type={'Tweets'}
+								/>
 								<div id="enclosure" className="ui three column stackable grid container">
 									{this.state.tweets.map((tweet) => (
 										<Tweet id={tweet.id} key={tweet.id} text={tweet.text} keep={this.keepTweet} />
