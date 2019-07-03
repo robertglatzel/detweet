@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import UserInfo from './UserInfo';
-import Start from './Start';
+import StartTweets from './StartTweets';
 import Instructions from './Instructions';
 import Tweet from './Tweet';
 import NoResults from './NoResults';
-import TweetsDeleted from './TweetsDeleted';
+import Deleted from './Deleted';
 
 class TweetPage extends Component {
 	constructor(props) {
@@ -97,14 +96,13 @@ class TweetPage extends Component {
 	render() {
 		return (
 			<div>
-				<UserInfo user={this.props.userInfo} />
 				{/* If start has not been clicked, render the start button message. 
 				Otherwise the main container which cointains instructions, and the loaded tweets. 
 				I realize this is kind of messy, will refactor it at some point.
                 */}
 
 				{!this.state.startClicked ? (
-					<Start
+					<StartTweets
 						startButton={this.loadTweets}
 						userType={this.state.realUser}
 						startClicked={this.state.startClicked}
@@ -120,7 +118,7 @@ class TweetPage extends Component {
 						Clicking search again will set deleteClicked to false.
 						If tweet array length is empty, display no results div, otherwise it will display all the tweets. */}
 						{this.state.deleteClicked ? (
-							<TweetsDeleted searchAgain={this.searchAgain} />
+							<Deleted searchAgain={this.searchAgain} type={'tweets'} />
 						) : this.state.tweets.length !== 0 ? (
 							<div>
 								<Instructions searchAgain={this.searchAgain} delete={this.deleteTweets} />

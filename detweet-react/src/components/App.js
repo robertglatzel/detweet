@@ -4,6 +4,7 @@ import Nav from './Nav';
 import Login from './Login';
 import Footer from './Footer';
 import TweetPage from './TweetPage';
+import UserOrTweet from './UserOrTweet';
 
 class App extends Component {
 	constructor(props) {
@@ -46,12 +47,12 @@ class App extends Component {
 	render() {
 		return (
 			<div id="page-container">
-				<div id="contant-wrap">
+				<div id="content-wrap">
 					<Nav />
 					{!this.state.isLogged ? (
 						<Login login={this.login} dummy={this.dLogin} />
 					) : (
-						<TweetPage userType={this.state.real} userInfo={this.state.user} />
+						<UserOrTweet userType={this.state.real} userInfo={this.state.user} />
 					)}
 					<Footer />
 				</div>

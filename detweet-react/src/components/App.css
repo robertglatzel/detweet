@@ -217,6 +217,8 @@ body {
 
 #login-button,
 #dummy-button,
+#tweet-select-button,
+#user-select-button,
 #start-button,
 #remove-all,
 #search-again-r,
@@ -244,6 +246,8 @@ body {
 
 #login-button:hover,
 #start-button:hover,
+#user-select-button:hover,
+#tweet-select-button:hover,
 #remove-all:hover,
 #search-again-r:hover,
 #search-again-nr:hover,
@@ -275,6 +279,8 @@ body {
 #login-button:active,
 #start-button:active,
 #remove-all:active,
+#tweet-select-button:active,
+#user-select-button:active,
 #search-again-r:active,
 #search-again-nr:active,
 #send-tweet:active,
@@ -372,3 +378,5 @@ footer {
 	width: 70%;
 	margin: 0 auto;
 }
+
+/* Start user image */
