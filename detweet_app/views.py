@@ -7,9 +7,8 @@ from flask_cors import CORS
 from flask_dance.contrib.twitter import twitter
 from flask_login import login_required, logout_user
 from .deTweet import get_all_tweets, delete_tweets
+from .unfollow import unfollow_by_likes
 import re
-from uuid import uuid4
-
 
 CORS(app, resources={r"*": {"origins": "*"}})
 
@@ -25,9 +24,7 @@ def login():
 @login_required
 def tweet_page():
     resp = twitter.get('account/verify_credentials.json')
-
     info = resp.json()
-
     img = info['profile_image_url_https']
     img_no_normal = ''.join(re.split("_normal", img))
     return render_template(
@@ -41,8 +38,9 @@ def tweet_page():
 def get_tweets():
     ''' gets's all tweets, passes them to filter_tweet
     '''
-    tweets = get_all_tweets(twitter, request)
-    return(jsonify(tweets))
+    return jsonify(
+        get_all_tweets(twitter, request)
+    )
 
 @app.route('/delete_tweets', methods=['POST'])
 def tweet_deleter():
@@ -50,8 +48,15 @@ def tweet_deleter():
         deletes each tweet based on the tweet id present
         in the list
     '''
-    ret_status = delete_tweets(twitter, request)
-    return jsonify(ret_status)
+    return jsonify(
+        delete_tweets(twitter, request)
+    )
+
+@app.route('/users', methods=['GET'])
+def users():
+    return jsonify(
+        unfollow_by_likes(twitter)
+    )
 
 @app.route('/logout')
 @login_required
