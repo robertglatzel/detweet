@@ -1,23 +1,25 @@
-#!/usr/bin/python3
-""" Script to start a Flask web application """
-
-from detweet_app import app, blueprint
+from detweet_app import app
 from flask import jsonify, redirect, render_template, request, url_for, session
 from flask_cors import CORS
 from flask_dance.contrib.twitter import twitter
 from flask_login import login_required, logout_user
-from .deTweet import get_all_tweets, delete_tweets
+from detweet_app.functions.delete_tweets import delete_tweets
+from detweet_app.functions.filter_tweets import filter_tweets
+from detweet_app.functions.get_all_tweets import get_all_tweets
 import re
 
 CORS(app, resources={r"*": {"origins": "*"}})
+
 
 @app.route('/')
 def main():
     return render_template('login.html')
 
+
 @app.route('/login')
 def login():
     return redirect(url_for('twitter.login'))
+
 
 @app.route('/tweet_page')
 @login_required
@@ -28,18 +30,21 @@ def tweet_page():
     img_no_normal = ''.join(re.split("_normal", img))
     return render_template(
             'index.html',
-            username = info['screen_name'],
-            info = info['description'],
-            img = img_no_normal
+            username=info['screen_name'],
+            info=info['description'],
+            img=img_no_normal
             )
+
 
 @app.route('/get_tweets', methods=['POST'])
 def get_tweets():
     ''' gets's all tweets, passes them to filter_tweet
     '''
-    return jsonify(
-        get_all_tweets(twitter, request)
-    )
+    user_timeline_tweets = get_all_tweets(twitter)
+    user_filter = request.get_json()
+    tweets = filter_tweets(user_timeline_tweets, user_filter)
+    return jsonify(tweets)
+
 
 @app.route('/delete_tweets', methods=['POST'])
 def tweet_deleter():
@@ -47,9 +52,11 @@ def tweet_deleter():
         deletes each tweet based on the tweet id present
         in the list
     '''
+    tweet_ids_to_delete = request.get_json()
     return jsonify(
-        delete_tweets(twitter, request)
+        delete_tweets(twitter, tweet_ids_to_delete)
     )
+
 
 @app.route('/logout')
 @login_required
@@ -64,6 +71,3 @@ def logout():
 @app.errorhandler(404)
 def handle_error(error):
     return render_template('404page.html'), 404
-
-if __name__ == '__main__':
-    app.run('0.0.0.0', 5000)

@@ -8,4 +8,4 @@ from .models import db
 def create_db():
     db.create_all()
     db.session.commit()
-print("Database tables created")
+    print("Database tables created")

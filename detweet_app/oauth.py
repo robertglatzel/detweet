@@ -9,7 +9,7 @@ from .models import db, User, OAuth
 
 blueprint = make_twitter_blueprint(
     storage=SQLAlchemyStorage(OAuth, db.session, user=current_user),
-    redirect_to = 'tweet_page'
+    redirect_to='tweet_page'
 )
 
 
