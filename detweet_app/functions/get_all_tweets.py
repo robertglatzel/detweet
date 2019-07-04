@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 def get_all_tweets(twitter_req_obj):
     '''
     Grabs 3200 the tweets from the twitter api in their full text form.
