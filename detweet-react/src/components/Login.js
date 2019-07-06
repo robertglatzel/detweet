@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from './Logo';
+import { Link } from 'react-router-dom';
 
 const Login = (props) => {
 	return (
@@ -12,15 +13,19 @@ const Login = (props) => {
 					review and remove problematic tweets with the click of a button. <br /> <br />
 					Sign in below to get started, or login with a dummy profile to check out deTweet's features!
 				</p>
-				<button id="login-button" className="ui basic button centered" onClick={props.login}>
-					<i className="twitter icon" />
-					<p>Sign in with Twitter</p>
-				</button>
+				<Link to="/select">
+					<button id="login-button" className="ui basic button centered" onClick={props.login}>
+						<i className="twitter icon" />
+						<p>Sign in with Twitter</p>
+					</button>
+				</Link>
 				<br />
-				<button id="dummy-button" className="ui basic button centered" onClick={props.dummy}>
-					<i className="twitter icon" />
-					<p>Dummy Profile</p>
-				</button>
+				<Link to="/select">
+					<button id="dummy-button" className="ui basic button centered" onClick={props.dummy}>
+						<i className="twitter icon" />
+						<p>Dummy Profile</p>
+					</button>
+				</Link>
 			</div>
 		</div>
 	);

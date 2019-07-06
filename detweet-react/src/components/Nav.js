@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Nav = (props) => {
 	return (
 		<div className="ui borderless menu">
-			<a className="item logo" href="/">
+			<Link exact to="/select">
 				<img id="logo-corner" src={require('../images/detweet logo_favicon.png')} alt="detweet logo" />
-			</a>
+			</Link>
 			<div id="welcome">
 				<img
 					id="banner"

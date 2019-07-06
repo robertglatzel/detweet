@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Nav from './Nav';
 import Login from './Login';
@@ -48,11 +49,15 @@ class App extends Component {
 			<div id="page-container">
 				<div id="content-wrap">
 					<Nav />
-					{!this.state.isLogged ? (
-						<Login login={this.login} dummy={this.dLogin} />
-					) : (
-						<UserOrTweet userType={this.state.real} userInfo={this.state.user} />
-					)}
+					<Switch>
+						<Route exact path="/" render={() => <Login login={this.login} dummy={this.dLogin} />} />
+						<Route
+							path="/select"
+							render={({ match }) => (
+								<UserOrTweet userType={this.state.real} userInfo={this.state.user} match={match} />
+							)}
+						/>
+					</Switch>
 					<Footer />
 				</div>
 			</div>
