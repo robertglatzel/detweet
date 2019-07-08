@@ -4,7 +4,7 @@ import './App.css';
 import Nav from './Nav';
 import Login from './Login';
 import Footer from './Footer';
-import UserOrTweet from './UserOrTweet';
+import Select from './Select';
 
 class App extends Component {
 	constructor(props) {
@@ -54,7 +54,7 @@ class App extends Component {
 						<Route
 							path="/select"
 							render={({ match }) => (
-								<UserOrTweet userType={this.state.real} userInfo={this.state.user} match={match} />
+								<Select userType={this.state.real} userInfo={this.state.user} match={match} />
 							)}
 						/>
 					</Switch>

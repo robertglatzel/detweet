@@ -1,5 +1,4 @@
 import React from 'react';
-import LoadingModal from './LoadingModal';
 
 const StartTweets = (props) => {
 	return (
@@ -12,7 +11,7 @@ const StartTweets = (props) => {
 				id="start-button"
 				type="submit"
 				className="ui basic button centered button-style"
-				onClick={() => props.startButton(props.userType)}
+				onClick={() => props.startButton(props.userType, props.selectionType)}
 			>
 				Start
 			</button>

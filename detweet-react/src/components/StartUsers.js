@@ -8,7 +8,7 @@ const StartUsers = (props) => {
 				id="start-button"
 				type="submit"
 				className="ui basic button centered button-style"
-				onClick={() => props.startButton(props.userType)}
+				onClick={() => props.startButton(props.userType, props.selectionType)}
 			>
 				Start
 			</button>
