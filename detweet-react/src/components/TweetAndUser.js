@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 import StartTweets from './StartTweets';
 import StartUsers from './StartUsers';
 import Instructions from './Instructions';
@@ -6,7 +7,6 @@ import Tweet from './Tweet';
 import Users from './Users';
 import NoResults from './NoResults';
 import Deleted from './Deleted';
-import { Dimmer, Loader } from 'semantic-ui-react';
 
 class TweetAndUser extends Component {
 	constructor(props) {
@@ -19,6 +19,7 @@ class TweetAndUser extends Component {
 			searchTerm: '',
 			disabledSearch: true,
 			dimmerActive: false,
+			//data will contain either tweets or user data. Format should be made the same.
 			data: [
 				{
 					id: '100',

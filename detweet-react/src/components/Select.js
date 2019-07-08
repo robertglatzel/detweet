@@ -16,7 +16,7 @@ const Select = ({ match, userType, userInfo }) => {
 							<p>
 								There are two ways of using deTweet. <br />
 								If you would like to use deTweet to clean up your tweets, select Tweets. <br />
-								If you would like to clean up the users you follow, select Users.
+								If you would like to unfollow users you don't interact with, select Users.
 							</p>
 							<Link to={`${match.url}/tweets`}>
 								<button
