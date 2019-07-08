@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 const Nav = (props) => {
 	return (
 		<div className="ui borderless menu">
-			<Link exact to="/select">
-				<img id="logo-corner" src={require('../images/detweet logo_favicon.png')} alt="detweet logo" />
-			</Link>
+			<div style={{ marginTop: '7px', marginLeft: '5px' }}>
+				<Link exact to="/select">
+					<img id="logo-corner" src={require('../images/detweet logo_favicon.png')} alt="detweet logo" />
+				</Link>
+			</div>
 			<div id="welcome">
 				<img
 					id="banner"
