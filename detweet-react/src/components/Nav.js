@@ -5,7 +5,7 @@ const Nav = (props) => {
 	return (
 		<div className="ui borderless menu">
 			<div style={{ marginTop: '7px', marginLeft: '5px' }}>
-				<Link exact to="/select">
+				<Link to="/select">
 					<img id="logo-corner" src={require('../images/detweet logo_favicon.png')} alt="detweet logo" />
 				</Link>
 			</div>
