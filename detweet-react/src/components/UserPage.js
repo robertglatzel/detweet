@@ -4,6 +4,7 @@ import Instructions from './Instructions';
 import Users from './Users';
 import NoResults from './NoResults';
 import Deleted from './Deleted';
+import { Dimmer, Loader } from 'semantic-ui-react';
 
 class TweetPage extends Component {
 	constructor(props) {
@@ -12,6 +13,7 @@ class TweetPage extends Component {
 			realUser: null,
 			startClicked: false,
 			deleteClicked: false,
+			dimmerActive: false,
 			users: [
 				{
 					name: 'user1',
@@ -53,7 +55,11 @@ class TweetPage extends Component {
 
 	// Loads Users.
 	loadUsers = (userType) => {
-		this.setState({ startClicked: true });
+		this.setState({ dimmerActive: true }, () => {
+			setTimeout(() => {
+				this.setState({ startClicked: true, dimmerActive: false });
+			}, 3000);
+		});
 		// Loads users from twitter api or via fake_detweet.
 		if (userType === true) {
 			//load users from api.
@@ -99,7 +105,9 @@ class TweetPage extends Component {
 				Otherwise the main container which cointains instructions, and the loaded tweets. 
 				I realize this is kind of messy, will refactor it at some point.
                 */}
-
+				<Dimmer active={this.state.dimmerActive}>
+					<Loader size="large">Loading...</Loader>
+				</Dimmer>
 				{!this.state.startClicked ? (
 					<StartUsers
 						startButton={this.loadUsers}

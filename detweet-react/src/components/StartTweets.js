@@ -1,4 +1,5 @@
 import React from 'react';
+import LoadingModal from './LoadingModal';
 
 const StartTweets = (props) => {
 	return (

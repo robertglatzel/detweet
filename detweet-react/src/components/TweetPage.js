@@ -4,6 +4,7 @@ import Instructions from './Instructions';
 import Tweet from './Tweet';
 import NoResults from './NoResults';
 import Deleted from './Deleted';
+import { Dimmer, Loader, Segment } from 'semantic-ui-react';
 
 class TweetPage extends Component {
 	constructor(props) {
@@ -14,6 +15,7 @@ class TweetPage extends Component {
 			deleteClicked: false,
 			searchTerm: '',
 			disabledSearch: true,
+			dimmerActive: false,
 			tweets: [
 				{ id: '100', text: 'tweet one' },
 				{ id: '200', text: 'tweet two' },
@@ -38,9 +40,16 @@ class TweetPage extends Component {
 		}
 	}
 
-	// Loads tweets. Also grabs the search term for passing back to detweet.
+	// Loads tweets from api. When start is clicked, it launches the loading circle.
+	// When api returns with all results, loading circle will be disabled.
+	// Also grabs the search term for passing back to detweet.
+
 	loadTweets = (userType) => {
-		this.setState({ startClicked: true });
+		this.setState({ dimmerActive: true }, () => {
+			setTimeout(() => {
+				this.setState({ startClicked: true, dimmerActive: false });
+			}, 3000);
+		});
 		// Loads tweets from twitter api or via fake_detweet.
 		if (userType === true) {
 			//load tweets from api.
@@ -96,10 +105,10 @@ class TweetPage extends Component {
 	render() {
 		return (
 			<div>
-				{/* If start has not been clicked, render the start button message. 
-				Otherwise the main container which cointains instructions, and the loaded tweets. 
-				I realize this is kind of messy, will refactor it at some point.
-                */}
+				{/*Loading circle once start is clicked, covers whole page */}
+				<Dimmer active={this.state.dimmerActive}>
+					<Loader size="large">Loading...</Loader>
+				</Dimmer>
 
 				{!this.state.startClicked ? (
 					<StartTweets
