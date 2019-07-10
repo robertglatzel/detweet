@@ -100,11 +100,6 @@ body {
 	margin-bottom: 10px;
 }
 
-#start-detweet-div {
-	text-align: center;
-	display: ;
-}
-
 #login-button:hover,
 #start-button:hover,
 #user-select-button:hover,
@@ -197,9 +192,9 @@ body {
 	display: inline;
 	margin-left: 8px;
 }
-/* END Tweet Box*/
+/* END Data Box*/
 
-/* Keep Tweet button */
+/* Keep Data button */
 .keep-data {
 	float: right !important;
 	margin-right: -1px !important;
