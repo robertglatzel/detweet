@@ -1,4 +1,4 @@
-#logo-large {
+#Logo-large {
 	margin-top: 30px;
 	width: 190px;
 }
@@ -8,7 +8,7 @@
 	width: 190px;
 }
 
-.logo {
+.Logo {
 	border-radius: 50% !important;
 }
 
@@ -16,7 +16,7 @@
 	width: 3em;
 }
 
-.logo-div {
+.Logo-div {
 	text-align: center;
 	margin-bottom: 25px;
 }

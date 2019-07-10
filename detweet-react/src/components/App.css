@@ -50,6 +50,7 @@ body {
 .description {
 	margin: 0 !important;
 }
+
 .description p {
 	font-size: 14px;
 }
@@ -103,19 +104,9 @@ body {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#sign-in {
-	height: 320px;
-}
-
 .instructions p {
 	margin: 7px;
 	margin-top: 14px;
-}
-
-@media (max-width: 500px) {
-	#sign-in {
-		height: 400px;
-	}
 }
 
 #login-button p,

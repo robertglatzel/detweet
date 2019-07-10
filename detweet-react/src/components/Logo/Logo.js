@@ -3,10 +3,10 @@ import './Logo.css';
 
 const Logo = () => {
 	return (
-		<div className="logo-div">
+		<div className="Logo-div">
 			<img
-				id="logo-large"
-				className="ui center aligned header logo hvr-bob"
+				id="Logo-large"
+				className="ui center aligned header Logo hvr-bob"
 				src={require('../../images/detweet logo_larger_square.png')}
 				alt="detweet logo"
 			/>
