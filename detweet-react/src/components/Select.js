@@ -12,7 +12,7 @@ const Select = ({ match, userType, userInfo }) => {
 					exact
 					path={match.url}
 					render={() => (
-						<div id="user-or-tweet" className="instructions">
+						<div className="instructions">
 							<p>
 								There are two ways of using deTweet. <br />
 								If you would like to use deTweet to clean up your tweets, select Tweets. <br />

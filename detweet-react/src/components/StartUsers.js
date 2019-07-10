@@ -2,7 +2,7 @@ import React from 'react';
 
 const StartUsers = (props) => {
 	return (
-		<div id="start-detweet-div" className="instructions">
+		<div className="instructions">
 			<p>To begin filtering which users you don't interact with, please click the start button.</p>
 			<button
 				id="start-button"

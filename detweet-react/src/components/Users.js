@@ -4,18 +4,14 @@ const Users = (props) => {
 	const img = props.img;
 	return (
 		<div className="column centered">
-			<div id={props.id} className="tweet ui segment hvr-float-shadow">
-				<div className="top">
+			<div id={props.id} className="user ui segment hvr-float-shadow">
+				<div className="data-top-bar">
 					<p>
 						<strong>{props.username}</strong>{' '}
 					</p>
 				</div>
 				<div className="item">
-					<button
-						onClick={props.keep}
-						className="keep-tweet ui button violet hvr-pulse-grow"
-						title="Keep me!"
-					>
+					<button onClick={props.keep} className="keep-data ui button violet hvr-pulse-grow" title="Keep me!">
 						Keep me
 					</button>
 				</div>

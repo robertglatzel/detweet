@@ -24,50 +24,6 @@ body {
 }
 /* END Whole page layout */
 
-/* profile div */
-
-.user-profile-div {
-	margin: 0 auto;
-	margin-bottom: 25px;
-	margin-top: 50px !important;
-	max-width: 500px !important;
-	text-align: left !important;
-}
-
-#user-image-large {
-	width: 150px;
-}
-
-.image {
-	width: auto !important;
-}
-
-#profile-content {
-	padding: 5px;
-	min-height: 130px;
-}
-
-.description {
-	margin: 0 !important;
-}
-
-.description p {
-	font-size: 14px;
-}
-
-.content {
-	margin-top: 15px !important;
-}
-
-@media (max-width: 450px) {
-	.content {
-		margin-top: 0 !important;
-	}
-}
-/* END profle div */
-
-/* Contains all tweets and buttons for the program. Hidden by default */
-
 /* Remove All button */
 .remove-button {
 	text-align: center;
@@ -202,19 +158,6 @@ body {
 	margin-right: -5px;
 }
 
-#search-box {
-	display: block;
-	margin: 0 auto;
-	margin-bottom: 9px;
-}
-
-.ui.slider.checkbox input:checked ~ label::before {
-	background: -webkit-linear-gradient(to right, #86fde8, #acb6e5);
-	background: linear-gradient(to right, #86fde8, #acb6e5);
-}
-
-/* END Instruction box */
-
 /* Side button to scroll to top of page */
 #up-div {
 	position: fixed;
@@ -236,26 +179,28 @@ body {
 
 /* END Side button */
 
-/* Tweet Box */
-.tweet {
+/* Tweet and User Box */
+.tweet,
+.user {
 	background: rgba(255, 255, 255, 0.8) !important;
 	border-color: #0084b4 !important;
 	width: 100% !important;
 }
-.top {
+
+.data-top-bar {
 	background-color: #00acee !important;
 	padding: 3px;
 	color: white;
 	border-radius: 5px;
 }
-.top p {
+.data-top-bar p {
 	display: inline;
 	margin-left: 8px;
 }
 /* END Tweet Box*/
 
 /* Keep Tweet button */
-.keep-tweet {
+.keep-data {
 	float: right !important;
 	margin-right: -1px !important;
 	margin-top: -26px !important;

@@ -1,8 +1,9 @@
 import React from 'react';
+import './StartTweets.css';
 
 const StartTweets = (props) => {
 	return (
-		<div id="start-detweet-div" className="instructions">
+		<div className="instructions">
 			<p>
 				To begin filtering tweets against <strong>deTweet's</strong> database, please click the start button. Or
 				enter a custom search term that you would like to filter against.

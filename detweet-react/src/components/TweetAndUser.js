@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
-import StartTweets from './StartTweets';
+import StartTweets from './StartTweets/StartTweets';
 import StartUsers from './StartUsers';
 import Instructions from './Instructions';
 import Tweet from './Tweet';

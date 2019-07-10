@@ -31,6 +31,7 @@ class Instructions extends Component {
 				Remove {this.props.type}
 			</button>
 		);
+
 		return (
 			<div className="instructions">
 				<p>

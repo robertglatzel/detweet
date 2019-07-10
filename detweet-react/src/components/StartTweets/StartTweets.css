@@ -1,0 +1,10 @@
+#search-box {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 9px;
+}
+
+.ui.slider.checkbox input:checked ~ label::before {
+	background: -webkit-linear-gradient(to right, #86fde8, #acb6e5);
+	background: linear-gradient(to right, #86fde8, #acb6e5);
+}
