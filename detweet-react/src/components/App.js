@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Nav from './Nav/Nav';
 import Login from './Login/Login';
-import Footer from './Footer';
+import Footer from './Footer/Footer';
 import Select from './Select';
 
 class App extends Component {
