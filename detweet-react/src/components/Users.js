@@ -3,7 +3,7 @@ import React from 'react';
 const Users = (props) => {
 	const img = props.img;
 	return (
-		<div className="column centered ">
+		<div className="column centered">
 			<div id={props.id} className="tweet ui segment hvr-float-shadow">
 				<div className="top">
 					<p>

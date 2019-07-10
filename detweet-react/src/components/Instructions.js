@@ -3,7 +3,12 @@ import { Modal } from 'semantic-ui-react';
 
 class Instructions extends Component {
 	/* Strip the extra s so it's usable in the paragraph. */
-	state = { open: false };
+	constructor(props) {
+		super(props);
+		this.state = {
+			open: false
+		};
+	}
 
 	close = () => {
 		this.setState({ open: false });
@@ -27,7 +32,7 @@ class Instructions extends Component {
 			</button>
 		);
 		return (
-			<div id="instruction-box" className="instructions">
+			<div className="instructions">
 				<p>
 					If you see a {type} that you would like to keep, click the 'Keep me' button.<br /> When you're ready
 					to remove the {this.props.type} just click the button below, or search again.
