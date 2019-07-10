@@ -182,7 +182,7 @@ class TweetAndUser extends Component {
 				{!this.state.startClicked ? (
 					<div>{startType}</div>
 				) : (
-					<div id="main-container">
+					<div>
 						{/* If delete was clicked, render the TweetsDeleted component. 
 						From there, the user can decide if they want to serach again. 
 						Clicking search again will set deleteClicked to false.
@@ -196,7 +196,7 @@ class TweetAndUser extends Component {
 									delete={this.deleteData}
 									type={this.state.selectionType}
 								/>
-								<div id="enclosure" className="ui three column stackable grid container">
+								<div className="ui three column stackable grid container">
 									{this.state.selectionType === 'tweets' ? (
 										this.state.data.map((tweet) => (
 											<Tweet

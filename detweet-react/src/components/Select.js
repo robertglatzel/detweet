@@ -1,5 +1,5 @@
 import React from 'react';
-import UserInfo from './UserInfo';
+import UserInfo from './UserInfo/UserInfo';
 import TweetAndUser from './TweetAndUser';
 import { Route, Link, Switch } from 'react-router-dom';
 
