@@ -1,0 +1,27 @@
+#Nav-banner-container {
+	margin: 0 auto;
+}
+
+#Nav-banner-container h3 {
+	margin-top: 13px;
+	margin-left: 50px;
+	font-size: 35px;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande",
+		sans-serif !important;
+	font-weight: 400;
+}
+
+#Nav-banner {
+	margin-top: 6px;
+	width: 200px;
+	margin-right: 36px;
+}
+
+@media (max-width: 500px) {
+	#Nav-banner {
+		margin-left: 36px;
+	}
+	#logo-corner {
+		display: none;
+	}
+}
