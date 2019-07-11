@@ -34,14 +34,22 @@ def filter_tweets(tweets, user_filter):
         for word in bad_words:
             # Naive solution to force regex
             # to interpret * and + characters literally
-            word = word.replace('+', '\+')
-            word = word.replace('*', '\*')
-            regex = r'{}'.format(word)
-            repl = '<strong>{}</strong>'.format(word)
-            marked_tweet = re.sub(regex, repl, tweet['full_text'])
-            if marked_tweet != tweet['full_text']:
+            txt_low = re.findall(r"[^#!.\s]+", tweet['full_text'].lower())
+            txt_orig = re.findall(r"[^#!.\s]+", tweet['full_text'])
+            txt_space = re.findall(r"[#!.\s]+", tweet['full_text'])
+            if word in txt_low:
+                idx = txt_low.index(word)
+                strong_word = '<strong>{}</strong>'.format(txt_orig[idx])
+                txt_orig[idx] = strong_word
+                lst_rebld = []
+                for i in range(len(txt_orig)):
+                    lst_rebld.append(txt_orig[i])
+                    try:
+                        lst_rebld.append(txt_space[i])
+                    except:
+                        pass
                 tweet_dict = {
-                    tweet.get('id'): '"{}"'.format(marked_tweet)
+                    tweet.get('id'): '"{}"'.format(''.join(lst_rebld))
                     }
                 bad_tweet_list.append(tweet_dict)
 
