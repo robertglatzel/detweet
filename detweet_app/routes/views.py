@@ -32,6 +32,12 @@ def authorized():
     oauth_verifier = request.args.get('oauth_verifier')
     oauth_token = request.args.get('oauth_token')
 
+    dict_ = {
+        'verifier': oauth_verifier,
+        'oauth_token': oauth_token
+    }
+    return jsonify(dict_)
+
 
 """
 
