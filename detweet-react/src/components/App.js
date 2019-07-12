@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Nav from './Nav/Nav';
@@ -14,11 +15,14 @@ class App extends Component {
 			isLogged: false,
 			user: { username: '', description: '' }
 		};
+		this.login = this.login.bind(this);
 	}
 
-	login = () => {
+	async login(){
 		// Login used for real user
 		// Retrieve data from twitter api, pass it in here.
+		let response = await axios.get('http://localhost:5000/login');
+		console.log(response);
 		this.setState((prevState) => ({
 			user: {
 				...prevState.user,
@@ -61,8 +65,10 @@ class App extends Component {
 					<Footer />
 				</div>
 			</div>
-		);
+		)
 	}
 }
+
+
 
 export default App;

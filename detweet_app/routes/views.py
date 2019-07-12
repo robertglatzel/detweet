@@ -1,8 +1,7 @@
 from detweet_app import app
-from flask import jsonify, redirect, render_template, request, url_for, session
+from requests_oauthlib import OAuth1Session
+from flask import jsonify, request, url_for, session
 from flask_cors import CORS
-from flask_dance.contrib.twitter import twitter
-from flask_login import login_required, logout_user
 from detweet_app.functions.delete_tweets import delete_tweets
 from detweet_app.functions.filter_tweets import filter_tweets
 from detweet_app.functions.get_all_tweets import get_all_tweets
@@ -10,19 +9,34 @@ import re
 
 CORS(app, resources={r"*": {"origins": "*"}})
 
-
-@app.route('/')
-def main():
-    return render_template('login.html')
-
+request_token_url = 'https://api.twitter.com/oauth/request_token'
+base_authorization_url = 'https://api.twitter.com/oauth/authorize'
 
 @app.route('/login')
-def login():
-    return redirect(url_for('twitter.login'))
+def request_url():
+    oauth = OAuth1Session(
+        client_key=app.config['TWITTER_OAUTH_CLIENT_KEY'],
+        client_secret=app.config['TWITTER_OAUTH_CLIENT_SECRET']
+    )
+
+    fetch_response = oauth.fetch_request_token(request_token_url)
+    session['oauth_token'] = fetch_response['oauth_token']
+    session['oauth_token_secret'] = fetch_response['oauth_token_secret']
+
+    authorization_url = oauth.authorization_url(base_authorization_url)
+
+    return authorization_url
+
+@app.route('/authorized')
+def authorized():
+    oauth_verifier = request.args.get('oauth_verifier')
+    oauth_token = request.args.get('oauth_token')
+
+
+"""
 
 
 @app.route('/tweet_page')
-@login_required
 def tweet_page():
     resp = twitter.get('account/verify_credentials.json')
     info = resp.json()
@@ -59,11 +73,10 @@ def tweet_deleter():
 
 
 @app.route('/logout')
-@login_required
 def logout():
-    """ Deletes the OAuth token from the database and redirects the user
+    ''' Deletes the OAuth token from the database and redirects the user
         to the serve_login_page view
-    """
+    '''
     logout_user()
     return redirect(url_for('main'))
 
@@ -71,3 +84,4 @@ def logout():
 @app.errorhandler(404)
 def handle_error(error):
     return render_template('404page.html'), 404
+"""
