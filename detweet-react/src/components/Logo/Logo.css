@@ -1,0 +1,22 @@
+#Logo-large {
+	margin-top: 30px;
+	width: 190px;
+}
+
+#logo-large-404 {
+	margin-top: 140px;
+	width: 190px;
+}
+
+.Logo {
+	border-radius: 50% !important;
+}
+
+#logo-corner {
+	width: 3em;
+}
+
+.Logo-div {
+	text-align: center;
+	margin-bottom: 25px;
+}

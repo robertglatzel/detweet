@@ -1,0 +1,38 @@
+.UserInfo-profile-div {
+	margin: 0 auto;
+	margin-bottom: 25px;
+	margin-top: 50px !important;
+	max-width: 500px !important;
+	text-align: left !important;
+}
+
+#UserInfo-image-large {
+	width: 150px;
+}
+
+.UserInfo-image {
+	width: auto !important;
+}
+
+#UserInfo-profile-content {
+	padding: 5px;
+	min-height: 130px;
+}
+
+.UserInfo-description {
+	margin: 0 !important;
+}
+
+.UserInfo-description p {
+	font-size: 14px;
+}
+
+.UserInfo-content {
+	margin-top: 15px !important;
+}
+
+@media (max-width: 450px) {
+	.UserInfo-content {
+		margin-top: 0 !important;
+	}
+}

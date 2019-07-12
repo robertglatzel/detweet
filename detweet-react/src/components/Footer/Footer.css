@@ -1,0 +1,16 @@
+footer {
+	bottom: 0;
+	position: absolute;
+	width: 100%;
+	padding: 1em 0 1em 0;
+	background: radial-gradient(circle, rgba(255, 255, 255, 1) 14%, rgba(255, 255, 255, 0) 86%);
+}
+
+.privacy {
+	display: inherit;
+}
+
+#divide {
+	width: 70%;
+	margin: 0 auto;
+}

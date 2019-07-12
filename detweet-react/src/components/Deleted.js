@@ -2,7 +2,7 @@ import React from 'react';
 
 const TweetsDeleted = (props) => {
 	return (
-		<div id="search-again-div" className="instructions">
+		<div className="instructions">
 			<p>
 				Thank you for using <strong>deTweet</strong>! Your {props.type} have been deTweeted! Please give your
 				profile a moment to register the changes.

@@ -1,8 +1,9 @@
 import React from 'react';
+import './StartTweets.css';
 
 const StartTweets = (props) => {
 	return (
-		<div id="start-detweet-div" className="instructions">
+		<div className="instructions">
 			<p>
 				To begin filtering tweets against <strong>deTweet's</strong> database, please click the start button. Or
 				enter a custom search term that you would like to filter against.
@@ -11,7 +12,7 @@ const StartTweets = (props) => {
 				id="start-button"
 				type="submit"
 				className="ui basic button centered button-style"
-				onClick={() => props.startButton(props.userType)}
+				onClick={() => props.startButton(props.userType, props.selectionType)}
 			>
 				Start
 			</button>

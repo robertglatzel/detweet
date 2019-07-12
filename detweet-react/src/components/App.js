@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import Nav from './Nav';
-import Login from './Login';
-import Footer from './Footer';
-import UserOrTweet from './UserOrTweet';
+import Nav from './Nav/Nav';
+import Login from './Login/Login';
+import Footer from './Footer/Footer';
+import Select from './Select';
 
 class App extends Component {
 	constructor(props) {
@@ -48,11 +49,15 @@ class App extends Component {
 			<div id="page-container">
 				<div id="content-wrap">
 					<Nav />
-					{!this.state.isLogged ? (
-						<Login login={this.login} dummy={this.dLogin} />
-					) : (
-						<UserOrTweet userType={this.state.real} userInfo={this.state.user} />
-					)}
+					<Switch>
+						<Route exact path="/" render={() => <Login login={this.login} dummy={this.dLogin} />} />
+						<Route
+							path="/select"
+							render={({ match }) => (
+								<Select userType={this.state.real} userInfo={this.state.user} match={match} />
+							)}
+						/>
+					</Switch>
 					<Footer />
 				</div>
 			</div>
