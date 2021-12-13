@@ -24,6 +24,8 @@ Ubuntu 18.04
 
 ## Installation instructions
 
+The below instructions need to be reworked because they are unclear.
+
  - Clone the repo
  - cd into the directory
  - ./install_mysql.sh (This installs pip3 and mysqlserver) (remember your root user's password)
